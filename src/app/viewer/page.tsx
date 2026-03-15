@@ -2,14 +2,17 @@
 
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
-import Link from "next/link";
+import { Suspense, useState, useEffect } from "react";
+import Toolbar from "@/components/workspace/Toolbar";
+import PanelLeft from "@/components/workspace/PanelLeft";
+import { Assembly } from "@/types/assembly";
+import { loadAssembly } from "@/lib/assemblyLoader";
+import NavCube from "@/components/workspace/NavCube";
 
 const SceneCanvas = dynamic(() => import("@/components/viewer/SceneCanvas"), {
   ssr: false,
 });
 
-// Composant interne pour accéder aux searchParams
 function ViewerContent() {
   const searchParams = useSearchParams();
   const demo = searchParams.get("demo");
@@ -17,25 +20,54 @@ function ViewerContent() {
   const assemblyUrl = demo ? `/demo/${demo}/assembly.json` : undefined;
   const basePath = demo ? `/demo/${demo}` : undefined;
 
-  return (
-    <main className="relative w-full h-screen overflow-hidden bg-[#0a0a0a]">
-      <SceneCanvas assemblyUrl={assemblyUrl} basePath={basePath} />
+  // États des outils
+  const [grid, setGrid] = useState(false);
+  const [neighborhood, setNeighborhood] = useState(false);
+  const [xray, setXray] = useState(false);
+  const [orthoMode, setOrthoMode] = useState(false);
 
-      {/* Logo */}
-      <div className="absolute top-6 left-6 z-10">
-        <span className="text-white text-2xl font-bold tracking-widest">
-          SPAXE
-        </span>
+  // Chargement de l'assemblage pour le panel
+  const [assembly, setAssembly] = useState<Assembly | null>(null);
+  useEffect(() => {
+    if (!assemblyUrl) return;
+    loadAssembly(assemblyUrl).then(setAssembly).catch(console.error);
+  }, [assemblyUrl]);
+
+  return (
+    <main className="w-full h-screen bg-[#0a0a0a] flex flex-col">
+      {/* Toolbar */}
+      <div style={{ height: "72px", flexShrink: 0 }}>
+        <Toolbar
+          orthoMode={orthoMode}
+          onOrthoModeToggle={() => setOrthoMode((o) => !o)}
+          grid={grid}
+          onGridToggle={() => setGrid((g) => !g)}
+          neighborhood={neighborhood}
+          onNeighborhoodToggle={() => setNeighborhood((n) => !n)}
+          xray={xray}
+          onXrayToggle={() => setXray((x) => !x)}
+          onResetCamera={() => {}}
+          onOrthoView={() => {}}
+          onColorPick={() => {}}
+          onRandomColor={() => {}}
+        />
       </div>
 
-      {/* Bouton retour accueil */}
+      {/* Workspace — panel + canvas */}
+      <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
+        {/* Panel gauche — uniquement si assemblage chargé */}
+        {assembly && <PanelLeft parts={assembly.parts} />}
 
-      <Link
-        href="/"
-        className="absolute top-6 right-6 z-10 px-4 py-2 text-sm text-white/60 hover:text-white border border-white/20 hover:border-white/50 rounded-lg transition-all duration-200"
-      >
-        Back
-      </Link>
+        {/* Canvas 3D */}
+        <div style={{ flex: 1, position: "relative" }}>
+          <SceneCanvas
+            assemblyUrl={assemblyUrl}
+            basePath={basePath}
+            orthoMode={orthoMode}
+          />
+          <NavCube onFaceClick={() => {}} />
+        </div>
+      </div>
     </main>
   );
 }

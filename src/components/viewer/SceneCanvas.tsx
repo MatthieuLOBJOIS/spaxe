@@ -27,12 +27,14 @@ interface SceneCanvasProps {
   assemblyUrl?: string;
   basePath?: string;
   interactive?: boolean;
+  orthoMode?: boolean;
 }
 
 export default function SceneCanvas({
   assemblyUrl,
   basePath,
   interactive = true,
+  orthoMode = false,
 }: SceneCanvasProps) {
   const [assembly, setAssembly] = useState<Assembly | null>(null);
 
@@ -45,8 +47,13 @@ export default function SceneCanvas({
 
   return (
     <Canvas
-      camera={{ position: [2, 1.5, 3], fov: 50, near: 0.001, far: 100000 }}
-      style={{ background: "#0a0a0a" }}
+      orthographic={orthoMode}
+      camera={
+        orthoMode
+          ? { zoom: 1, position: [3, 2, 3], near: 0.001, far: 100000 }
+          : { fov: 50, position: [3, 2, 3], near: 0.001, far: 100000 }
+      }
+      style={{ width: "100%", height: "100%", background: "#0a0a0a" }}
     >
       <ambientLight intensity={2} color="#ffffff" />
       <directionalLight position={[5, 8, 5]} intensity={2} color="#ffffff" />
