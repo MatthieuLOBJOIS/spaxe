@@ -45,8 +45,8 @@ export default function SceneCanvas({
 
   return (
     <Canvas
-      camera={{ position: [2, 1.5, 3], fov: 50, near: 0.001, far: 100000 }}
-      style={{ background: "#0a0a0a" }}
+      camera={{ position: [3, 2, 3], fov: 50, near: 0.001, far: 100000 }}
+      style={{ width: "100%", height: "100%", background: "#0a0a0a" }}
     >
       <ambientLight intensity={2} color="#ffffff" />
       <directionalLight position={[5, 8, 5]} intensity={2} color="#ffffff" />
