@@ -38,8 +38,8 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ## Roadmap
 
-- [x] Project setup
-- [ ] STL viewer
+- [ ] Project setup
+- [x] STL viewer
 - [ ] Assembly system
 - [ ] Exploded view
 - [ ] Neighborhood
