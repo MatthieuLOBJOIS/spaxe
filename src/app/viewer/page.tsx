@@ -53,13 +53,7 @@ function ViewerContent() {
       {/* Workspace — panel + canvas */}
       <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
         {/* Panel gauche — uniquement si assemblage chargé */}
-        {assembly && (
-          <PanelLeft
-            parts={assembly.parts}
-            selectedPart={selectedPart}
-            onSelectPart={setSelectedPart}
-          />
-        )}
+        {assembly && <PanelLeft parts={assembly.parts} />}
 
         {/* Canvas 3D */}
         <div style={{ flex: 1, position: "relative" }}>

@@ -2,19 +2,15 @@
 
 import { useState } from "react";
 import { Part } from "@/types/assembly";
+import { useViewerStore } from "@/store/viewerStore";
 
 interface PanelLeftProps {
   parts: Part[];
-  selectedPart: string | null;
-  onSelectPart: (file: string) => void;
 }
 
-export default function PanelLeft({
-  parts,
-  selectedPart,
-  onSelectPart,
-}: PanelLeftProps) {
-  // Visibilité de chaque pièce
+export default function PanelLeft({ parts }: PanelLeftProps) {
+  const { selectedPart, setSelectedPart } = useViewerStore();
+
   const [visible, setVisible] = useState<Record<string, boolean>>(
     Object.fromEntries(parts.map((p) => [p.file, true])),
   );
@@ -71,7 +67,7 @@ export default function PanelLeft({
           return (
             <div
               key={part.file}
-              onClick={() => onSelectPart(part.file)}
+              onClick={() => setSelectedPart(isSelected ? null : part.file)}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -114,7 +110,7 @@ export default function PanelLeft({
                 )}
               </div>
 
-              {/* Nom de la pièce */}
+              {/* Nom */}
               <span
                 style={{
                   flex: 1,
