@@ -2,28 +2,11 @@
 
 import { Suspense, useState, useEffect } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
-import {
-  OrbitControls,
-  Bounds,
-  Center,
-  useProgress,
-  Html,
-} from "@react-three/drei";
+import { OrbitControls, Bounds, Center } from "@react-three/drei";
 import { Assembly } from "@/types/assembly";
 import { loadAssembly } from "@/lib/assemblyLoader";
 import AssemblyViewer from "./AssemblyViewer";
 import GhostCube from "./GhostCube";
-
-function Loader() {
-  const { progress } = useProgress();
-  return (
-    <Html center>
-      <span style={{ color: "#00d4ff", fontSize: 14 }}>
-        {Math.round(progress)}%
-      </span>
-    </Html>
-  );
-}
 
 function CameraReset({ isDemo }: { isDemo: boolean }) {
   const { camera } = useThree();
@@ -69,7 +52,7 @@ export default function SceneCanvas({
 
       <CameraReset isDemo={!!isDemo} />
 
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={null}>
         {isDemo ? (
           <Bounds fit clip observe margin={1.2}>
             <Center>

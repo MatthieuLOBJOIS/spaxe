@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import Link from "next/link";
 
 // Chargement dynamique car Three.js est client-side uniquement
 const SceneCanvas = dynamic(() => import("@/components/viewer/SceneCanvas"), {
@@ -30,12 +31,11 @@ export default function Home() {
       {/* Bouton demo — visible uniquement si démo non active */}
       {!demoActive && (
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
-          <button
-            onClick={() => setDemoActive(true)}
-            className="px-8 py-4 bg-cyan-500 hover:bg-cyan-300 text-black font-bold text-lg rounded-xl border-2 border-cyan-300 shadow-lg shadow-cyan-500/50 transition-all duration-200 hover:scale-105"
-          >
-            ▶ Try Demo
-          </button>
+          <Link href="/viewer?demo=robot-atos">
+            <button className="px-8 py-4 bg-cyan-500 hover:bg-cyan-300 text-black font-bold text-lg rounded-xl border-2 border-cyan-300 shadow-lg shadow-cyan-500/50 transition-all duration-200 hover:scale-105">
+              Try Demo
+            </button>
+          </Link>
         </div>
       )}
     </main>

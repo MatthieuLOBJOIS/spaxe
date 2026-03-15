@@ -16,7 +16,6 @@ function PartMesh({ part, basePath }: PartMeshProps) {
   const geometry = useLoader(STLLoader, url);
   const color = getPartColor(part);
 
-  // Si le JSON contient des transforms, on les applique — sinon le STL est déjà positionné
   const position = hasTransforms(part) ? part.position : [0, 0, 0];
   const rotation = hasTransforms(part) ? part.rotation : [0, 0, 0];
 
@@ -25,10 +24,8 @@ function PartMesh({ part, basePath }: PartMeshProps) {
       geometry={geometry}
       position={position as [number, number, number]}
       rotation={rotation as [number, number, number]}
-      castShadow
-      receiveShadow
     >
-      <meshStandardMaterial color={color} roughness={0.6} metalness={0.3} />
+      <meshStandardMaterial color={color} roughness={0.6} metalness={0.2} />
     </mesh>
   );
 }
@@ -38,7 +35,7 @@ interface AssemblyViewerProps {
   basePath: string;
 }
 
-// Composant principal — affiche toutes les pièces de l'assemblage
+// Composant principal — toutes les pièces dans un seul group
 export default function AssemblyViewer({
   parts,
   basePath,
