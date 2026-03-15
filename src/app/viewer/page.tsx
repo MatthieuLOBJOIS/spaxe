@@ -23,7 +23,7 @@ function ViewerContent() {
   const [grid, setGrid] = useState(false);
   const [neighborhood, setNeighborhood] = useState(false);
   const [xray, setXray] = useState(false);
-  const [selectedPart, setSelectedPart] = useState<string | null>(null);
+  const [orthoMode, setOrthoMode] = useState(false);
 
   // Chargement de l'assemblage pour le panel
   const [assembly, setAssembly] = useState<Assembly | null>(null);
@@ -37,6 +37,8 @@ function ViewerContent() {
       {/* Toolbar */}
       <div style={{ height: "72px", flexShrink: 0 }}>
         <Toolbar
+          orthoMode={orthoMode}
+          onOrthoModeToggle={() => setOrthoMode((o) => !o)}
           grid={grid}
           onGridToggle={() => setGrid((g) => !g)}
           neighborhood={neighborhood}
@@ -57,7 +59,11 @@ function ViewerContent() {
 
         {/* Canvas 3D */}
         <div style={{ flex: 1, position: "relative" }}>
-          <SceneCanvas assemblyUrl={assemblyUrl} basePath={basePath} />
+          <SceneCanvas
+            assemblyUrl={assemblyUrl}
+            basePath={basePath}
+            orthoMode={orthoMode}
+          />
         </div>
       </div>
     </main>

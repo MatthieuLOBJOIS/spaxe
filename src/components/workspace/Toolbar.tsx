@@ -10,6 +10,7 @@ import {
   Scan,
   Palette,
   Shuffle,
+  Box,
 } from "lucide-react";
 import {
   Tooltip,
@@ -31,9 +32,10 @@ interface ToolbarProps {
   onOrthoView: (view: "top" | "front" | "side") => void;
   onColorPick: () => void;
   onRandomColor: () => void;
+  orthoMode: boolean;
+  onOrthoModeToggle: () => void;
 }
 
-// Séparateur vertical
 function Sep() {
   return (
     <div
@@ -48,7 +50,6 @@ function Sep() {
   );
 }
 
-// Bouton icône avec tooltip
 function ToolButton({
   icon: Icon,
   label,
@@ -99,6 +100,8 @@ export default function Toolbar({
   onOrthoView,
   onColorPick,
   onRandomColor,
+  orthoMode,
+  onOrthoModeToggle,
 }: ToolbarProps) {
   return (
     <TooltipProvider>
@@ -205,6 +208,73 @@ export default function Toolbar({
           label="Random Colors"
           onClick={onRandomColor}
         />
+
+        <Sep />
+
+        {/* Perspective / Orthographique */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            borderRadius: "8px",
+            border: "1px solid rgba(255,255,255,0.15)",
+            overflow: "hidden",
+            flexShrink: 0,
+          }}
+        >
+          <Tooltip>
+            <TooltipTrigger
+              onClick={() => {
+                if (orthoMode) onOrthoModeToggle();
+              }}
+            >
+              <div
+                style={{
+                  padding: "6px 12px",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  background: !orthoMode
+                    ? "rgba(34,211,238,0.2)"
+                    : "transparent",
+                  color: !orthoMode ? "#22d3ee" : "rgba(255,255,255,0.4)",
+                  borderRight: "1px solid rgba(255,255,255,0.15)",
+                  cursor: orthoMode ? "pointer" : "default",
+                }}
+              >
+                PER
+              </div>
+            </TooltipTrigger>
+            <TooltipContent side="bottom">
+              <p style={{ fontSize: "13px" }}>Perspective</p>
+            </TooltipContent>
+          </Tooltip>
+
+          <Tooltip>
+            <TooltipTrigger
+              onClick={() => {
+                if (!orthoMode) onOrthoModeToggle();
+              }}
+            >
+              <div
+                style={{
+                  padding: "6px 12px",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  background: orthoMode
+                    ? "rgba(34,211,238,0.2)"
+                    : "transparent",
+                  color: orthoMode ? "#22d3ee" : "rgba(255,255,255,0.4)",
+                  cursor: !orthoMode ? "pointer" : "default",
+                }}
+              >
+                ORT
+              </div>
+            </TooltipTrigger>
+            <TooltipContent side="bottom">
+              <p style={{ fontSize: "13px" }}>Orthographic</p>
+            </TooltipContent>
+          </Tooltip>
+        </div>
 
         {/* Spacer */}
         <div style={{ flex: 1 }} />
