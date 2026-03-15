@@ -26,11 +26,13 @@ function CameraReset({ isDemo }: { isDemo: boolean }) {
 interface SceneCanvasProps {
   assemblyUrl?: string;
   basePath?: string;
+  interactive?: boolean;
 }
 
 export default function SceneCanvas({
   assemblyUrl,
   basePath,
+  interactive = true,
 }: SceneCanvasProps) {
   const [assembly, setAssembly] = useState<Assembly | null>(null);
 
@@ -65,9 +67,9 @@ export default function SceneCanvas({
       </Suspense>
 
       <OrbitControls
-        enablePan
-        enableZoom
-        enableRotate
+        enablePan={interactive}
+        enableZoom={interactive}
+        enableRotate={interactive}
         dampingFactor={0.05}
         enableDamping
         makeDefault
