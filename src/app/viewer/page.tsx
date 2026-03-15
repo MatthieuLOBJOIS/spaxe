@@ -2,8 +2,11 @@
 
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useState } from "react";
+import { Suspense, useState, useEffect } from "react";
 import Toolbar from "@/components/workspace/Toolbar";
+import PanelLeft from "@/components/workspace/PanelLeft";
+import { Assembly } from "@/types/assembly";
+import { loadAssembly } from "@/lib/assemblyLoader";
 
 const SceneCanvas = dynamic(() => import("@/components/viewer/SceneCanvas"), {
   ssr: false,
@@ -20,8 +23,18 @@ function ViewerContent() {
   const [grid, setGrid] = useState(false);
   const [neighborhood, setNeighborhood] = useState(false);
   const [xray, setXray] = useState(false);
+  const [selectedPart, setSelectedPart] = useState<string | null>(null);
+
+  // Chargement de l'assemblage pour le panel
+  const [assembly, setAssembly] = useState<Assembly | null>(null);
+  useEffect(() => {
+    if (!assemblyUrl) return;
+    loadAssembly(assemblyUrl).then(setAssembly).catch(console.error);
+  }, [assemblyUrl]);
+
   return (
     <main className="w-full h-screen bg-[#0a0a0a] flex flex-col">
+      {/* Toolbar */}
       <div style={{ height: "72px", flexShrink: 0 }}>
         <Toolbar
           grid={grid}
@@ -36,8 +49,22 @@ function ViewerContent() {
           onRandomColor={() => {}}
         />
       </div>
-      <div style={{ flex: 1, position: "relative" }}>
-        <SceneCanvas assemblyUrl={assemblyUrl} basePath={basePath} />
+
+      {/* Workspace — panel + canvas */}
+      <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
+        {/* Panel gauche — uniquement si assemblage chargé */}
+        {assembly && (
+          <PanelLeft
+            parts={assembly.parts}
+            selectedPart={selectedPart}
+            onSelectPart={setSelectedPart}
+          />
+        )}
+
+        {/* Canvas 3D */}
+        <div style={{ flex: 1, position: "relative" }}>
+          <SceneCanvas assemblyUrl={assemblyUrl} basePath={basePath} />
+        </div>
       </div>
     </main>
   );
