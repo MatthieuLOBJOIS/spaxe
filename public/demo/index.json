@@ -1,0 +1,11 @@
+{
+  "demos": [
+    {
+      "id": "robot-atos",
+      "label": "AUBO Robot + ATOS Q",
+      "description": "6-axis cobot with structured light scanner",
+      "thumbnail": "/demo/robot-atos/thumbnail.png",
+      "assembly": "/demo/robot-atos/assembly.json"
+    }
+  ]
+}

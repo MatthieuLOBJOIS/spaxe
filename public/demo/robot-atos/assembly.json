@@ -1,0 +1,388 @@
+{
+  "name": "AUBO Robot + GOM ATOS Q \u2014 Metrology Cell",
+  "description": "6-axis cobot in scanning pose with ATOS Q structured light scanner",
+  "unit": "mm",
+  "coordinate_system": "Three.js Y-up, all STLs in world coordinates, no JSON transforms",
+  "parts": [
+    {
+      "file": "01_base.stl",
+      "label": "Base Drum",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": null,
+      "children": [
+        "02_j1_disc.stl",
+        "20_cable.stl"
+      ],
+      "color_hint": "#1a1a1a"
+    },
+    {
+      "file": "02_j1_disc.stl",
+      "label": "J1 \u2014 Base Disc",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "01_base.stl",
+      "children": [
+        "03_link1.stl"
+      ],
+      "joint": "J1",
+      "color_hint": "#111111"
+    },
+    {
+      "file": "03_link1.stl",
+      "label": "Link 1",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "02_j1_disc.stl",
+      "children": [
+        "04_j2_disc.stl"
+      ],
+      "color_hint": "#d46800"
+    },
+    {
+      "file": "04_j2_disc.stl",
+      "label": "J2 \u2014 Shoulder Disc",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "03_link1.stl",
+      "children": [
+        "05_link2.stl"
+      ],
+      "joint": "J2",
+      "color_hint": "#111111"
+    },
+    {
+      "file": "05_link2.stl",
+      "label": "Link 2",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "04_j2_disc.stl",
+      "children": [
+        "06_j3_disc.stl"
+      ],
+      "color_hint": "#d46800"
+    },
+    {
+      "file": "06_j3_disc.stl",
+      "label": "J3 \u2014 Elbow Disc",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "05_link2.stl",
+      "children": [
+        "07_link3.stl"
+      ],
+      "joint": "J3",
+      "color_hint": "#111111"
+    },
+    {
+      "file": "07_link3.stl",
+      "label": "Link 3",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "06_j3_disc.stl",
+      "children": [
+        "08_j4_disc.stl"
+      ],
+      "color_hint": "#d46800"
+    },
+    {
+      "file": "08_j4_disc.stl",
+      "label": "J4 \u2014 Forearm Disc",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "07_link3.stl",
+      "children": [
+        "09_link4.stl"
+      ],
+      "joint": "J4",
+      "color_hint": "#111111"
+    },
+    {
+      "file": "09_link4.stl",
+      "label": "Link 4",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "08_j4_disc.stl",
+      "children": [
+        "10_j5_disc.stl"
+      ],
+      "color_hint": "#d46800"
+    },
+    {
+      "file": "10_j5_disc.stl",
+      "label": "J5 \u2014 Wrist Disc",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "09_link4.stl",
+      "children": [
+        "11_link5.stl"
+      ],
+      "joint": "J5",
+      "color_hint": "#111111"
+    },
+    {
+      "file": "11_link5.stl",
+      "label": "Link 5",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "10_j5_disc.stl",
+      "children": [
+        "12_j6_disc.stl"
+      ],
+      "color_hint": "#d46800"
+    },
+    {
+      "file": "12_j6_disc.stl",
+      "label": "J6 \u2014 Tool Disc",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "11_link5.stl",
+      "children": [
+        "13_tool_flange.stl"
+      ],
+      "joint": "J6",
+      "color_hint": "#111111"
+    },
+    {
+      "file": "13_tool_flange.stl",
+      "label": "Tool Flange ISO 9283",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "12_j6_disc.stl",
+      "children": [
+        "14_atosq_adapter.stl"
+      ],
+      "color_hint": "#888888"
+    },
+    {
+      "file": "14_atosq_adapter.stl",
+      "label": "ATOS Q Adapter",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "13_tool_flange.stl",
+      "children": [
+        "15_atosq_body.stl"
+      ],
+      "color_hint": "#333333"
+    },
+    {
+      "file": "15_atosq_body.stl",
+      "label": "ATOS Q \u2014 Main Body",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "14_atosq_adapter.stl",
+      "children": [
+        "16_atosq_cam_left.stl",
+        "17_atosq_projector.stl",
+        "18_atosq_cam_right.stl",
+        "19_atosq_top_rail.stl"
+      ],
+      "color_hint": "#1e2228"
+    },
+    {
+      "file": "16_atosq_cam_left.stl",
+      "label": "ATOS Q \u2014 Camera Left",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "15_atosq_body.stl",
+      "children": [],
+      "color_hint": "#2a2a2a"
+    },
+    {
+      "file": "17_atosq_projector.stl",
+      "label": "ATOS Q \u2014 Projector",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "15_atosq_body.stl",
+      "children": [],
+      "color_hint": "#0a2a5a"
+    },
+    {
+      "file": "18_atosq_cam_right.stl",
+      "label": "ATOS Q \u2014 Camera Right",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "15_atosq_body.stl",
+      "children": [],
+      "color_hint": "#2a2a2a"
+    },
+    {
+      "file": "19_atosq_top_rail.stl",
+      "label": "ATOS Q \u2014 Top Rail",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "15_atosq_body.stl",
+      "children": [],
+      "color_hint": "#444444"
+    },
+    {
+      "file": "20_cable.stl",
+      "label": "Flexible Cable",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "parent": "01_base.stl",
+      "children": [],
+      "color_hint": "#0a0a0a"
+    }
+  ]
+}
