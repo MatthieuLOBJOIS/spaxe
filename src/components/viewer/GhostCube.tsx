@@ -17,15 +17,13 @@ export default function GhostCube() {
 
   return (
     <mesh ref={meshRef}>
-      <boxGeometry args={[2, 2, 2]} />
-      {/* Face transparente ghost */}
+      <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial
         color="#00d4ff"
         transparent
         opacity={0.05}
         side={THREE.DoubleSide}
       />
-      {/* Wireframe cyan */}
       <Edges color="#00d4ff" threshold={15} />
     </mesh>
   );

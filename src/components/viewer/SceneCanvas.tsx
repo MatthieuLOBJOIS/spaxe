@@ -1,29 +1,93 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { Suspense, useState, useEffect } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
+import {
+  OrbitControls,
+  Bounds,
+  Center,
+  useProgress,
+  Html,
+} from "@react-three/drei";
+import { Assembly } from "@/types/assembly";
+import { loadAssembly } from "@/lib/assemblyLoader";
+import AssemblyViewer from "./AssemblyViewer";
 import GhostCube from "./GhostCube";
 
-export default function SceneCanvas() {
+function Loader() {
+  const { progress } = useProgress();
+  return (
+    <Html center>
+      <span style={{ color: "#00d4ff", fontSize: 14 }}>
+        {Math.round(progress)}%
+      </span>
+    </Html>
+  );
+}
+
+function CameraReset({ isDemo }: { isDemo: boolean }) {
+  const { camera } = useThree();
+  useEffect(() => {
+    if (!isDemo) {
+      // Retour à la position initiale quand on quitte la démo
+      camera.position.set(3, 2, 3);
+    } else {
+      // Reset l'orientation caméra avant que Bounds prenne le relais
+      camera.position.set(2, 1.5, 3);
+      camera.lookAt(0, 0, 0);
+    }
+  }, [isDemo, camera]);
+  return null;
+}
+
+interface SceneCanvasProps {
+  assemblyUrl?: string;
+  basePath?: string;
+}
+
+export default function SceneCanvas({
+  assemblyUrl,
+  basePath,
+}: SceneCanvasProps) {
+  const [assembly, setAssembly] = useState<Assembly | null>(null);
+
+  useEffect(() => {
+    if (!assemblyUrl) return;
+    loadAssembly(assemblyUrl).then(setAssembly).catch(console.error);
+  }, [assemblyUrl]);
+
+  const isDemo = assembly && basePath;
+
   return (
     <Canvas
-      camera={{ position: [4, 3, 4], fov: 50 }}
+      camera={{ position: [2, 1.5, 3], fov: 50, near: 0.001, far: 100000 }}
       style={{ background: "#0a0a0a" }}
     >
-      {/* Éclairage */}
-      <ambientLight intensity={0.3} />
-      <directionalLight position={[5, 5, 5]} intensity={0.8} />
+      <ambientLight intensity={2} color="#ffffff" />
+      <directionalLight position={[5, 8, 5]} intensity={2} color="#ffffff" />
+      <directionalLight position={[-5, 3, -5]} intensity={1} color="#ffffff" />
 
-      {/* Cube ghost */}
-      <GhostCube />
+      <CameraReset isDemo={!!isDemo} />
 
-      {/* Contrôles caméra */}
+      <Suspense fallback={<Loader />}>
+        {isDemo ? (
+          <Bounds fit clip observe margin={1.2}>
+            <Center>
+              <AssemblyViewer parts={assembly.parts} basePath={basePath} />
+            </Center>
+          </Bounds>
+        ) : (
+          <GhostCube />
+        )}
+      </Suspense>
+
       <OrbitControls
-        enablePan={true}
-        enableZoom={true}
-        enableRotate={true}
+        enablePan
+        enableZoom
+        enableRotate
         dampingFactor={0.05}
-        enableDamping={true}
+        enableDamping
+        makeDefault
       />
     </Canvas>
   );
