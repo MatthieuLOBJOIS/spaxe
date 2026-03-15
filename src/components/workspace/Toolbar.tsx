@@ -10,7 +10,6 @@ import {
   Scan,
   Palette,
   Shuffle,
-  Box,
 } from "lucide-react";
 import {
   Tooltip,

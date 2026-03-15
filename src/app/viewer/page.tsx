@@ -7,6 +7,7 @@ import Toolbar from "@/components/workspace/Toolbar";
 import PanelLeft from "@/components/workspace/PanelLeft";
 import { Assembly } from "@/types/assembly";
 import { loadAssembly } from "@/lib/assemblyLoader";
+import NavCube from "@/components/workspace/NavCube";
 
 const SceneCanvas = dynamic(() => import("@/components/viewer/SceneCanvas"), {
   ssr: false,
@@ -64,6 +65,7 @@ function ViewerContent() {
             basePath={basePath}
             orthoMode={orthoMode}
           />
+          <NavCube onFaceClick={() => {}} />
         </div>
       </div>
     </main>
