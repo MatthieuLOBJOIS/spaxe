@@ -1,12 +1,43 @@
 import { create } from "zustand";
+import * as THREE from "three";
 
 interface ViewerStore {
-  // Pièce actuellement sélectionnée
+  // Pièce sélectionnée
   selectedPart: string | null;
   setSelectedPart: (file: string | null) => void;
+
+  // Rotation de la caméra principale — partagée avec le NavCube
+  cameraQuaternion: THREE.Quaternion;
+  setCameraQuaternion: (q: THREE.Quaternion) => void;
+
+  // Position cible demandée par le NavCube
+  cameraTarget: THREE.Vector3 | null;
+  setCameraTarget: (v: THREE.Vector3 | null) => void;
+
+  // Rotation de la caméra du NavCube — envoyée à la caméra principale
+  navCameraQuaternion: THREE.Quaternion | null;
+  setNavCameraQuaternion: (q: THREE.Quaternion | null) => void;
+
+  // Flag — l'utilisateur est en train de drag le NavCube
+  isDraggingNav: boolean;
+  setIsDraggingNav: (v: boolean) => void;
 }
 
 export const useViewerStore = create<ViewerStore>((set) => ({
   selectedPart: null,
   setSelectedPart: (file) => set({ selectedPart: file }),
+
+  cameraQuaternion: new THREE.Quaternion(),
+  setCameraQuaternion: (q) => set({ cameraQuaternion: q.clone() }),
+
+  cameraTarget: null,
+  setCameraTarget: (v) => set({ cameraTarget: v }),
+
+  // Quaternion NavCube → caméra principale
+  navCameraQuaternion: null,
+  setNavCameraQuaternion: (q) =>
+    set({ navCameraQuaternion: q ? q.clone() : null }),
+
+  isDraggingNav: false,
+  setIsDraggingNav: (v) => set({ isDraggingNav: v }),
 }));

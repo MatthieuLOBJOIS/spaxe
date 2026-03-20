@@ -25,6 +25,8 @@ function PartMesh({ part, basePath }: PartMeshProps) {
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
+    // Ignore si c'est un drag (delta > 2 pixels)
+    if (e.delta > 2) return;
     setSelectedPart(isSelected ? null : part.file);
   };
 
