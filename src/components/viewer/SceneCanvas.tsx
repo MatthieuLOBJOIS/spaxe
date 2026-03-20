@@ -74,8 +74,8 @@ interface SceneCanvasProps {
   basePath?: string
   interactive?: boolean
   orthoMode?: boolean
-  cameraQuatRef: React.RefObject<THREE.Quaternion>
-  navQuatRef: React.RefObject<THREE.Quaternion>
+  cameraQuatRef?: React.RefObject<THREE.Quaternion>
+  navQuatRef?: React.RefObject<THREE.Quaternion>
 }
 
 export default function SceneCanvas({
