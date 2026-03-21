@@ -7,6 +7,7 @@ import * as THREE from 'three'
 import Toolbar from '@/components/workspace/Toolbar'
 import PanelLeft from '@/components/workspace/PanelLeft'
 import NavCube from '@/components/workspace/NavCube'
+import StartModal from '@/components/workspace/StartModal'
 import { Assembly } from '@/types/assembly'
 import { loadAssembly } from '@/lib/assemblyLoader'
 
@@ -18,8 +19,13 @@ function ViewerContent() {
   const searchParams = useSearchParams()
   const demo = searchParams.get('demo')
 
-  const assemblyUrl = demo ? `/demo/${demo}/assembly.json` : undefined
-  const basePath = demo ? `/demo/${demo}` : undefined
+  const [showModal, setShowModal] = useState(!demo)
+  const [assemblyUrl, setAssemblyUrl] = useState<string | undefined>(
+    demo ? `/demo/${demo}/assembly.json` : undefined
+  )
+  const [basePath, setBasePath] = useState<string | undefined>(
+    demo ? `/demo/${demo}` : undefined
+  )
 
   const [grid, setGrid] = useState(false)
   const [neighborhood, setNeighborhood] = useState(false)
@@ -27,7 +33,6 @@ function ViewerContent() {
   const [orthoMode, setOrthoMode] = useState(false)
   const [assembly, setAssembly] = useState<Assembly | null>(null)
 
-  // Ref partagé — mis à jour par SceneCanvas, lu par NavCube
   const cameraQuatRef = useRef<THREE.Quaternion>(new THREE.Quaternion())
   const navQuatRef = useRef<THREE.Quaternion>(new THREE.Quaternion())
 
@@ -36,9 +41,22 @@ function ViewerContent() {
     loadAssembly(assemblyUrl).then(setAssembly).catch(console.error)
   }, [assemblyUrl])
 
+  const handleSelectDemo = () => {
+    setAssemblyUrl('/demo/robot-atos/assembly.json')
+    setBasePath('/demo/robot-atos')
+    setShowModal(false)
+  }
+
   return (
     <main className="page-fullscreen w-full h-screen bg-[#0a0a0a] flex flex-col">
-      <div style={{ height: '72px', flexShrink: 0 }}>
+      {/* Toolbar — toujours visible */}
+      <div
+        style={{
+          height: showModal ? 0 : '72px',
+          flexShrink: 0,
+          overflow: 'hidden',
+        }}
+      >
         <Toolbar
           orthoMode={orthoMode}
           onOrthoModeToggle={() => setOrthoMode((o) => !o)}
@@ -55,9 +73,19 @@ function ViewerContent() {
         />
       </div>
 
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
-        {assembly && <PanelLeft parts={assembly.parts} />}
+      {/* Workspace */}
+      <div
+        style={{
+          flex: 1,
+          display: 'flex',
+          overflow: 'hidden',
+          position: 'relative',
+        }}
+      >
+        {/* Panel gauche */}
+        {assembly && !showModal && <PanelLeft parts={assembly.parts} />}
 
+        {/* Canvas 3D */}
         <div style={{ flex: 1, position: 'relative' }}>
           <SceneCanvas
             assemblyUrl={assemblyUrl}
@@ -66,7 +94,12 @@ function ViewerContent() {
             cameraQuatRef={cameraQuatRef}
             navQuatRef={navQuatRef}
           />
-          <NavCube cameraQuatRef={cameraQuatRef} navQuatRef={navQuatRef} />
+
+          {!showModal && (
+            <NavCube cameraQuatRef={cameraQuatRef} navQuatRef={navQuatRef} />
+          )}
+
+          {showModal && <StartModal onSelectDemo={handleSelectDemo} />}
         </div>
       </div>
     </main>
