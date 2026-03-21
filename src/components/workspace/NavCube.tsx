@@ -7,9 +7,27 @@ import * as THREE from 'three'
 
 function Axes() {
   const axes = [
-    { color: '#ef4444', cylPos: [0.5,0,0] as [number,number,number], cylRot: [0,0,-Math.PI/2] as [number,number,number], conePos: [1.05,0,0] as [number,number,number], coneRot: [0,0,-Math.PI/2] as [number,number,number] },
-    { color: '#22c55e', cylPos: [0,0.5,0] as [number,number,number], cylRot: [0,0,0] as [number,number,number], conePos: [0,1.05,0] as [number,number,number], coneRot: [0,0,0] as [number,number,number] },
-    { color: '#3b82f6', cylPos: [0,0,0.5] as [number,number,number], cylRot: [Math.PI/2,0,0] as [number,number,number], conePos: [0,0,1.05] as [number,number,number], coneRot: [Math.PI/2,0,0] as [number,number,number] },
+    {
+      color: '#ef4444',
+      cylPos: [0.5, 0, 0] as [number, number, number],
+      cylRot: [0, 0, -Math.PI / 2] as [number, number, number],
+      conePos: [1.05, 0, 0] as [number, number, number],
+      coneRot: [0, 0, -Math.PI / 2] as [number, number, number],
+    },
+    {
+      color: '#22c55e',
+      cylPos: [0, 0.5, 0] as [number, number, number],
+      cylRot: [0, 0, 0] as [number, number, number],
+      conePos: [0, 1.05, 0] as [number, number, number],
+      coneRot: [0, 0, 0] as [number, number, number],
+    },
+    {
+      color: '#3b82f6',
+      cylPos: [0, 0, 0.5] as [number, number, number],
+      cylRot: [Math.PI / 2, 0, 0] as [number, number, number],
+      conePos: [0, 0, 1.05] as [number, number, number],
+      coneRot: [Math.PI / 2, 0, 0] as [number, number, number],
+    },
   ]
   return (
     <>
@@ -38,19 +56,14 @@ function NavCubeObject({ cameraQuatRef, navQuatRef }: NavCubeObjectProps) {
   const { camera } = useThree()
   const groupRef = useRef<THREE.Group>(null)
   const isDragging = useRef(false)
-  // Quaternion de la NavCam au moment du onEnd
-  const endQuat = useRef(new THREE.Quaternion())
 
   useFrame(() => {
     if (!groupRef.current || !cameraQuatRef.current) return
 
     if (isDragging.current) {
-      // Pendant le drag — transmet la rotation NavCube → scène principale
       navQuatRef.current?.copy(camera.quaternion)
-      // Garde la rotation du cube en sync avec la NavCam
       groupRef.current.quaternion.copy(camera.quaternion).invert()
     } else {
-      // Pas de drag — sync depuis la scène principale
       groupRef.current.quaternion.copy(cameraQuatRef.current).invert()
     }
   })
@@ -60,7 +73,12 @@ function NavCubeObject({ cameraQuatRef, navQuatRef }: NavCubeObjectProps) {
       <group ref={groupRef}>
         <mesh>
           <boxGeometry args={[1.5, 1.5, 1.5]} />
-          <meshStandardMaterial color="#ffffff" transparent opacity={0.04} side={THREE.DoubleSide} />
+          <meshStandardMaterial
+            color="#ffffff"
+            transparent
+            opacity={0.04}
+            side={THREE.DoubleSide}
+          />
           <Edges color="#ffffff" threshold={15} />
         </mesh>
         <Axes />
@@ -71,12 +89,10 @@ function NavCubeObject({ cameraQuatRef, navQuatRef }: NavCubeObjectProps) {
         enableDamping={false}
         onStart={() => {
           isDragging.current = true
-          // Reset navQuatRef au début du drag
           navQuatRef.current?.copy(camera.quaternion)
         }}
         onEnd={() => {
           isDragging.current = false
-          // Reset navQuatRef pour éviter les conflits
           navQuatRef.current?.identity()
         }}
       />
@@ -87,21 +103,31 @@ function NavCubeObject({ cameraQuatRef, navQuatRef }: NavCubeObjectProps) {
 interface NavCubeProps {
   cameraQuatRef: React.RefObject<THREE.Quaternion>
   navQuatRef: React.RefObject<THREE.Quaternion>
+  hidden?: boolean
 }
 
-export default function NavCube({ cameraQuatRef, navQuatRef }: NavCubeProps) {
+export default function NavCube({
+  cameraQuatRef,
+  navQuatRef,
+  hidden = false,
+}: NavCubeProps) {
   return (
-    <div style={{
-      position: 'absolute',
-      bottom: '24px',
-      right: '24px',
-      width: '240px',
-      height: '240px',
-      borderRadius: '12px',
-      overflow: 'hidden',
-      border: '1px solid rgba(255,255,255,0.1)',
-      background: '#0f0f0f',
-    }}>
+    <div
+      style={{
+        position: 'absolute',
+        bottom: '24px',
+        right: '24px',
+        width: '240px',
+        height: '240px',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        border: '1px solid rgba(255,255,255,0.1)',
+        background: 'red', // ← temporaire
+        opacity: hidden ? 0 : 1,
+        pointerEvents: hidden ? 'none' : 'auto',
+        zIndex: hidden ? -1 : 10,
+      }}
+    >
       <Canvas camera={{ position: [2.5, 2.5, 2.5], fov: 40 }}>
         <ambientLight intensity={2} />
         <directionalLight position={[2, 2, 2]} intensity={1} />

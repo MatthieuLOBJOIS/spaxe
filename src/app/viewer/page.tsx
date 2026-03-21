@@ -41,12 +41,13 @@ function ViewerContent() {
     loadAssembly(assemblyUrl).then(setAssembly).catch(console.error)
   }, [assemblyUrl])
 
+  // Remplace handleSelectDemo par :
   const handleSelectDemo = () => {
+    setShowModal(false)
     setAssemblyUrl('/demo/robot-atos/assembly.json')
     setBasePath('/demo/robot-atos')
-    setShowModal(false)
   }
-
+  console.log('showModal:', showModal, 'assembly:', assembly)
   return (
     <main className="page-fullscreen w-full h-screen bg-[#0a0a0a] flex flex-col">
       {/* Toolbar — toujours visible */}
@@ -78,7 +79,7 @@ function ViewerContent() {
         style={{
           flex: 1,
           display: 'flex',
-          overflow: 'hidden',
+          overflow: 'visible',
           position: 'relative',
         }}
       >
@@ -86,7 +87,10 @@ function ViewerContent() {
         {assembly && !showModal && <PanelLeft parts={assembly.parts} />}
 
         {/* Canvas 3D */}
-        <div style={{ flex: 1, position: 'relative' }}>
+        <div
+          key="canvas-container"
+          style={{ flex: 1, position: 'relative', overflow: 'visible' }}
+        >
           <SceneCanvas
             assemblyUrl={assemblyUrl}
             basePath={basePath}
@@ -95,13 +99,14 @@ function ViewerContent() {
             navQuatRef={navQuatRef}
           />
 
-          {!showModal && (
-            <NavCube cameraQuatRef={cameraQuatRef} navQuatRef={navQuatRef} />
-          )}
-
           {showModal && <StartModal onSelectDemo={handleSelectDemo} />}
         </div>
       </div>
+      <NavCube
+        cameraQuatRef={cameraQuatRef}
+        navQuatRef={navQuatRef}
+        hidden={showModal}
+      />
     </main>
   )
 }
