@@ -11,51 +11,56 @@ import AssemblyViewer from './AssemblyViewer'
 import GhostShape from './GhostShape'
 import { useViewerStore } from '@/store/viewerStore'
 
-function CameraSync({ 
-  cameraQuatRef, 
+function CameraSync({
+  cameraQuatRef,
   navQuatRef,
   orbitRef,
-}: { 
+}: {
   cameraQuatRef?: React.RefObject<THREE.Quaternion>
   navQuatRef?: React.RefObject<THREE.Quaternion>
   orbitRef?: React.RefObject<OrbitControlsImpl | null>
 }) {
   const { camera } = useThree()
-  const setCameraQuaternion = useViewerStore(s => s.setCameraQuaternion)
-  const cameraTarget = useViewerStore(s => s.cameraTarget)
-  const setCameraTarget = useViewerStore(s => s.setCameraTarget)
+  const setCameraQuaternion = useViewerStore((s) => s.setCameraQuaternion)
+  const cameraTarget = useViewerStore((s) => s.cameraTarget)
+  const setCameraTarget = useViewerStore((s) => s.setCameraTarget)
 
-useFrame(() => {
-  // Si navQuatRef a une valeur non-identity → NavCube drag en cours
-  if (navQuatRef?.current && navQuatRef.current.w !== 1) {
-    const distance = camera.position.length()
-    const newPos = new THREE.Vector3(0, 0, distance).applyQuaternion(navQuatRef.current)
-    camera.position.copy(newPos)
-    camera.lookAt(0, 0, 0)
-    if (orbitRef?.current) {
-      orbitRef.current.target.set(0, 0, 0)
-      orbitRef.current.update()
+  useFrame(() => {
+    // Si navQuatRef a une valeur non-identity → NavCube drag en cours
+    if (navQuatRef?.current && navQuatRef.current.w !== 1) {
+      const distance = camera.position.length()
+      const newPos = new THREE.Vector3(0, 0, distance).applyQuaternion(
+        navQuatRef.current
+      )
+      camera.position.copy(newPos)
+      camera.lookAt(0, 0, 0)
+      if (orbitRef?.current) {
+        orbitRef.current.target.set(0, 0, 0)
+        orbitRef.current.update()
+      }
     }
-  }
 
-  if (cameraQuatRef?.current) cameraQuatRef.current.copy(camera.quaternion)
-  setCameraQuaternion(camera.quaternion)
+    if (cameraQuatRef?.current) cameraQuatRef.current.copy(camera.quaternion)
+    setCameraQuaternion(camera.quaternion)
 
-  if (cameraTarget) {
-    const currentDistance = camera.position.length()
-    const normalizedTarget = cameraTarget.clone().normalize().multiplyScalar(currentDistance)
-    camera.position.lerp(normalizedTarget, 0.1)
-    camera.lookAt(0, 0, 0)
-    if (orbitRef?.current) {
-      orbitRef.current.target.set(0, 0, 0)
-      orbitRef.current.update()
+    if (cameraTarget) {
+      const currentDistance = camera.position.length()
+      const normalizedTarget = cameraTarget
+        .clone()
+        .normalize()
+        .multiplyScalar(currentDistance)
+      camera.position.lerp(normalizedTarget, 0.1)
+      camera.lookAt(0, 0, 0)
+      if (orbitRef?.current) {
+        orbitRef.current.target.set(0, 0, 0)
+        orbitRef.current.update()
+      }
+      if (camera.position.distanceTo(normalizedTarget) < 1) {
+        camera.position.copy(normalizedTarget)
+        setCameraTarget(null)
+      }
     }
-    if (camera.position.distanceTo(normalizedTarget) < 1) {
-      camera.position.copy(normalizedTarget)
-      setCameraTarget(null)
-    }
-  }
-})
+  })
 
   return null
 }
@@ -64,7 +69,10 @@ function CameraReset({ isDemo }: { isDemo: boolean }) {
   const { camera } = useThree()
   useEffect(() => {
     if (!isDemo) camera.position.set(3, 2, 3)
-    else { camera.position.set(2, 1.5, 3); camera.lookAt(0, 0, 0) }
+    else {
+      camera.position.set(2, 1.5, 3)
+      camera.lookAt(0, 0, 0)
+    }
   }, [isDemo, camera])
   return null
 }
@@ -107,7 +115,11 @@ export default function SceneCanvas({
       <directionalLight position={[-5, 3, -5]} intensity={1} color="#ffffff" />
 
       <CameraReset isDemo={!!isDemo} />
-      <CameraSync cameraQuatRef={cameraQuatRef} navQuatRef={navQuatRef} orbitRef={orbitRef} />
+      <CameraSync
+        cameraQuatRef={cameraQuatRef}
+        navQuatRef={navQuatRef}
+        orbitRef={orbitRef}
+      />
 
       <Suspense fallback={null}>
         {isDemo ? (

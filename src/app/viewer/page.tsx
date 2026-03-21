@@ -37,17 +37,17 @@ function ViewerContent() {
   }, [assemblyUrl])
 
   return (
-    <main className="w-full h-screen bg-[#0a0a0a] flex flex-col">
+    <main className="page-fullscreen w-full h-screen bg-[#0a0a0a] flex flex-col">
       <div style={{ height: '72px', flexShrink: 0 }}>
         <Toolbar
           orthoMode={orthoMode}
-          onOrthoModeToggle={() => setOrthoMode(o => !o)}
+          onOrthoModeToggle={() => setOrthoMode((o) => !o)}
           grid={grid}
-          onGridToggle={() => setGrid(g => !g)}
+          onGridToggle={() => setGrid((g) => !g)}
           neighborhood={neighborhood}
-          onNeighborhoodToggle={() => setNeighborhood(n => !n)}
+          onNeighborhoodToggle={() => setNeighborhood((n) => !n)}
           xray={xray}
-          onXrayToggle={() => setXray(x => !x)}
+          onXrayToggle={() => setXray((x) => !x)}
           onResetCamera={() => {}}
           onOrthoView={() => {}}
           onColorPick={() => {}}
