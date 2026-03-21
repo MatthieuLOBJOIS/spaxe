@@ -1,6 +1,12 @@
 'use client'
 
-const steps = [
+interface Step {
+  num: string
+  title: string
+  desc: string
+}
+
+const steps: Step[] = [
   {
     num: '01',
     title: 'Import your STL',
@@ -25,99 +31,36 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section
-      id="how-it-works"
-      style={{ background: '#141416', padding: '120px 12%' }}
-    >
-      <div style={{ marginBottom: '64px' }}>
-        <div
-          style={{
-            display: 'inline-flex',
-            padding: '5px 12px',
-            background: 'rgba(242,101,34,0.1)',
-            border: '1px solid rgba(242,101,34,0.25)',
-            borderRadius: '20px',
-            marginBottom: '20px',
-          }}
-        >
-          <span
-            style={{
-              color: '#F26522',
-              fontSize: '11px',
-              fontFamily: 'Geist Mono, monospace',
-              letterSpacing: '1px',
-            }}
-          >
+    <section id="how-it-works" className="bg-[#141416] px-[12%] py-[120px]">
+      {/* Header */}
+      <div className="mb-16">
+        <div className="inline-flex px-3 py-[5px] bg-[rgba(242,101,34,0.1)] border border-[rgba(242,101,34,0.25)] rounded-full mb-5">
+          <span className="text-[#F26522] text-[11px] font-mono tracking-[1px]">
             HOW IT WORKS
           </span>
         </div>
-        <h2
-          style={{
-            color: '#ffffff',
-            fontFamily: 'Space Grotesk',
-            fontWeight: 700,
-            fontSize: '48px',
-            letterSpacing: '-1px',
-            margin: 0,
-          }}
-        >
+        <h2 className="text-white font-bold text-5xl tracking-[-1px] m-0">
           From file to interactive
           <br />
           assembly in seconds.
         </h2>
       </div>
 
-      <div
-        style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px' }}
-      >
+      {/* Grid */}
+      <div className="grid grid-cols-2 gap-8">
         {steps.map(({ num, title, desc }) => (
           <div
             key={num}
-            style={{
-              display: 'flex',
-              gap: '24px',
-              padding: '32px',
-              background: '#1a1a1c',
-              borderRadius: '12px',
-              border: '1px solid rgba(255,255,255,0.07)',
-            }}
+            className="flex gap-6 p-8 bg-[#1a1a1c] rounded-xl border border-white/[0.07]"
           >
-            <div
-              style={{
-                color: '#F26522',
-                fontFamily: 'Geist Mono, monospace',
-                fontSize: '32px',
-                fontWeight: 700,
-                opacity: 0.4,
-                flexShrink: 0,
-                lineHeight: 1,
-              }}
-            >
+            <span className="text-[#F26522] font-mono text-[32px] font-bold opacity-40 shrink-0 leading-none">
               {num}
-            </div>
-            <div
-              style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}
-            >
-              <div
-                style={{
-                  color: '#ffffff',
-                  fontFamily: 'Space Grotesk',
-                  fontWeight: 700,
-                  fontSize: '18px',
-                }}
-              >
-                {title}
-              </div>
-              <div
-                style={{
-                  color: 'rgba(255,255,255,0.4)',
-                  fontFamily: 'Space Grotesk',
-                  fontSize: '14px',
-                  lineHeight: 1.6,
-                }}
-              >
+            </span>
+            <div className="flex flex-col gap-2.5">
+              <span className="text-white font-bold text-lg">{title}</span>
+              <span className="text-white/40 text-sm leading-relaxed">
                 {desc}
-              </div>
+              </span>
             </div>
           </div>
         ))}

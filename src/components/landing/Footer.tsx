@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { Github } from 'lucide-react'
 import {
   INTERNAL_LINKS,
   EXTERNAL_LINKS,
@@ -9,127 +10,68 @@ import {
 } from '@/config/links'
 import ExternalLink from '@/components/ui/ExternalLink'
 
-const linkStyle = {
-  color: 'rgba(255,255,255,0.4)',
-  fontFamily: 'Space Grotesk, sans-serif',
-  fontSize: '13px',
-  textDecoration: 'none',
-}
-
-const sectionTitleStyle = {
-  color: '#ffffff',
-  fontFamily: 'Space Grotesk, sans-serif',
-  fontWeight: 700,
-  fontSize: '13px',
-}
-
-const columnStyle = {
-  display: 'flex',
-  flexDirection: 'column' as const,
-  gap: '16px',
-}
+const linkClass =
+  'text-white/40 text-[13px] no-underline hover:text-white transition-colors duration-150'
+const titleClass = 'text-white font-bold text-[13px]'
+const columnClass = 'flex flex-col gap-4'
 
 export default function Footer() {
   return (
-    <footer
-      style={{
-        background: '#141416',
-        padding: '64px 12% 40px',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          marginBottom: '48px',
-        }}
-      >
+    <footer className="bg-[#141416] px-[12%] pt-16 pb-10 border-t border-white/[0.06]">
+      <div className="flex justify-between mb-12">
         {/* Brand */}
-        <div style={{ ...columnStyle, maxWidth: '280px' }}>
+        <div className="flex flex-col gap-4 max-w-[280px]">
           <Link
             href={INTERNAL_LINKS.home.href}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              textDecoration: 'none',
-            }}
+            className="flex items-center no-underline"
           >
-            <span
-              style={{
-                color: '#ffffff',
-                fontFamily: 'Space Grotesk, sans-serif',
-                fontWeight: 700,
-                fontSize: '18px',
-                letterSpacing: '4px',
-              }}
-            >
+            <span className="text-white font-bold text-lg tracking-[4px]">
               SP
             </span>
-            <span
-              style={{
-                color: '#F26522',
-                fontSize: '16px',
-                letterSpacing: '4px',
-              }}
-            >
-              ▲
-            </span>
-            <span
-              style={{
-                color: '#ffffff',
-                fontFamily: 'Space Grotesk, sans-serif',
-                fontWeight: 700,
-                fontSize: '18px',
-                letterSpacing: '4px',
-              }}
-            >
+            <span className="text-[#F26522] text-base tracking-[4px]">▲</span>
+            <span className="text-white font-bold text-lg tracking-[4px]">
               XE
             </span>
           </Link>
-          <p
-            style={{
-              color: 'rgba(255,255,255,0.35)',
-              fontFamily: 'Space Grotesk, sans-serif',
-              fontSize: '13px',
-              lineHeight: 1.6,
-              margin: 0,
-            }}
-          >
+          <p className="text-white/35 text-[13px] leading-relaxed m-0">
             Interactive 3D navigation for complex assemblies. Built for makers
             and industrial teams.
           </p>
-          <ExternalLink href={EXTERNAL_LINKS.github.href} style={linkStyle}>
+          <ExternalLink
+            href={EXTERNAL_LINKS.github.href}
+            className={`${linkClass} flex items-center gap-2`}
+          >
+            <Github size={16} />
             {EXTERNAL_LINKS.github.label}
           </ExternalLink>
         </div>
 
         {/* Liens */}
-        <div style={{ display: 'flex', gap: '80px' }}>
+        <div className="flex gap-20">
           {/* Product */}
-          <div style={columnStyle}>
-            <span style={sectionTitleStyle}>Product</span>
+          <div className={columnClass}>
+            <span className={titleClass}>Product</span>
             {FOOTER_PRODUCT_LINKS.map(({ href, label }) => (
-              <Link key={label} href={href} style={linkStyle}>
+              <Link key={label} href={href} className={linkClass}>
                 {label}
               </Link>
             ))}
           </div>
 
           {/* Stack */}
-          <div style={columnStyle}>
-            <span style={sectionTitleStyle}>Stack</span>
+          <div className={columnClass}>
+            <span className={titleClass}>Stack</span>
             {FOOTER_STACK_LINKS.map(({ href, label }) => (
-              <ExternalLink key={label} href={href} style={linkStyle}>
+              <ExternalLink key={label} href={href} className={linkClass}>
                 {label}
               </ExternalLink>
             ))}
           </div>
 
           {/* Legal */}
-          <div style={columnStyle}>
-            <span style={sectionTitleStyle}>Legal</span>
-            <Link href={INTERNAL_LINKS.home.href} style={linkStyle}>
+          <div className={columnClass}>
+            <span className={titleClass}>Legal</span>
+            <Link href={INTERNAL_LINKS.home.href} className={linkClass}>
               All rights reserved
             </Link>
           </div>
@@ -137,33 +79,11 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          paddingTop: '24px',
-          borderTop: '1px solid rgba(255,255,255,0.06)',
-        }}
-      >
-        <span
-          style={{
-            color: 'rgba(255,255,255,0.2)',
-            fontFamily: 'Geist Mono, monospace',
-            fontSize: '11px',
-            letterSpacing: '1px',
-          }}
-        >
+      <div className="flex items-center justify-between pt-6 border-t border-white/[0.06]">
+        <span className="text-white/20 font-mono text-[11px] tracking-[1px]">
           © 2026 SPAXE — ALL RIGHTS RESERVED
         </span>
-        <span
-          style={{
-            color: 'rgba(255,255,255,0.2)',
-            fontFamily: 'Geist Mono, monospace',
-            fontSize: '11px',
-            letterSpacing: '1px',
-          }}
-        >
+        <span className="text-white/20 font-mono text-[11px] tracking-[1px]">
           V0.1 · BUILT WITH NEXT.JS + THREE.JS
         </span>
       </div>

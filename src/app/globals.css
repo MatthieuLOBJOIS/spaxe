@@ -7,39 +7,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  background: #141416;
-}
-
-body {
-  font-family: 'Space Grotesk', sans-serif;
-  background: #141416;
-}
-
-/* Classe utilitaire pour les pages full-screen (viewer) */
-.page-fullscreen {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
 :root {
-  --color-bg: #141416;
   --color-orange: #f26522;
   --color-orange-hover: #ff8c42;
-  --color-text: #ffffff;
-  --color-text-muted: rgba(255, 255, 255, 0.5);
-  --color-border: rgba(255, 255, 255, 0.1);
-  --font-ui: 'Space Grotesk', sans-serif;
-  --font-mono: 'Geist Mono', monospace;
-
-  /* Shadcn — palette sombre Spaxe */
+  --radius: 0.625rem;
   --background: oklch(0.1 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.13 0 0);
@@ -58,28 +29,6 @@ body {
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.65 0.18 40);
-  --radius: 0.625rem;
-}
-
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(6px);
-  }
-}
-
-/* Tooltip override */
-[data-radix-popper-content-wrapper] {
-  z-index: 9999 !important;
-}
-
-.TooltipContent {
-  background: #1a1a1c !important;
-  color: white !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 @theme inline {
@@ -128,10 +77,32 @@ body {
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    box-sizing: border-box;
   }
   body {
     @apply bg-background text-foreground;
     font-family: 'Space Grotesk', sans-serif;
-    background: #141416;
   }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+/* Shadcn tooltip override */
+[data-radix-popper-content-wrapper] {
+  z-index: 9999 !important;
+}
+
+/* Viewer fullscreen */
+.page-fullscreen {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }

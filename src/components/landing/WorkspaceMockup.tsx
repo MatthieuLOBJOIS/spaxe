@@ -1,6 +1,11 @@
 'use client'
 
-const parts = [
+interface Part {
+  label: string
+  color: string
+}
+
+const parts: Part[] = [
   { label: 'Frame_001', color: '#888888' },
   { label: 'Cover_Top', color: '#cccccc' },
   { label: 'Shaft_A', color: '#d46800' },
@@ -9,179 +14,62 @@ const parts = [
   { label: 'Mount_Plate', color: '#999999' },
 ]
 
+const TOOLBAR_BTNS = ['⤢', '↺', 'Top', 'Front']
+
 export default function WorkspaceMockup() {
   return (
-    <div
-      style={{
-        position: 'absolute',
-        right: '6%',
-        top: '50%',
-        transform: 'translateY(-50%)',
-        zIndex: 5,
-        width: '520px',
-        borderRadius: '12px',
-        overflow: 'hidden',
-        border: '1px solid rgba(255,255,255,0.1)',
-        background: '#141416',
-        boxShadow: '0 40px 80px rgba(0,0,0,0.6)',
-      }}
-    >
+    <div className="absolute right-[6%] top-1/2 -translate-y-1/2 z-[5] w-[520px] rounded-xl overflow-hidden border border-white/10 bg-[#141416] shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
       {/* Toolbar */}
-      <div
-        style={{
-          height: '44px',
-          background: '#1a1a1a',
-          borderBottom: '1px solid rgba(255,255,255,0.08)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          padding: '0 14px',
-        }}
-      >
-        <div
-          style={{ display: 'flex', alignItems: 'center', marginRight: '12px' }}
-        >
-          <span
-            style={{
-              color: '#fff',
-              fontFamily: 'Space Grotesk',
-              fontWeight: 700,
-              fontSize: '12px',
-              letterSpacing: '3px',
-            }}
-          >
+      <div className="h-11 bg-[#1a1a1a] border-b border-white/[0.08] flex items-center gap-2 px-[14px]">
+        <div className="flex items-center mr-3">
+          <span className="text-white font-bold text-xs tracking-[3px]">
             SP
           </span>
-          <span
-            style={{ color: '#F26522', fontSize: '11px', letterSpacing: '3px' }}
-          >
-            ▲
-          </span>
-          <span
-            style={{
-              color: '#fff',
-              fontFamily: 'Space Grotesk',
-              fontWeight: 700,
-              fontSize: '12px',
-              letterSpacing: '3px',
-            }}
-          >
+          <span className="text-[#F26522] text-[11px] tracking-[3px]">▲</span>
+          <span className="text-white font-bold text-xs tracking-[3px]">
             XE
           </span>
         </div>
-        {['⤢', '↺', 'Top', 'Front'].map((btn) => (
+        {TOOLBAR_BTNS.map((btn) => (
           <div
             key={btn}
-            style={{
-              padding: '3px 8px',
-              borderRadius: '4px',
-              background: 'rgba(255,255,255,0.06)',
-              color: 'rgba(255,255,255,0.5)',
-              fontSize: '11px',
-              fontFamily: 'Space Grotesk',
-            }}
+            className="px-2 py-[3px] rounded bg-white/[0.06] text-white/50 text-[11px]"
           >
             {btn}
           </div>
         ))}
-        <div style={{ flex: 1 }} />
-        <div
-          style={{
-            padding: '3px 10px',
-            borderRadius: '4px',
-            background: 'rgba(242,101,34,0.15)',
-            border: '1px solid rgba(242,101,34,0.3)',
-            color: '#F26522',
-            fontSize: '10px',
-            fontFamily: 'Geist Mono, monospace',
-          }}
-        >
+        <div className="flex-1" />
+        <div className="px-[10px] py-[3px] rounded bg-[rgba(242,101,34,0.15)] border border-[rgba(242,101,34,0.3)] text-[#F26522] text-[10px] font-mono">
           EXPLODE
         </div>
       </div>
 
       {/* Body */}
-      <div style={{ display: 'flex', height: '320px' }}>
+      <div className="flex h-[320px]">
         {/* Panel gauche */}
-        <div
-          style={{
-            width: '160px',
-            background: '#141416',
-            borderRight: '1px solid rgba(255,255,255,0.06)',
-            flexShrink: 0,
-          }}
-        >
-          <div
-            style={{
-              padding: '8px 12px',
-              borderBottom: '1px solid rgba(255,255,255,0.06)',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
-            <span
-              style={{
-                color: 'rgba(255,255,255,0.3)',
-                fontSize: '9px',
-                fontFamily: 'Geist Mono, monospace',
-                letterSpacing: '1px',
-              }}
-            >
+        <div className="w-[160px] bg-[#141416] border-r border-white/[0.06] shrink-0">
+          <div className="px-3 py-2 border-b border-white/[0.06] flex justify-between items-center">
+            <span className="text-white/30 text-[9px] font-mono tracking-[1px]">
               PARTS TREE
             </span>
-            <span
-              style={{
-                color: '#F26522',
-                fontSize: '11px',
-                fontFamily: 'Geist Mono, monospace',
-              }}
-            >
-              6
-            </span>
+            <span className="text-[#F26522] text-[11px] font-mono">6</span>
           </div>
           {parts.map((part, i) => (
             <div
               key={i}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '7px 12px',
-                background: i === 2 ? 'rgba(242,101,34,0.1)' : 'transparent',
-                borderLeft:
-                  i === 2 ? '2px solid #F26522' : '2px solid transparent',
-              }}
+              className={`flex items-center gap-2 px-3 py-[7px] ${i === 2 ? 'bg-[rgba(242,101,34,0.1)] border-l-2 border-[#F26522]' : 'border-l-2 border-transparent'}`}
             >
               <input
                 type="checkbox"
                 defaultChecked
-                style={{
-                  width: '10px',
-                  height: '10px',
-                  accentColor: '#F26522',
-                  flexShrink: 0,
-                }}
+                className="w-[10px] h-[10px] shrink-0 accent-[#F26522]"
               />
               <div
-                style={{
-                  width: '8px',
-                  height: '8px',
-                  borderRadius: '50%',
-                  background: part.color,
-                  border: '1px solid rgba(255,255,255,0.2)',
-                  flexShrink: 0,
-                }}
+                className="w-2 h-2 rounded-full shrink-0 border border-white/20"
+                style={{ background: part.color }}
               />
               <span
-                style={{
-                  color: i === 2 ? '#F26522' : 'rgba(255,255,255,0.5)',
-                  fontSize: '10px',
-                  fontFamily: 'Space Grotesk',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                }}
+                className={`text-[10px] truncate ${i === 2 ? 'text-[#F26522]' : 'text-white/50'}`}
               >
                 {part.label}
               </span>
@@ -190,67 +78,31 @@ export default function WorkspaceMockup() {
         </div>
 
         {/* Canvas simulé */}
-        <div
-          style={{
-            flex: 1,
-            background: '#0a0a0a',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'relative',
-          }}
-        >
+        <div className="flex-1 bg-[#0a0a0a] flex items-center justify-center relative">
           <svg
             width="240"
             height="240"
             viewBox="0 0 240 240"
-            style={{ opacity: 0.8 }}
+            className="opacity-80"
           >
-            <line
-              x1="120"
-              y1="120"
-              x2="120"
-              y2="30"
-              stroke="rgba(242,101,34,0.2)"
-              strokeWidth="1"
-              strokeDasharray="3,3"
-            />
-            <line
-              x1="120"
-              y1="120"
-              x2="60"
-              y2="160"
-              stroke="rgba(242,101,34,0.2)"
-              strokeWidth="1"
-              strokeDasharray="3,3"
-            />
-            <line
-              x1="120"
-              y1="120"
-              x2="180"
-              y2="160"
-              stroke="rgba(242,101,34,0.2)"
-              strokeWidth="1"
-              strokeDasharray="3,3"
-            />
-            <line
-              x1="120"
-              y1="120"
-              x2="40"
-              y2="100"
-              stroke="rgba(242,101,34,0.2)"
-              strokeWidth="1"
-              strokeDasharray="3,3"
-            />
-            <line
-              x1="120"
-              y1="120"
-              x2="200"
-              y2="90"
-              stroke="rgba(242,101,34,0.2)"
-              strokeWidth="1"
-              strokeDasharray="3,3"
-            />
+            {[
+              [120, 120, 120, 30],
+              [120, 120, 60, 160],
+              [120, 120, 180, 160],
+              [120, 120, 40, 100],
+              [120, 120, 200, 90],
+            ].map(([x1, y1, x2, y2], i) => (
+              <line
+                key={i}
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                stroke="rgba(242,101,34,0.2)"
+                strokeWidth="1"
+                strokeDasharray="3,3"
+              />
+            ))}
             <rect
               x="95"
               y="100"
@@ -350,38 +202,13 @@ export default function WorkspaceMockup() {
             />
           </svg>
 
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '16px',
-              left: '12px',
-              padding: '4px 10px',
-              background: 'rgba(242,101,34,0.15)',
-              border: '1px solid rgba(242,101,34,0.3)',
-              borderRadius: '4px',
-              color: '#F26522',
-              fontSize: '9px',
-              fontFamily: 'Geist Mono, monospace',
-              letterSpacing: '1px',
-            }}
-          >
+          {/* Label sélection */}
+          <div className="absolute bottom-4 left-3 px-[10px] py-1 bg-[rgba(242,101,34,0.15)] border border-[rgba(242,101,34,0.3)] rounded text-[#F26522] text-[9px] font-mono tracking-[1px]">
             SHAFT_A · SELECTED
           </div>
 
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '12px',
-              right: '12px',
-              width: '36px',
-              height: '36px',
-              border: '1px solid rgba(255,255,255,0.1)',
-              borderRadius: '4px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
+          {/* NavCube */}
+          <div className="absolute bottom-3 right-3 w-9 h-9 border border-white/10 rounded flex items-center justify-center">
             <svg width="24" height="24" viewBox="0 0 24 24">
               <rect
                 x="3"
@@ -439,53 +266,16 @@ export default function WorkspaceMockup() {
       </div>
 
       {/* Status bar */}
-      <div
-        style={{
-          height: '28px',
-          background: '#1a1a1a',
-          borderTop: '1px solid rgba(255,255,255,0.06)',
-          display: 'flex',
-          alignItems: 'center',
-          padding: '0 14px',
-          gap: '16px',
-        }}
-      >
-        <span
-          style={{
-            color: 'rgba(255,255,255,0.2)',
-            fontSize: '9px',
-            fontFamily: 'Geist Mono, monospace',
-          }}
-        >
+      <div className="h-7 bg-[#1a1a1a] border-t border-white/[0.06] flex items-center px-[14px] gap-4">
+        <span className="text-white/20 text-[9px] font-mono">
           assembly.spaxe
         </span>
-        <span
-          style={{
-            color: 'rgba(255,255,255,0.2)',
-            fontSize: '9px',
-            fontFamily: 'Geist Mono, monospace',
-          }}
-        >
-          STL
-        </span>
-        <span
-          style={{
-            color: 'rgba(255,255,255,0.2)',
-            fontSize: '9px',
-            fontFamily: 'Geist Mono, monospace',
-          }}
-        >
+        <span className="text-white/20 text-[9px] font-mono">STL</span>
+        <span className="text-white/20 text-[9px] font-mono">
           6 parts loaded
         </span>
-        <div style={{ flex: 1 }} />
-        <div
-          style={{
-            width: '6px',
-            height: '6px',
-            borderRadius: '50%',
-            background: '#22c55e',
-          }}
-        />
+        <div className="flex-1" />
+        <div className="w-[6px] h-[6px] rounded-full bg-green-500" />
       </div>
     </div>
   )

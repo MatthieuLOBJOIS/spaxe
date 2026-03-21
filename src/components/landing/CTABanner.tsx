@@ -2,66 +2,25 @@
 
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { INTERNAL_LINKS } from '@/config/links'
 
 export default function CTABanner() {
   return (
-    <section
-      style={{
-        background: '#1a1a1c',
-        padding: '100px 12%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
-      }}
-    >
+    <section className="bg-[#1a1a1c] px-[12%] py-[100px] flex items-center justify-between border-t border-white/[0.06] border-b border-b-white/[0.06]">
       <div>
-        <h2
-          style={{
-            color: '#ffffff',
-            fontFamily: 'Space Grotesk',
-            fontWeight: 700,
-            fontSize: '42px',
-            letterSpacing: '-1px',
-            margin: '0 0 12px 0',
-          }}
-        >
+        <h2 className="text-white font-bold text-[42px] tracking-[-1px] m-0 mb-3">
           Ready to navigate
           <br />
           your assembly?
         </h2>
-        <p
-          style={{
-            color: 'rgba(255,255,255,0.4)',
-            fontFamily: 'Space Grotesk',
-            fontSize: '16px',
-            margin: 0,
-          }}
-        >
+        <p className="text-white/40 text-base m-0">
           No account required. Load the demo and explore in seconds.
         </p>
       </div>
-      <Link href="/viewer">
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
-            padding: '16px 36px',
-            background: '#F26522',
-            borderRadius: '8px',
-            color: '#ffffff',
-            fontFamily: 'Space Grotesk',
-            fontWeight: 700,
-            fontSize: '16px',
-            cursor: 'pointer',
-            whiteSpace: 'nowrap',
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = '#FF8C42')}
-          onMouseLeave={(e) => (e.currentTarget.style.background = '#F26522')}
-        >
-          Commencer <ArrowRight size={18} />
+
+      <Link href={INTERNAL_LINKS.viewer.href} className="no-underline">
+        <div className="flex items-center gap-2.5 px-9 py-4 bg-[#F26522] hover:bg-[#FF8C42] rounded-lg text-white font-bold text-base cursor-pointer transition-colors duration-150 whitespace-nowrap">
+          {INTERNAL_LINKS.viewer.label} <ArrowRight size={18} />
         </div>
       </Link>
     </section>

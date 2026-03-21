@@ -2,148 +2,61 @@
 
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Github } from 'lucide-react'
 import ScrollIndicator from './ScrollIndicator'
 import WorkspaceMockup from './WorkspaceMockup'
 import ExternalLink from '@/components/ui/ExternalLink'
-import { EXTERNAL_LINKS } from '@/config/links'
+import { EXTERNAL_LINKS, INTERNAL_LINKS } from '@/config/links'
 
 const SceneCanvas = dynamic(() => import('@/components/viewer/SceneCanvas'), {
   ssr: false,
 })
 
-const badgeStyle = {
-  display: 'inline-flex',
-  alignItems: 'center',
-  gap: '8px',
-  padding: '6px 14px',
-  background: 'rgba(242,101,34,0.12)',
-  border: '1px solid rgba(242,101,34,0.3)',
-  borderRadius: '20px',
-  width: 'fit-content',
-}
-
 export default function Hero() {
   return (
-    <section
-      style={{
-        minHeight: '100vh',
-        paddingTop: '64px',
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        overflow: 'hidden',
-      }}
-    >
+    <section className="relative min-h-screen pt-16 flex items-center overflow-hidden">
       {/* Viewer 3D */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+      <div className="absolute inset-0 z-0">
         <SceneCanvas interactive={false} />
       </div>
 
       {/* Texte */}
-      <div
-        style={{
-          position: 'relative',
-          zIndex: 10,
-          marginLeft: '12%',
-          maxWidth: '520px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '28px',
-        }}
-      >
-        <div style={badgeStyle}>
-          <span
-            style={{
-              color: '#F26522',
-              fontSize: '11px',
-              fontFamily: 'Geist Mono, monospace',
-              letterSpacing: '1px',
-            }}
-          >
+      <div className="relative z-10 ml-[12%] max-w-[520px] flex flex-col gap-7">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 px-[14px] py-[6px] bg-[rgba(242,101,34,0.12)] border border-[rgba(242,101,34,0.3)] rounded-full w-fit">
+          <span className="text-[#F26522] text-[11px] font-mono tracking-[1px]">
             ASSEMBLY VIEWER · V0.1
           </span>
         </div>
 
-        <h1
-          style={{
-            color: '#ffffff',
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontWeight: 700,
-            fontSize: 'clamp(40px, 8vw, 68px)',
-            lineHeight: 1.0,
-            letterSpacing: '-2px',
-            margin: 0,
-          }}
-        >
+        {/* Titre */}
+        <h1 className="text-white font-bold leading-none tracking-[-2px] m-0 text-[clamp(40px,8vw,68px)]">
           Navigate
           <br />
           complexity.
           <br />
-          <span style={{ color: '#F26522' }}>In 3D.</span>
+          <span className="text-[#F26522]">In 3D.</span>
         </h1>
 
-        <p
-          style={{
-            color: 'rgba(255,255,255,0.5)',
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontSize: 'clamp(15px, 3vw, 18px)',
-            lineHeight: 1.7,
-            margin: 0,
-          }}
-        >
+        {/* Description */}
+        <p className="text-white/50 leading-relaxed m-0 text-[clamp(15px,3vw,18px)]">
           Interactive 3D navigation for complex assemblies. Built for makers and
           industrial teams.
         </p>
 
-        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          {/* Lien interne → Link */}
-          <Link href="/viewer" style={{ textDecoration: 'none' }}>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '14px 28px',
-                background: '#F26522',
-                borderRadius: '8px',
-                color: '#ffffff',
-                fontFamily: 'Space Grotesk, sans-serif',
-                fontWeight: 700,
-                fontSize: '15px',
-                cursor: 'pointer',
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.background = '#FF8C42')
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.background = '#F26522')
-              }
-            >
-              Commencer <ArrowRight size={16} />
+        {/* CTAs */}
+        <div className="flex gap-3 flex-wrap">
+          <Link href={INTERNAL_LINKS.viewer.href} className="no-underline">
+            <div className="flex items-center gap-2 px-7 py-[14px] bg-[#F26522] hover:bg-[#FF8C42] rounded-lg text-white font-bold text-[15px] cursor-pointer transition-colors duration-150">
+              {INTERNAL_LINKS.viewer.label} <ArrowRight size={16} />
             </div>
           </Link>
 
-          {/* Lien externe */}
           <ExternalLink
-            href={EXTERNAL_LINKS.github}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '14px 28px',
-              background: 'transparent',
-              borderRadius: '8px',
-              border: '1px solid rgba(255,255,255,0.2)',
-              color: 'rgba(255,255,255,0.7)',
-              fontFamily: 'Space Grotesk, sans-serif',
-              fontWeight: 700,
-              fontSize: '15px',
-              cursor: 'pointer',
-              textDecoration: 'none',
-            }}
+            href={EXTERNAL_LINKS.github.href}
+            className="flex items-center gap-2 px-7 py-[14px] bg-transparent rounded-lg border border-white/20 text-white/70 font-bold text-[15px] no-underline hover:text-white hover:border-white/40 transition-colors duration-150"
           >
-            GitHub
+            <Github size={16} /> {EXTERNAL_LINKS.github.label}
           </ExternalLink>
         </div>
       </div>
@@ -153,13 +66,7 @@ export default function Hero() {
 
       {/* Triangle décoratif */}
       <svg
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          right: 0,
-          zIndex: 1,
-          opacity: 0.1,
-        }}
+        className="absolute bottom-0 right-0 z-[1] opacity-10"
         width="500"
         height="500"
         viewBox="0 0 500 500"
