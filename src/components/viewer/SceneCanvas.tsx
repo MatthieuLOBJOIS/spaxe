@@ -8,7 +8,7 @@ import * as THREE from 'three'
 import { Assembly } from '@/types/assembly'
 import { loadAssembly } from '@/lib/assemblyLoader'
 import AssemblyViewer from './AssemblyViewer'
-import GhostCube from './GhostCube'
+import GhostShape from './GhostShape'
 import { useViewerStore } from '@/store/viewerStore'
 
 function CameraSync({ 
@@ -74,8 +74,8 @@ interface SceneCanvasProps {
   basePath?: string
   interactive?: boolean
   orthoMode?: boolean
-  cameraQuatRef: React.RefObject<THREE.Quaternion>
-  navQuatRef: React.RefObject<THREE.Quaternion>
+  cameraQuatRef?: React.RefObject<THREE.Quaternion>
+  navQuatRef?: React.RefObject<THREE.Quaternion>
 }
 
 export default function SceneCanvas({
@@ -117,7 +117,7 @@ export default function SceneCanvas({
             </Center>
           </Bounds>
         ) : (
-          <GhostCube />
+          <GhostShape />
         )}
       </Suspense>
 

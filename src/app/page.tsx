@@ -1,87 +1,193 @@
-"use client";
+'use client'
 
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { Box, Layers, Network, FileCode } from "lucide-react";
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import { Box, Layers, Network, FileCode } from 'lucide-react'
 
-const SceneCanvas = dynamic(() => import("@/components/viewer/SceneCanvas"), {
+const SceneCanvas = dynamic(() => import('@/components/viewer/SceneCanvas'), {
   ssr: false,
-});
+})
 
 const features = [
-  { icon: Box, label: "STL Import", desc: "Drag & drop your assemblies" },
-  {
-    icon: Layers,
-    label: "Exploded View",
-    desc: "Manual XYZ positioning per part",
-  },
-  { icon: Network, label: "Neighborhood", desc: "Visualize connected parts" },
-  { icon: FileCode, label: "Embed", desc: "Export as iframe anywhere" },
-];
+  { icon: Box, label: 'STL Import', desc: 'Drag & drop your assemblies' },
+  { icon: Layers, label: 'Exploded View', desc: 'Manual XYZ positioning per part' },
+  { icon: Network, label: 'Neighborhood', desc: 'Visualize connected parts' },
+  { icon: FileCode, label: 'Embed', desc: 'Export as iframe anywhere' },
+]
 
 export default function Home() {
   return (
-    <main className="relative w-full min-h-screen bg-[#0a0a0a] md:h-screen md:overflow-hidden">
-      {/* Logo fixe en haut à gauche */}
-      <div className="absolute top-6 left-8 z-20">
-        <span className="text-white text-4xl font-bold tracking-widest">
-          SPAXE
-        </span>
-      </div>
+    <div style={{
+      width: '100vw',
+      height: '100vh',
+      background: '#141416',
+      display: 'flex',
+      flexDirection: 'column',
+      overflow: 'hidden',
+    }}>
 
-      {/* Cube 3D full page en arrière-plan */}
-      <div className="w-full h-[55vh] md:absolute md:inset-0 md:h-full">
-        <SceneCanvas interactive={false} />
-      </div>
+      {/* Navbar */}
+      <nav style={{
+        height: '60px',
+        flexShrink: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '0 48px',
+        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        zIndex: 20,
+        position: 'relative',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1px' }}>
+          <span style={{ color: '#ffffff', fontFamily: 'Space Grotesk', fontWeight: 700, fontSize: '20px', letterSpacing: '4px' }}>SP</span>
+          <span style={{ color: '#F26522', fontSize: '18px', lineHeight: 1 }}>▲</span>
+          <span style={{ color: '#ffffff', fontFamily: 'Space Grotesk', fontWeight: 700, fontSize: '20px', letterSpacing: '4px' }}>XE</span>
+        </div>
+        <div style={{
+          padding: '5px 12px',
+          border: '1px solid rgba(255,255,255,0.12)',
+          borderRadius: '20px',
+          color: 'rgba(255,255,255,0.35)',
+          fontSize: '11px',
+          fontFamily: 'Geist Mono, monospace',
+          letterSpacing: '1px',
+        }}>
+          ASSEMBLY VIEWER · V0.1
+        </div>
+      </nav>
 
-      {/* Panel texte */}
-      <div className="relative z-10 flex flex-col gap-10 px-8 py-10 md:absolute md:left-1/8 md:top-1/2 md:-translate-y-1/2 md:w-[520px] md:p-0">
-        <h1 className="text-white text-6xl md:text-7xl font-bold leading-tight">
-          Navigate complexity.
-          <br />
-          In 3D.
-        </h1>
+      {/* Hero */}
+      <div style={{
+        flex: 1,
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        overflow: 'hidden',
+      }}>
 
-        <p className="text-white/50 text-xl leading-relaxed">
-          Interactive 3D navigation for complex assemblies. Built for makers and
-          industrial teams.
-        </p>
+        {/* Viewer 3D en arrière-plan */}
+        <div style={{
+          position: 'absolute',
+          top: 0, left: 0, right: 0, bottom: 0,
+          zIndex: 0,
+        }}>
+          <SceneCanvas interactive={false} />
+        </div>
 
-        <div className="grid grid-cols-2 gap-5">
-          {features.map(({ icon: Icon, label, desc }) => (
-            <div key={label} className="flex items-start gap-3">
-              <Icon size={22} className="text-cyan-400 mt-0.5 shrink-0" />
-              <div>
-                <div className="text-white text-base font-semibold">
-                  {label}
+        {/* Texte — centré verticalement, calé à gauche */}
+        <div style={{
+          position: 'relative',
+          zIndex: 10,
+          marginLeft: '10%',
+          width: '440px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '28px',
+        }}>
+
+          <h1 style={{
+            color: '#ffffff',
+            fontFamily: 'Space Grotesk',
+            fontWeight: 700,
+            fontSize: '62px',
+            lineHeight: 1.05,
+            letterSpacing: '-1px',
+            margin: 0,
+          }}>
+            Navigate<br />complexity.<br />
+            <span style={{ color: '#F26522' }}>In 3D.</span>
+          </h1>
+
+          <p style={{
+            color: 'rgba(255,255,255,0.45)',
+            fontFamily: 'Space Grotesk',
+            fontSize: '17px',
+            lineHeight: 1.65,
+            margin: 0,
+          }}>
+            Interactive 3D navigation for complex assemblies.
+            Built for makers and industrial teams.
+          </p>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+            {features.map(({ icon: Icon, label, desc }) => (
+              <div key={label} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                <Icon size={16} style={{ color: '#F26522', marginTop: '2px', flexShrink: 0 }} />
+                <div>
+                  <div style={{ color: '#ffffff', fontFamily: 'Space Grotesk', fontWeight: 700, fontSize: '13px' }}>{label}</div>
+                  <div style={{ color: 'rgba(255,255,255,0.35)', fontFamily: 'Space Grotesk', fontSize: '12px' }}>{desc}</div>
                 </div>
-                <div className="text-white/40 text-base">{desc}</div>
               </div>
+            ))}
+          </div>
+
+          <div style={{ display: 'flex', gap: '12px' }}>
+            <Link href="/viewer?demo=robot-atos">
+              <div
+                style={{
+                  padding: '13px 28px',
+                  background: '#F26522',
+                  borderRadius: '8px',
+                  color: '#ffffff',
+                  fontFamily: 'Space Grotesk',
+                  fontWeight: 700,
+                  fontSize: '15px',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.background = '#FF8C42')}
+                onMouseLeave={e => (e.currentTarget.style.background = '#F26522')}
+              >
+                Try Demo
+              </div>
+            </Link>
+            <div style={{
+              padding: '13px 28px',
+              background: 'transparent',
+              borderRadius: '8px',
+              border: '1px solid rgba(255,255,255,0.15)',
+              color: 'rgba(255,255,255,0.25)',
+              fontFamily: 'Space Grotesk',
+              fontWeight: 700,
+              fontSize: '15px',
+              cursor: 'not-allowed',
+            }}>
+              Import STL
             </div>
-          ))}
+          </div>
+
         </div>
 
-        <div className="flex gap-5">
-          <Link href="/viewer?demo=robot-atos">
-            <button className="px-10 py-5 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-lg border-2 border-cyan-300 shadow-lg shadow-cyan-500/40 transition-all duration-200 hover:scale-105 text-xl">
-              Try Demo
-            </button>
-          </Link>
-          <button
-            disabled
-            className="px-10 py-5 bg-transparent text-white/30 font-semibold rounded-lg border border-white/10 text-xl cursor-not-allowed"
-          >
-            Import STL
-          </button>
-        </div>
+        {/* Triangle décoratif bas droite */}
+        <svg style={{
+          position: 'absolute',
+          bottom: 0,
+          right: 0,
+          zIndex: 1,
+          opacity: 0.12,
+        }} width="400" height="400" viewBox="0 0 400 400">
+          <polygon points="400,400 0,400 400,0" fill="none" stroke="#F26522" strokeWidth="1.5" />
+          <polygon points="400,400 100,400 400,100" fill="none" stroke="#F26522" strokeWidth="1" />
+          <polygon points="400,400 200,400 400,200" fill="none" stroke="#F26522" strokeWidth="0.8" />
+        </svg>
+
       </div>
 
       {/* Footer */}
-      <div className="hidden md:block absolute bottom-6 left-8 z-10">
-        <span className="text-white/20 text-base">
-          © 2025 Spaxe — All rights reserved
+      <div style={{
+        height: '48px',
+        flexShrink: 0,
+        display: 'flex',
+        alignItems: 'center',
+        padding: '0 48px',
+        borderTop: '1px solid rgba(255,255,255,0.06)',
+        position: 'relative',
+        zIndex: 10,
+      }}>
+        <span style={{ color: 'rgba(255,255,255,0.18)', fontFamily: 'Geist Mono, monospace', fontSize: '11px', letterSpacing: '1px' }}>
+          © 2025 SPAXE — ALL RIGHTS RESERVED
         </span>
       </div>
-    </main>
-  );
+
+    </div>
+  )
 }
