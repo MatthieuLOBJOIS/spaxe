@@ -27,9 +27,15 @@ function ViewerContent() {
     demo ? `/demo/${demo}` : undefined
   )
 
+  const [lasso, setLasso] = useState(false)
+  const [transform, setTransform] = useState(false)
+  const [exploded, setExploded] = useState(false)
   const [grid, setGrid] = useState(false)
   const [neighborhood, setNeighborhood] = useState(false)
   const [xray, setXray] = useState(false)
+  const [bom, setBom] = useState(false)
+  const [color, setColor] = useState(false)
+  const [shortcuts, setShortcuts] = useState(false)
   const [orthoMode, setOrthoMode] = useState(false)
   const [assembly, setAssembly] = useState<Assembly | null>(null)
 
@@ -53,7 +59,7 @@ function ViewerContent() {
       {/* Toolbar — toujours visible */}
       <div
         style={{
-          height: showModal ? 0 : '72px',
+          height: showModal ? 0 : '52px',
           flexShrink: 0,
           overflow: 'hidden',
         }}
@@ -70,7 +76,18 @@ function ViewerContent() {
           onResetCamera={() => {}}
           onOrthoView={() => {}}
           onColorPick={() => {}}
-          onRandomColor={() => {}}
+          lasso={lasso}
+          onLassoToggle={() => setLasso((l) => !l)}
+          transform={transform}
+          onTransformToggle={() => setTransform((t) => !t)}
+          exploded={exploded}
+          onExplodedToggle={() => setExploded((e) => !e)}
+          bom={bom}
+          onBomToggle={() => setBom((b) => !b)}
+          color={color}
+          onColorToggle={() => setColor((c) => !c)}
+          shortcuts={shortcuts}
+          onShortcutsToggle={() => setShortcuts((s) => !s)}
         />
       </div>
 
