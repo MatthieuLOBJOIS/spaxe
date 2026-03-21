@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import ScrollIndicator from './ScrollIndicator'
 import WorkspaceMockup from './WorkspaceMockup'
+import ExternalLink from '@/components/ui/ExternalLink'
+import { EXTERNAL_LINKS } from '@/config/links'
 
 const SceneCanvas = dynamic(() => import('@/components/viewer/SceneCanvas'), {
   ssr: false,
@@ -123,10 +125,8 @@ export default function Hero() {
           </Link>
 
           {/* Lien externe */}
-          <a
-            href="https://github.com/MatthieuLOBJOIS/spaxe"
-            target="_blank"
-            rel="noopener noreferrer"
+          <ExternalLink
+            href={EXTERNAL_LINKS.github}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -144,7 +144,7 @@ export default function Hero() {
             }}
           >
             GitHub
-          </a>
+          </ExternalLink>
         </div>
       </div>
 

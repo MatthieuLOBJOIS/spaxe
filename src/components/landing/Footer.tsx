@@ -1,20 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-
-const PRODUCT_LINKS = [
-  { label: 'Commencer', href: '/viewer' },
-  { label: 'Import STL', href: '/viewer' },
-  { label: 'Features', href: '#features' },
-  { label: 'How it works', href: '#how-it-works' },
-]
-
-const STACK_LINKS = [
-  { label: 'Next.js 15', href: 'https://nextjs.org' },
-  { label: 'Three.js', href: 'https://threejs.org' },
-  { label: 'React Three Fiber', href: 'https://r3f.docs.pmnd.rs' },
-  { label: 'Vercel', href: 'https://vercel.com' },
-]
+import {
+  INTERNAL_LINKS,
+  EXTERNAL_LINKS,
+  FOOTER_PRODUCT_LINKS,
+  FOOTER_STACK_LINKS,
+} from '@/config/links'
+import ExternalLink from '@/components/ui/ExternalLink'
 
 const linkStyle = {
   color: 'rgba(255,255,255,0.4)',
@@ -55,7 +48,7 @@ export default function Footer() {
         {/* Brand */}
         <div style={{ ...columnStyle, maxWidth: '280px' }}>
           <Link
-            href="/"
+            href={INTERNAL_LINKS.home.href}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -106,49 +99,37 @@ export default function Footer() {
             Interactive 3D navigation for complex assemblies. Built for makers
             and industrial teams.
           </p>
-          {/* Lien externe */}
-          <a
-            href="https://github.com/MatthieuLOBJOIS/spaxe"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={linkStyle}
-          >
-            GitHub
-          </a>
+          <ExternalLink href={EXTERNAL_LINKS.github.href} style={linkStyle}>
+            {EXTERNAL_LINKS.github.label}
+          </ExternalLink>
         </div>
 
         {/* Liens */}
         <div style={{ display: 'flex', gap: '80px' }}>
-          {/* Product — liens internes → Link */}
+          {/* Product */}
           <div style={columnStyle}>
             <span style={sectionTitleStyle}>Product</span>
-            {PRODUCT_LINKS.map(({ label, href }) => (
+            {FOOTER_PRODUCT_LINKS.map(({ href, label }) => (
               <Link key={label} href={href} style={linkStyle}>
                 {label}
               </Link>
             ))}
           </div>
 
-          {/* Stack — liens externes → <a> */}
+          {/* Stack */}
           <div style={columnStyle}>
             <span style={sectionTitleStyle}>Stack</span>
-            {STACK_LINKS.map(({ label, href }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={linkStyle}
-              >
+            {FOOTER_STACK_LINKS.map(({ href, label }) => (
+              <ExternalLink key={label} href={href} style={linkStyle}>
                 {label}
-              </a>
+              </ExternalLink>
             ))}
           </div>
 
           {/* Legal */}
           <div style={columnStyle}>
             <span style={sectionTitleStyle}>Legal</span>
-            <Link href="#" style={linkStyle}>
+            <Link href={INTERNAL_LINKS.home.href} style={linkStyle}>
               All rights reserved
             </Link>
           </div>
@@ -173,7 +154,7 @@ export default function Footer() {
             letterSpacing: '1px',
           }}
         >
-          © 2025 SPAXE — ALL RIGHTS RESERVED
+          © 2026 SPAXE — ALL RIGHTS RESERVED
         </span>
         <span
           style={{

@@ -1,15 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-
-const NAV_LINKS_INTERNAL = [
-  { label: 'Features', href: '#features' },
-  { label: 'How it works', href: '#how-it-works' },
-]
-
-const NAV_LINKS_EXTERNAL = [
-  { label: 'GitHub', href: 'https://github.com/MatthieuLOBJOIS/spaxe' },
-]
+import { INTERNAL_LINKS, NAV_LINKS } from '@/config/links'
+import ExternalLink from '@/components/ui/ExternalLink'
 
 const navLinkStyle = {
   color: 'rgba(255,255,255,0.55)',
@@ -38,9 +31,9 @@ export default function Navbar() {
         borderBottom: '1px solid rgba(255,255,255,0.06)',
       }}
     >
-      {/* Logo — lien interne */}
+      {/* Logo */}
       <Link
-        href="/"
+        href={INTERNAL_LINKS.home.href}
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -78,26 +71,25 @@ export default function Navbar() {
 
       {/* Liens */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
-        {NAV_LINKS_INTERNAL.map(({ label, href }) => (
-          <Link key={label} href={href} style={navLinkStyle}>
-            {label}
-          </Link>
-        ))}
-        {NAV_LINKS_EXTERNAL.map(({ label, href }) => (
-          <a
-            key={label}
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={navLinkStyle}
-          >
-            {label}
-          </a>
-        ))}
+        {NAV_LINKS.map(({ href, label }) => {
+          const isExternal = href.startsWith('http')
+          return isExternal ? (
+            <ExternalLink key={label} href={href} style={navLinkStyle}>
+              {label}
+            </ExternalLink>
+          ) : (
+            <Link key={label} href={href} style={navLinkStyle}>
+              {label}
+            </Link>
+          )
+        })}
       </div>
 
-      {/* CTA — lien interne */}
-      <Link href="/viewer" style={{ textDecoration: 'none' }}>
+      {/* CTA */}
+      <Link
+        href={INTERNAL_LINKS.viewer.href}
+        style={{ textDecoration: 'none' }}
+      >
         <div
           style={{
             padding: '9px 22px',
@@ -112,7 +104,7 @@ export default function Navbar() {
           onMouseEnter={(e) => (e.currentTarget.style.background = '#FF8C42')}
           onMouseLeave={(e) => (e.currentTarget.style.background = '#F26522')}
         >
-          Commencer
+          {INTERNAL_LINKS.viewer.label}
         </div>
       </Link>
     </nav>
