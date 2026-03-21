@@ -34,3 +34,6 @@ export const FOOTER_STACK_LINKS = [
   EXTERNAL_LINKS.r3f,
   EXTERNAL_LINKS.vercel,
 ] as const
+
+// DEMO
+export const DEMO_LINK = '/viewer?demo=robot-atos'

@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { INTERNAL_LINKS } from '@/config/links'
+import { DEMO_LINK } from '@/config/links'
 
 export default function CTABanner() {
   return (
@@ -18,9 +18,9 @@ export default function CTABanner() {
         </p>
       </div>
 
-      <Link href={INTERNAL_LINKS.viewer.href} className="no-underline">
+      <Link href={DEMO_LINK}>
         <div className="flex items-center gap-2.5 px-9 py-4 bg-[#F26522] hover:bg-[#FF8C42] rounded-lg text-white font-bold text-base cursor-pointer transition-colors duration-150 whitespace-nowrap">
-          {INTERNAL_LINKS.viewer.label} <ArrowRight size={18} />
+          Try Demo <ArrowRight size={18} />
         </div>
       </Link>
     </section>
