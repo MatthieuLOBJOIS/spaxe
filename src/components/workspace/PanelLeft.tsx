@@ -8,6 +8,59 @@ interface PanelLeftProps {
   parts: Part[]
 }
 
+// ── Sous-composant ligne de pièce ────────────────────────
+interface PartRowProps {
+  part: Part
+  isSelected: boolean
+  isVisible: boolean
+  onSelect: () => void
+  onToggleVisible: (e: React.MouseEvent) => void
+}
+
+function PartRow({
+  part,
+  isSelected,
+  isVisible,
+  onSelect,
+  onToggleVisible,
+}: PartRowProps) {
+  return (
+    <div
+      onClick={onSelect}
+      className={`flex items-center gap-2.5 px-4 py-1.75 cursor-pointer border-l-2 transition-colors duration-100
+        ${
+          isSelected
+            ? 'bg-[rgba(34,211,238,0.1)] border-[#22d3ee]'
+            : 'bg-transparent border-transparent'
+        }`}
+    >
+      {/* Checkbox visibilité */}
+      <div
+        onClick={onToggleVisible}
+        className={`w-4 h-4 rounded-[3px] border border-white/25 shrink-0 flex items-center justify-center cursor-pointer transition-colors
+          ${isVisible ? 'bg-white/10' : 'bg-transparent'}`}
+      >
+        {isVisible && <div className="w-2 h-2 rounded-[1px] bg-white/60" />}
+      </div>
+
+      {/* Nom */}
+      <span
+        className={`flex-1 text-[13px] truncate transition-colors
+        ${isSelected ? 'text-[#22d3ee]' : isVisible ? 'text-white/80' : 'text-white/30'}`}
+      >
+        {part.label}
+      </span>
+
+      {/* Rond couleur — valeur dynamique → inline style justifié */}
+      <div
+        className="w-3 h-3 rounded-full shrink-0 border border-white/20"
+        style={{ background: part.color_hint ?? '#cccccc' }}
+      />
+    </div>
+  )
+}
+
+// ── Panel principal ──────────────────────────────────────
 export default function PanelLeft({ parts }: PanelLeftProps) {
   const { selectedPart, setSelectedPart } = useViewerStore()
 
@@ -21,135 +74,31 @@ export default function PanelLeft({ parts }: PanelLeftProps) {
   }
 
   return (
-    <div
-      style={{
-        width: '260px',
-        height: '100%',
-        background: '#141414',
-        borderRight: '1px solid rgba(255,255,255,0.1)',
-        display: 'flex',
-        flexDirection: 'column',
-        flexShrink: 0,
-      }}
-    >
+    <div className="w-65 h-full bg-[#141414] border-r border-white/10 flex flex-col shrink-0">
       {/* Header */}
-      <div
-        style={{
-          padding: '10px 16px',
-          borderBottom: '1px solid rgba(255,255,255,0.1)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        <span
-          style={{
-            color: 'rgba(255,255,255,0.4)',
-            fontSize: '11px',
-            fontWeight: 600,
-            letterSpacing: '1px',
-            textTransform: 'uppercase',
-            fontFamily: 'Space Grotesk, sans-serif',
-          }}
-        >
+      <div className="px-4 py-2.5 border-b border-white/10 flex items-center justify-between">
+        <span className="text-white/40 text-[11px] font-semibold tracking-[1px] uppercase">
           Parts Tree
         </span>
-        <span
-          style={{
-            color: '#F26522',
-            fontSize: '13px',
-            fontFamily: 'Geist Mono, monospace',
-          }}
-        >
+        <span className="text-[#F26522] text-[13px] font-mono">
           {parts.length}
         </span>
       </div>
 
       {/* Liste */}
-      <div style={{ flex: 1, overflowY: 'auto' }}>
-        {parts.map((part) => {
-          const isSelected = selectedPart === part.file
-          const isVisible = visible[part.file] ?? true
-
-          return (
-            <div
-              key={part.file}
-              onClick={() => setSelectedPart(isSelected ? null : part.file)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
-                padding: '7px 16px',
-                cursor: 'pointer',
-                background: isSelected ? 'rgba(34,211,238,0.1)' : 'transparent',
-                borderLeft: isSelected
-                  ? '2px solid #22d3ee'
-                  : '2px solid transparent',
-              }}
-            >
-              {/* Checkbox visibilité */}
-              <div
-                onClick={(e) => toggleVisible(part.file, e)}
-                style={{
-                  width: '16px',
-                  height: '16px',
-                  borderRadius: '3px',
-                  border: '1px solid rgba(255,255,255,0.25)',
-                  background: isVisible
-                    ? 'rgba(255,255,255,0.1)'
-                    : 'transparent',
-                  flexShrink: 0,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                }}
-              >
-                {isVisible && (
-                  <div
-                    style={{
-                      width: '8px',
-                      height: '8px',
-                      borderRadius: '1px',
-                      background: 'rgba(255,255,255,0.6)',
-                    }}
-                  />
-                )}
-              </div>
-
-              {/* Nom */}
-              <span
-                style={{
-                  flex: 1,
-                  color: isSelected
-                    ? '#22d3ee'
-                    : isVisible
-                      ? 'rgba(255,255,255,0.8)'
-                      : 'rgba(255,255,255,0.3)',
-                  fontSize: '13px',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                  fontFamily: 'Space Grotesk, sans-serif',
-                }}
-              >
-                {part.label}
-              </span>
-
-              {/* Rond couleur */}
-              <div
-                style={{
-                  width: '12px',
-                  height: '12px',
-                  borderRadius: '50%',
-                  background: part.color_hint ?? '#cccccc',
-                  flexShrink: 0,
-                  border: '1px solid rgba(255,255,255,0.2)',
-                }}
-              />
-            </div>
-          )
-        })}
+      <div className="flex-1 overflow-y-auto">
+        {parts.map((part) => (
+          <PartRow
+            key={part.file}
+            part={part}
+            isSelected={selectedPart === part.file}
+            isVisible={visible[part.file] ?? true}
+            onSelect={() =>
+              setSelectedPart(selectedPart === part.file ? null : part.file)
+            }
+            onToggleVisible={(e) => toggleVisible(part.file, e)}
+          />
+        ))}
       </div>
     </div>
   )
