@@ -1,240 +1,133 @@
 'use client'
 
-import { useState } from 'react'
 import { Play, FolderOpen, Sparkles } from 'lucide-react'
+import Link from 'next/link'
+import type { LucideIcon } from 'lucide-react'
+import { INTERNAL_LINKS, DEMO_LINK } from '@/config/links'
 
-interface StartModalProps {
-  onSelectDemo: () => void
+interface Option {
+  id: string
+  icon: LucideIcon
+  label: string
+  desc: string
+  available: boolean
+  href?: string
 }
 
-export default function StartModal({ onSelectDemo }: StartModalProps) {
-  const [hovered, setHovered] = useState<string | null>(null)
+const OPTIONS: Option[] = [
+  {
+    id: 'demo',
+    icon: Play,
+    label: 'Try Demo',
+    desc: 'Explore a pre-loaded AUBO cobot + ATOS Q scanner assembly',
+    available: true,
+    href: DEMO_LINK,
+  },
+  {
+    id: 'import',
+    icon: FolderOpen,
+    label: 'Import STL',
+    desc: 'Drop your own STL files or assembly folder',
+    available: false,
+  },
+  {
+    id: 'ai',
+    icon: Sparkles,
+    label: 'Generate with AI',
+    desc: 'Describe your assembly and let AI generate the 3D model',
+    available: false,
+  },
+]
 
-  const options = [
-    {
-      id: 'demo',
-      icon: Play,
-      label: 'Try Demo',
-      desc: 'Explore a pre-loaded AUBO cobot + ATOS Q scanner assembly',
-      available: true,
-    },
-    {
-      id: 'import',
-      icon: FolderOpen,
-      label: 'Import STL',
-      desc: 'Drop your own STL files or assembly folder',
-      available: false,
-    },
-    {
-      id: 'ai',
-      icon: Sparkles,
-      label: 'Generate with AI',
-      desc: 'Describe your assembly and let AI generate the 3D model',
-      available: false,
-    },
-  ]
-
+export default function StartModal() {
   return (
-    <div
-      style={{
-        position: 'absolute',
-        inset: 0,
-        zIndex: 50,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'rgba(0,0,0,0.6)',
-        backdropFilter: 'blur(4px)',
-      }}
-    >
-      <div
-        style={{
-          width: '480px',
-          background: '#1a1a1c',
-          borderRadius: '16px',
-          border: '1px solid rgba(255,255,255,0.1)',
-          overflow: 'hidden',
-          boxShadow: '0 40px 80px rgba(0,0,0,0.8)',
-        }}
-      >
+    <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+      <div className="w-[480px] bg-[#1a1a1c] rounded-2xl border border-white/10 overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.8)]">
         {/* Header */}
-        <div
-          style={{
-            padding: '32px 32px 24px',
-            borderBottom: '1px solid rgba(255,255,255,0.06)',
-          }}
-        >
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1px',
-              marginBottom: '12px',
-            }}
-          >
-            <span
-              style={{
-                color: '#fff',
-                fontFamily: 'Space Grotesk',
-                fontWeight: 700,
-                fontSize: '22px',
-                letterSpacing: '4px',
-              }}
-            >
+        <div className="px-8 pt-8 pb-6 border-b border-white/[0.06]">
+          <div className="flex items-center mb-3">
+            <span className="text-white font-bold text-[22px] tracking-[4px]">
               SP
             </span>
-            <span
-              style={{
-                color: '#F26522',
-                fontSize: '20px',
-                letterSpacing: '4px',
-              }}
-            >
-              ▲
-            </span>
-            <span
-              style={{
-                color: '#fff',
-                fontFamily: 'Space Grotesk',
-                fontWeight: 700,
-                fontSize: '22px',
-                letterSpacing: '4px',
-              }}
-            >
+            <span className="text-[#F26522] text-[20px] tracking-[4px]">▲</span>
+            <span className="text-white font-bold text-[22px] tracking-[4px]">
               XE
             </span>
           </div>
-          <p
-            style={{
-              color: 'rgba(255,255,255,0.4)',
-              fontFamily: 'Space Grotesk',
-              fontSize: '14px',
-              margin: 0,
-            }}
-          >
+          <p className="text-white/40 text-sm m-0">
             Choose how you want to get started.
           </p>
         </div>
 
         {/* Options */}
-        <div style={{ padding: '16px' }}>
-          {options.map(({ id, icon: Icon, label, desc, available }) => (
-            <div
-              key={id}
-              onClick={available ? onSelectDemo : undefined}
-              onMouseEnter={() => available && setHovered(id)}
-              onMouseLeave={() => setHovered(null)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '16px',
-                padding: '16px',
-                borderRadius: '10px',
-                marginBottom: '8px',
-                cursor: available ? 'pointer' : 'not-allowed',
-                background:
-                  hovered === id
-                    ? 'rgba(242,101,34,0.08)'
-                    : 'rgba(255,255,255,0.03)',
-                border:
-                  hovered === id
-                    ? '1px solid rgba(242,101,34,0.3)'
-                    : '1px solid rgba(255,255,255,0.06)',
-                opacity: available ? 1 : 0.4,
-                transition: 'all 0.15s ease',
-              }}
-            >
-              {/* Icône */}
-              <div
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '8px',
-                  background:
-                    available && hovered === id
-                      ? 'rgba(242,101,34,0.15)'
-                      : 'rgba(255,255,255,0.06)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                }}
-              >
-                <Icon
-                  size={18}
-                  style={{
-                    color: available ? '#F26522' : 'rgba(255,255,255,0.3)',
-                  }}
-                />
-              </div>
-
-              {/* Texte */}
-              <div style={{ flex: 1 }}>
+        <div className="p-4 flex flex-col gap-2">
+          {OPTIONS.map(({ id, icon: Icon, label, desc, available, href }) => {
+            const content = (
+              <>
                 <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    marginBottom: '4px',
-                  }}
+                  className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-150 bg-white/[0.06] group-hover:bg-[rgba(242,101,34,0.15)]`}
                 >
-                  <span
-                    style={{
-                      color: available ? '#ffffff' : 'rgba(255,255,255,0.4)',
-                      fontFamily: 'Space Grotesk',
-                      fontWeight: 700,
-                      fontSize: '14px',
-                    }}
-                  >
-                    {label}
-                  </span>
-                  {!available && (
-                    <span
-                      style={{
-                        padding: '2px 8px',
-                        background: 'rgba(255,255,255,0.06)',
-                        borderRadius: '20px',
-                        color: 'rgba(255,255,255,0.3)',
-                        fontSize: '10px',
-                        fontFamily: 'Geist Mono, monospace',
-                        letterSpacing: '1px',
-                      }}
-                    >
-                      SOON
-                    </span>
-                  )}
+                  <Icon
+                    size={18}
+                    className={available ? 'text-[#F26522]' : 'text-white/30'}
+                  />
                 </div>
-                <span
-                  style={{
-                    color: 'rgba(255,255,255,0.35)',
-                    fontFamily: 'Space Grotesk',
-                    fontSize: '12px',
-                  }}
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span
+                      className={`font-bold text-sm ${available ? 'text-white' : 'text-white/40'}`}
+                    >
+                      {label}
+                    </span>
+                    {!available && (
+                      <span className="px-2 py-[2px] bg-white/[0.06] rounded-full text-white/30 text-[10px] font-mono tracking-[1px]">
+                        SOON
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-white/35 text-xs">{desc}</span>
+                </div>
+              </>
+            )
+
+            const baseClass = `group flex items-center gap-4 p-4 rounded-xl transition-all duration-150 border w-full text-left
+              ${
+                available
+                  ? 'cursor-pointer bg-white/[0.03] border-white/[0.06] hover:bg-[rgba(242,101,34,0.08)] hover:border-[rgba(242,101,34,0.3)]'
+                  : 'cursor-not-allowed opacity-40 bg-white/[0.03] border-white/[0.06]'
+              }`
+
+            if (available && href) {
+              return (
+                <Link
+                  key={id}
+                  href={href}
+                  className={`${baseClass} no-underline`}
                 >
-                  {desc}
-                </span>
-              </div>
-            </div>
-          ))}
+                  {content}
+                </Link>
+              )
+            }
+
+            return (
+              <button key={id} disabled={!available} className={baseClass}>
+                {content}
+              </button>
+            )
+          })}
         </div>
 
         {/* Footer */}
-        <div
-          style={{
-            padding: '16px 32px',
-            borderTop: '1px solid rgba(255,255,255,0.06)',
-          }}
-        >
-          <span
-            style={{
-              color: 'rgba(255,255,255,0.2)',
-              fontFamily: 'Geist Mono, monospace',
-              fontSize: '10px',
-              letterSpacing: '1px',
-            }}
-          >
+        <div className="px-8 py-4 border-t border-white/[0.06] flex items-center justify-between">
+          <span className="text-white/20 font-mono text-[10px] tracking-[1px]">
             V0.1 · ASSEMBLY VIEWER
           </span>
+          <Link
+            href={INTERNAL_LINKS.home.href}
+            className="text-white/30 hover:text-white/60 text-xs font-mono tracking-[1px] no-underline transition-colors duration-150"
+          >
+            ← BACK
+          </Link>
         </div>
       </div>
     </div>
