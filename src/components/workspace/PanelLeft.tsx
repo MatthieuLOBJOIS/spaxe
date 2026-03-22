@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { Part } from '@/types/assembly'
 import { useViewerStore } from '@/store/viewerStore'
 
@@ -62,15 +62,21 @@ function PartRow({
 
 // ── Panel principal ──────────────────────────────────────
 export default function PanelLeft({ parts }: PanelLeftProps) {
-  const { selectedPart, setSelectedPart } = useViewerStore()
+  const {
+    selectedPart,
+    setSelectedPart,
+    visibleParts,
+    setPartVisible,
+    initVisibleParts,
+  } = useViewerStore()
 
-  const [visible, setVisible] = useState<Record<string, boolean>>(
-    Object.fromEntries(parts.map((p) => [p.file, true]))
-  )
+  useEffect(() => {
+    initVisibleParts(parts.map((p) => p.file))
+  }, [parts])
 
   const toggleVisible = (file: string, e: React.MouseEvent) => {
     e.stopPropagation()
-    setVisible((v) => ({ ...v, [file]: !v[file] }))
+    setPartVisible(file, !(visibleParts[file] ?? true))
   }
 
   return (
@@ -92,7 +98,7 @@ export default function PanelLeft({ parts }: PanelLeftProps) {
             key={part.file}
             part={part}
             isSelected={selectedPart === part.file}
-            isVisible={visible[part.file] ?? true}
+            isVisible={visibleParts[part.file] ?? true}
             onSelect={() =>
               setSelectedPart(selectedPart === part.file ? null : part.file)
             }
