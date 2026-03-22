@@ -39,15 +39,15 @@ export default function HowItWorks() {
             HOW IT WORKS
           </span>
         </div>
-        <h2 className="text-white font-bold text-5xl tracking-[-1px] m-0">
+        <h2 className="text-white font-bold text-4xl md:text-5xl tracking-[-1px] m-0">
           From file to interactive
           <br />
           assembly in seconds.
         </h2>
       </div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-2 gap-8">
+      {/* Desktop grid */}
+      <div className="hidden md:grid grid-cols-2 gap-8">
         {steps.map(({ num, title, desc }) => (
           <div
             key={num}
@@ -64,6 +64,31 @@ export default function HowItWorks() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Mobile carousel */}
+      <div className="md:hidden -mx-6 px-6">
+        <div
+          className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory"
+          style={{ scrollbarWidth: 'none' }}
+        >
+          {steps.map(({ num, title, desc }) => (
+            <div
+              key={num}
+              className="flex gap-5 p-6 bg-[#1a1a1c] rounded-xl border border-white/[0.07] snap-start shrink-0 w-[80vw]"
+            >
+              <span className="text-[#F26522] font-mono text-[28px] font-bold opacity-40 shrink-0 leading-none">
+                {num}
+              </span>
+              <div className="flex flex-col gap-2">
+                <span className="text-white font-bold text-base">{title}</span>
+                <span className="text-white/40 text-sm leading-relaxed">
+                  {desc}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )

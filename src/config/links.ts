@@ -1,7 +1,7 @@
 // Liens internes
 export const INTERNAL_LINKS = {
   home: { href: '/', label: 'Home' },
-  viewer: { href: '/viewer', label: 'Commencer' },
+  viewer: { href: '/viewer', label: 'Start' },
   features: { href: '#features', label: 'Features' },
   howItWorks: { href: '#how-it-works', label: 'How it works' },
 } as const
