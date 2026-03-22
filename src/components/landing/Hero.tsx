@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
@@ -8,21 +7,11 @@ import ScrollIndicator from './ScrollIndicator'
 import WorkspaceMockup from './WorkspaceMockup'
 import ExternalLink from '@/components/ui/ExternalLink'
 import { EXTERNAL_LINKS, INTERNAL_LINKS } from '@/config/links'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 const SceneCanvas = dynamic(() => import('@/components/viewer/SceneCanvas'), {
   ssr: false,
 })
-
-function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false)
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
-  return isMobile
-}
 
 export default function Hero() {
   const isMobile = useIsMobile()
@@ -30,7 +19,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen pt-16 flex items-center overflow-hidden">
       {/* GhostShape en fond */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 bg-[#0a0a0a]">
         <SceneCanvas interactive={false} showGhost />
       </div>
 

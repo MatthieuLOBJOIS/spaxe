@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { INTERNAL_LINKS } from '@/config/links'
 import { VIEWER_OPTIONS, type ViewerOption } from '@/config/viewerOptions'
+import Logo from '@/components/ui/Logo'
 
 // ── Sous-composant option ────────────────────────────────
 function OptionItem({
@@ -69,15 +70,7 @@ export default function StartModal() {
     <div className="w-120 bg-[#1a1a1c] rounded-2xl border border-white/10 overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.8)]">
       {/* Header */}
       <div className="px-8 pt-8 pb-6 border-b border-white/6">
-        <div className="flex items-center mb-3">
-          <span className="text-white font-bold text-[22px] tracking-[4px]">
-            SP
-          </span>
-          <span className="text-[#F26522] text-[20px] tracking-[4px]">▲</span>
-          <span className="text-white font-bold text-[22px] tracking-[4px]">
-            XE
-          </span>
-        </div>
+        <Logo size="lg" />
         <p className="text-white/40 text-sm m-0">
           Choose how you want to get started.
         </p>

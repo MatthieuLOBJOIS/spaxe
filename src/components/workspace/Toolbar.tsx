@@ -2,9 +2,7 @@
 
 import Link from 'next/link'
 import { RotateCcw, PaintBucket, Keyboard } from 'lucide-react'
-import ToolButton from '@/components/ui/ToolButton'
-import ViewButton from '@/components/ui/ViewButton'
-import ToggleButton from '@/components/ui/ToggleButton'
+
 import { INTERNAL_LINKS } from '@/config/links'
 import {
   SELECTION_TOOLS,
@@ -12,7 +10,13 @@ import {
   ORTHO_VIEWS,
   ORTHO_OPTIONS,
 } from '@/config/toolbarConfig'
+
 import type { useToolbar } from '@/hooks/useToolbar'
+
+import ToolButton from '@/components/ui/ToolButton'
+import ViewButton from '@/components/ui/ViewButton'
+import ToggleButton from '@/components/ui/ToggleButton'
+import Logo from '@/components/ui/Logo'
 
 // ── Types ────────────────────────────────────────────────
 type ToolbarState = ReturnType<typeof useToolbar>
@@ -71,15 +75,7 @@ export default function Toolbar({
   return (
     <div className="w-full h-16 bg-[#1a1a1c] border-b border-white/6 flex items-center gap-0.5 px-4 pb-1 box-border">
       {/* Logo */}
-      <div className="flex items-center mr-2 shrink-0">
-        <span className="text-white font-bold text-[17px] tracking-[7px]">
-          SP
-        </span>
-        <span className="text-[#F26522] text-[17px] tracking-[7px]">▲</span>
-        <span className="text-white font-bold text-[17px] tracking-[7px]">
-          XE
-        </span>
-      </div>
+      <Logo size="toolbar" />
 
       <Sep />
 

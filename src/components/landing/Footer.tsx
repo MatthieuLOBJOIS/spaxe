@@ -1,14 +1,16 @@
 'use client'
 
 import Link from 'next/link'
-import { Github } from 'lucide-react'
+
 import {
   INTERNAL_LINKS,
   EXTERNAL_LINKS,
   FOOTER_PRODUCT_LINKS,
   FOOTER_STACK_LINKS,
 } from '@/config/links'
+
 import ExternalLink from '@/components/ui/ExternalLink'
+import Logo from '@/components/ui/Logo'
 
 const linkClass =
   'text-white/40 text-[13px] no-underline hover:text-white transition-colors duration-150'
@@ -19,20 +21,9 @@ export default function Footer() {
   return (
     <footer className="bg-[#141416] px-6 md:px-[12%] pt-16 pb-10 border-t border-white/[0.06]">
       <div className="flex flex-col md:flex-row md:justify-between gap-12 mb-12">
-        {/* Brand — toujours en premier */}
+        {/* Brand */}
         <div className="flex flex-col gap-4 md:max-w-[280px]">
-          <Link
-            href={INTERNAL_LINKS.home.href}
-            className="flex items-center no-underline"
-          >
-            <span className="text-white font-bold text-lg tracking-[4px]">
-              SP
-            </span>
-            <span className="text-[#F26522] text-base tracking-[4px]">▲</span>
-            <span className="text-white font-bold text-lg tracking-[4px]">
-              XE
-            </span>
-          </Link>
+          <Logo size="md" />
           <p className="text-white/35 text-[13px] leading-relaxed m-0">
             Interactive 3D navigation for complex assemblies. Built for makers
             and industrial teams.
@@ -41,7 +32,6 @@ export default function Footer() {
             href={EXTERNAL_LINKS.github.href}
             className={`${linkClass} flex items-center gap-2`}
           >
-            <Github size={16} />
             {EXTERNAL_LINKS.github.label}
           </ExternalLink>
         </div>

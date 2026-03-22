@@ -6,7 +6,7 @@ import { DEMO_LINK } from '@/config/links'
 
 export default function CTABanner() {
   return (
-    <section className="hidden md:flex bg-[#1a1a1c] px-[12%] py-[100px] items-center justify-between border-t border-white/[0.06] border-b border-b-white/[0.06]">
+    <section className="hidden md:flex bg-[#1a1a1c] px-[12%] py-25 items-center justify-between border-t border-white/6 border-b border-b-white/6">
       <div>
         <h2 className="text-white font-bold text-[42px] tracking-[-1px] m-0 mb-3">
           Ready to navigate

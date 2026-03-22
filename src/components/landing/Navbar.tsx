@@ -3,8 +3,11 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
+
 import { INTERNAL_LINKS, NAV_LINKS } from '@/config/links'
+
 import ExternalLink from '@/components/ui/ExternalLink'
+import Logo from '@/components/ui/Logo'
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -18,13 +21,7 @@ export default function Navbar() {
             href={INTERNAL_LINKS.home.href}
             className="flex items-center no-underline"
           >
-            <span className="text-white font-bold text-xl tracking-[4px]">
-              SP
-            </span>
-            <span className="text-[#F26522] text-lg tracking-[4px]">▲</span>
-            <span className="text-white font-bold text-xl tracking-[4px]">
-              XE
-            </span>
+            <Logo size="md" />
           </Link>
 
           {/* Liens — absolument centrés */}
