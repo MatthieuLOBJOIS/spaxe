@@ -7,9 +7,9 @@ export function useToolbar() {
   const [grid, setGrid] = useState(false)
   const [neighborhood, setNeighborhood] = useState(false)
   const [xray, setXray] = useState(false)
-  const [bom, setBom] = useState(false)
+
   const [color, setColor] = useState(false)
-  const [shortcuts, setShortcuts] = useState(false)
+
   const [orthoMode, setOrthoMode] = useState(false)
 
   return {
@@ -25,12 +25,10 @@ export function useToolbar() {
     onNeighborhoodToggle: () => setNeighborhood((v) => !v),
     xray,
     onXrayToggle: () => setXray((v) => !v),
-    bom,
-    onBomToggle: () => setBom((v) => !v),
+
     color,
     onColorToggle: () => setColor((v) => !v),
-    shortcuts,
-    onShortcutsToggle: () => setShortcuts((v) => !v),
+
     orthoMode,
     onOrthoModeToggle: () => setOrthoMode((v) => !v),
   }

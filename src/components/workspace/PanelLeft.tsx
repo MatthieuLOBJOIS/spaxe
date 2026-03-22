@@ -72,7 +72,7 @@ export default function PanelLeft({ parts }: PanelLeftProps) {
 
   useEffect(() => {
     initVisibleParts(parts.map((p) => p.file))
-  }, [parts])
+  }, [parts, initVisibleParts])
 
   const toggleVisible = (file: string, e: React.MouseEvent) => {
     e.stopPropagation()

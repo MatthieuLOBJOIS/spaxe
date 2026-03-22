@@ -6,6 +6,12 @@ import dynamic from 'next/dynamic'
 import Toolbar from './Toolbar'
 import PanelLeft from './PanelLeft'
 import NavCube from './NavCube'
+
+import DraggableModal from './DraggableModal'
+import BomModal from './modals/BomModal'
+import ShortcutsModal from './modals/ShortcutsModal'
+import { useModalStore } from '@/store/modalStore'
+
 import { useAssembly } from '@/hooks/useAssembly'
 import { useToolbar } from '@/hooks/useToolbar'
 
@@ -24,6 +30,7 @@ export default function ViewerScreen({
 }: ViewerScreenProps) {
   const assembly = useAssembly(assemblyUrl)
   const toolbar = useToolbar()
+  const { toggleModal, modals } = useModalStore()
 
   const cameraQuatRef = useRef<THREE.Quaternion>(new THREE.Quaternion())
   const navQuatRef = useRef<THREE.Quaternion>(new THREE.Quaternion())
@@ -37,6 +44,10 @@ export default function ViewerScreen({
           onResetCamera={() => {}}
           onOrthoView={() => {}}
           onColorPick={() => {}}
+          bom={modals.bom.isOpen}
+          onBomToggle={() => toggleModal('bom')}
+          shortcuts={modals.shortcuts.isOpen}
+          onShortcutsToggle={() => toggleModal('shortcuts')}
         />
       </div>
 
@@ -59,6 +70,15 @@ export default function ViewerScreen({
 
       {/* NavCube */}
       <NavCube cameraQuatRef={cameraQuatRef} navQuatRef={navQuatRef} />
+
+      {/* Modals */}
+      <DraggableModal id="bom" title="Bill of Materials">
+        <BomModal assemblyUrl={assemblyUrl} />
+      </DraggableModal>
+
+      <DraggableModal id="shortcuts" title="Keyboard Shortcuts">
+        <ShortcutsModal />
+      </DraggableModal>
     </main>
   )
 }

@@ -25,6 +25,10 @@ interface ToolbarProps extends ToolbarState {
   onResetCamera: () => void
   onOrthoView: (view: 'top' | 'front' | 'side') => void
   onColorPick: () => void
+  bom: boolean
+  onBomToggle: () => void
+  shortcuts: boolean
+  onShortcutsToggle: () => void
 }
 
 // ── Séparateur ───────────────────────────────────────────
