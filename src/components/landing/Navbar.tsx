@@ -12,19 +12,11 @@ export default function Navbar() {
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-[100] h-16 bg-[rgba(20,20,22,0.92)] backdrop-blur-md border-b border-white/[0.06]">
-        <div className="h-full flex items-center justify-between px-6 md:px-12">
-          {/* Mobile — hamburger gauche */}
-          <button
-            className="md:hidden text-white/70 hover:text-white transition-colors"
-            onClick={() => setMenuOpen((o) => !o)}
-          >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-
-          {/* Logo — centré sur mobile, gauche sur desktop */}
+        <div className="h-full flex items-center px-6 md:px-12">
+          {/* Logo — gauche */}
           <Link
             href={INTERNAL_LINKS.home.href}
-            className="flex items-center no-underline md:mr-auto absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0"
+            className="flex items-center no-underline"
           >
             <span className="text-white font-bold text-xl tracking-[4px]">
               SP
@@ -35,8 +27,8 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Liens desktop */}
-          <div className="hidden md:flex items-center gap-8 mx-auto">
+          {/* Liens — absolument centrés */}
+          <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {NAV_LINKS.map(({ href, label }) => {
               const isExternal = href.startsWith('http')
               return isExternal ? (
@@ -59,17 +51,22 @@ export default function Navbar() {
             })}
           </div>
 
-          <Link
-            href={INTERNAL_LINKS.viewer.href}
-            className="hidden md:block no-underline"
-          >
-            <div className="px-[22px] py-[9px] bg-[#F26522] hover:bg-[#FF8C42] rounded text-white font-bold text-sm cursor-pointer transition-colors duration-150 whitespace-nowrap">
-              {INTERNAL_LINKS.viewer.label}
-            </div>
-          </Link>
+          {/* CTA — droite */}
+          <div className="ml-auto hidden md:block">
+            <Link href={INTERNAL_LINKS.viewer.href} className="no-underline">
+              <div className="px-[22px] py-[9px] bg-[#F26522] hover:bg-[#FF8C42] rounded text-white font-bold text-sm cursor-pointer transition-colors duration-150 whitespace-nowrap">
+                {INTERNAL_LINKS.viewer.label}
+              </div>
+            </Link>
+          </div>
 
-          {/* Placeholder droit mobile pour centrer le logo */}
-          <div className="md:hidden w-[22px]" />
+          {/* Hamburger mobile */}
+          <button
+            className="md:hidden ml-auto text-white/70 hover:text-white transition-colors"
+            onClick={() => setMenuOpen((o) => !o)}
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
       </nav>
 
