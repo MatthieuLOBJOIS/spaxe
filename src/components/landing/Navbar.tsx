@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[100] h-16 bg-[rgba(20,20,22,0.92)] backdrop-blur-md border-b border-white/[0.06]">
+      <nav className="fixed top-0 left-0 right-0 z-100 h-16 bg-[rgba(20,20,22,0.92)] backdrop-blur-md border-b border-white/6">
         <div className="h-full flex items-center px-6 md:px-12">
           {/* Logo — gauche */}
           <Link
@@ -54,7 +54,7 @@ export default function Navbar() {
           {/* CTA — droite */}
           <div className="ml-auto hidden md:block">
             <Link href={INTERNAL_LINKS.viewer.href} className="no-underline">
-              <div className="px-[22px] py-[9px] bg-[#F26522] hover:bg-[#FF8C42] rounded text-white font-bold text-sm cursor-pointer transition-colors duration-150 whitespace-nowrap">
+              <div className="px-5.5 py-2.25 bg-[#F26522] hover:bg-[#FF8C42] rounded text-white font-bold text-sm cursor-pointer transition-colors duration-150 whitespace-nowrap">
                 {INTERNAL_LINKS.viewer.label}
               </div>
             </Link>
@@ -72,14 +72,14 @@ export default function Navbar() {
 
       {/* Menu mobile dropdown */}
       {menuOpen && (
-        <div className="fixed top-16 left-0 right-0 z-[99] bg-[rgba(20,20,22,0.98)] backdrop-blur-md border-b border-white/[0.06] flex flex-col md:hidden">
+        <div className="fixed top-16 left-0 right-0 z-99 bg-[rgba(20,20,22,0.98)] backdrop-blur-md border-b border-white/6 flex flex-col md:hidden">
           {NAV_LINKS.map(({ href, label }) => {
             const isExternal = href.startsWith('http')
             return isExternal ? (
               <ExternalLink
                 key={label}
                 href={href}
-                className="text-white/70 hover:text-white hover:bg-white/[0.04] transition-colors text-base no-underline px-6 py-4 border-b border-white/[0.06]"
+                className="text-white/70 hover:text-white hover:bg-white/4 transition-colors text-base no-underline px-6 py-4 border-b border-white/6"
                 onClick={() => setMenuOpen(false)}
               >
                 {label}
@@ -88,7 +88,7 @@ export default function Navbar() {
               <Link
                 key={label}
                 href={href}
-                className="text-white/70 hover:text-white hover:bg-white/[0.04] transition-colors text-base no-underline px-6 py-4 border-b border-white/[0.06]"
+                className="text-white/70 hover:text-white hover:bg-white/4 transition-colors text-base no-underline px-6 py-4 border-b border-white/6"
                 onClick={() => setMenuOpen(false)}
               >
                 {label}

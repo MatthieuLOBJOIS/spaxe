@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { ArrowRight, Github } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import ScrollIndicator from './ScrollIndicator'
 import WorkspaceMockup from './WorkspaceMockup'
 import ExternalLink from '@/components/ui/ExternalLink'
@@ -29,15 +29,15 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen pt-16 flex items-center overflow-hidden">
-      {/* Viewer 3D — fond */}
+      {/* GhostShape en fond */}
       <div className="absolute inset-0 z-0">
-        <SceneCanvas interactive={false} />
+        <SceneCanvas interactive={false} showGhost />
       </div>
 
       {/* Texte */}
-      <div className="relative z-10 w-full px-6 md:ml-[12%] md:w-auto md:max-w-[520px] flex flex-col gap-7 items-center md:items-start text-center md:text-left">
+      <div className="relative z-10 w-full px-6 md:ml-[12%] md:w-auto md:max-w-130 flex flex-col gap-7 items-center md:items-start text-center md:text-left">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-[14px] py-[6px] bg-[rgba(242,101,34,0.12)] border border-[rgba(242,101,34,0.3)] rounded-full w-fit">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[rgba(242,101,34,0.12)] border border-[rgba(242,101,34,0.3)] rounded-full w-fit">
           <span className="text-[#F26522] text-[11px] font-mono tracking-[1px]">
             ASSEMBLY VIEWER · V0.1
           </span>
@@ -53,7 +53,7 @@ export default function Hero() {
         </h1>
 
         {/* Description */}
-        <p className="text-white/50 leading-relaxed m-0 text-[clamp(15px,3vw,18px)] max-w-[480px]">
+        <p className="text-white/50 leading-relaxed m-0 text-[clamp(15px,3vw,18px)] max-w-120">
           Interactive 3D navigation for complex assemblies. Built for makers and
           industrial teams.
         </p>
@@ -61,14 +61,13 @@ export default function Hero() {
         {/* CTAs */}
         <div className="flex flex-col gap-3 items-center md:items-start">
           <div className="flex gap-3 flex-wrap justify-center md:justify-start">
-            {/* Bouton Start — désactivé sur mobile */}
             {isMobile ? (
-              <div className="flex items-center gap-2 px-7 py-[14px] bg-white/5 rounded-lg border border-white/10 text-white/30 font-bold text-[15px] cursor-not-allowed">
-                Start
+              <div className="flex items-center gap-2 px-7 py-3.5 bg-white/5 rounded-lg border border-white/10 text-white/30 font-bold text-[15px] cursor-not-allowed">
+                {INTERNAL_LINKS.viewer.label}
               </div>
             ) : (
               <Link href={INTERNAL_LINKS.viewer.href} className="no-underline">
-                <div className="flex items-center gap-2 px-7 py-[14px] bg-[#F26522] hover:bg-[#FF8C42] rounded-lg text-white font-bold text-[15px] cursor-pointer transition-colors duration-150">
+                <div className="flex items-center gap-2 px-7 py-3.5 bg-[#F26522] hover:bg-[#FF8C42] rounded-lg text-white font-bold text-[15px] cursor-pointer transition-colors duration-150">
                   {INTERNAL_LINKS.viewer.label} <ArrowRight size={16} />
                 </div>
               </Link>
@@ -76,13 +75,12 @@ export default function Hero() {
 
             <ExternalLink
               href={EXTERNAL_LINKS.github.href}
-              className="flex items-center gap-2 px-7 py-[14px] bg-transparent rounded-lg border border-white/20 text-white/70 font-bold text-[15px] no-underline hover:text-white hover:border-white/40 transition-colors duration-150"
+              className="flex items-center gap-2 px-7 py-3.5 bg-transparent rounded-lg border border-white/20 text-white/70 font-bold text-[15px] no-underline hover:text-white hover:border-white/40 transition-colors duration-150"
             >
-              <Github size={16} /> {EXTERNAL_LINKS.github.label}
+              {EXTERNAL_LINKS.github.label}
             </ExternalLink>
           </div>
 
-          {/* Message mobile */}
           {isMobile && (
             <span className="text-white/30 text-xs font-mono tracking-[1px]">
               ⚠ DESKTOP ONLY — USE A COMPUTER TO ACCESS THE VIEWER
@@ -98,7 +96,7 @@ export default function Hero() {
 
       {/* Triangle décoratif */}
       <svg
-        className="absolute bottom-0 right-0 z-[1] opacity-10"
+        className="absolute bottom-0 right-0 z-1 opacity-10"
         width="500"
         height="500"
         viewBox="0 0 500 500"

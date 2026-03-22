@@ -31,7 +31,7 @@ export default function ViewerScreen({
   return (
     <main className="page-fullscreen w-full h-screen bg-[#0a0a0a] flex flex-col">
       {/* Toolbar */}
-      <div className="shrink-0 h-13">
+      <div className="shrink-0 h-16">
         <Toolbar
           {...toolbar}
           onResetCamera={() => {}}
@@ -48,7 +48,7 @@ export default function ViewerScreen({
         {/* Canvas 3D */}
         <div className="flex-1 relative overflow-visible">
           <SceneCanvas
-            assemblyUrl={assemblyUrl}
+            assembly={assembly}
             basePath={basePath}
             orthoMode={toolbar.orthoMode}
             cameraQuatRef={cameraQuatRef}
