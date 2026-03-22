@@ -1,29 +1,46 @@
 'use client'
 
+import { ReactNode } from 'react'
 import Link from 'next/link'
-
 import {
   INTERNAL_LINKS,
   EXTERNAL_LINKS,
   FOOTER_PRODUCT_LINKS,
   FOOTER_STACK_LINKS,
 } from '@/config/links'
-
 import ExternalLink from '@/components/ui/ExternalLink'
 import Logo from '@/components/ui/Logo'
 
+// ── Styles partagés ──────────────────────────────────────
 const linkClass =
   'text-white/40 text-[13px] no-underline hover:text-white transition-colors duration-150'
-const titleClass = 'text-white font-bold text-[13px]'
-const columnClass = 'flex flex-col gap-4'
 
+// ── Sous-composant colonne ───────────────────────────────
+function FooterColumn({
+  title,
+  children,
+}: {
+  title: string
+  children: ReactNode
+}) {
+  return (
+    <div className="flex flex-col gap-4">
+      <span className="text-white font-bold text-[13px]">{title}</span>
+      {children}
+    </div>
+  )
+}
+
+// ── Footer ───────────────────────────────────────────────
 export default function Footer() {
   return (
-    <footer className="bg-[#141416] px-6 md:px-[12%] pt-16 pb-10 border-t border-white/[0.06]">
+    <footer className="bg-[#141416] px-6 md:px-[12%] pt-16 pb-10 border-t border-white/6">
       <div className="flex flex-col md:flex-row md:justify-between gap-12 mb-12">
         {/* Brand */}
-        <div className="flex flex-col gap-4 md:max-w-[280px]">
-          <Logo size="md" />
+        <div className="flex flex-col gap-4 md:max-w-70">
+          <Link href={INTERNAL_LINKS.home.href} className="no-underline w-fit">
+            <Logo size="md" />
+          </Link>
           <p className="text-white/35 text-[13px] leading-relaxed m-0">
             Interactive 3D navigation for complex assemblies. Built for makers
             and industrial teams.
@@ -36,11 +53,9 @@ export default function Footer() {
           </ExternalLink>
         </div>
 
-        {/* Liens — en dessous sur mobile, à droite sur desktop */}
+        {/* Colonnes liens */}
         <div className="grid grid-cols-3 md:flex md:gap-20 gap-8">
-          {/* Product */}
-          <div className={columnClass}>
-            <span className={titleClass}>Product</span>
+          <FooterColumn title="Product">
             {FOOTER_PRODUCT_LINKS.map(({ href, label }) => (
               <Link
                 key={label}
@@ -50,30 +65,26 @@ export default function Footer() {
                 {label}
               </Link>
             ))}
-          </div>
+          </FooterColumn>
 
-          {/* Stack */}
-          <div className={columnClass}>
-            <span className={titleClass}>Stack</span>
+          <FooterColumn title="Stack">
             {FOOTER_STACK_LINKS.map(({ href, label }) => (
               <ExternalLink key={label} href={href} className={linkClass}>
                 {label}
               </ExternalLink>
             ))}
-          </div>
+          </FooterColumn>
 
-          {/* Legal */}
-          <div className={columnClass}>
-            <span className={titleClass}>Legal</span>
+          <FooterColumn title="Legal">
             <Link href={INTERNAL_LINKS.home.href} className={linkClass}>
               All rights reserved
             </Link>
-          </div>
+          </FooterColumn>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="flex flex-col md:flex-row items-center md:justify-between gap-2 pt-6 border-t border-white/[0.06]">
+      <div className="flex flex-col md:flex-row items-center md:justify-between gap-2 pt-6 border-t border-white/6">
         <span className="text-white/20 font-mono text-[11px] tracking-[1px]">
           © 2026 SPAXE — ALL RIGHTS RESERVED
         </span>

@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+
 import { DEMO_LINK } from '@/config/links'
 
 export default function CTABanner() {

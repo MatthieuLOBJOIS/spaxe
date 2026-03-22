@@ -1,5 +1,6 @@
 'use client'
 
+import Logo from '@/components/ui/Logo'
 interface Part {
   label: string
   color: string
@@ -18,37 +19,31 @@ const TOOLBAR_BTNS = ['⤢', '↺', 'Top', 'Front']
 
 export default function WorkspaceMockup() {
   return (
-    <div className="absolute right-[6%] top-1/2 -translate-y-1/2 z-[5] w-[520px] rounded-xl overflow-hidden border border-white/10 bg-[#141416] shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
+    <div className="absolute right-[6%] top-1/2 -translate-y-1/2 z-5 w-130 rounded-xl overflow-hidden border border-white/10 bg-[#141416] shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
       {/* Toolbar */}
-      <div className="h-11 bg-[#1a1a1a] border-b border-white/[0.08] flex items-center gap-2 px-[14px]">
-        <div className="flex items-center mr-3">
-          <span className="text-white font-bold text-xs tracking-[3px]">
-            SP
-          </span>
-          <span className="text-[#F26522] text-[11px] tracking-[3px]">▲</span>
-          <span className="text-white font-bold text-xs tracking-[3px]">
-            XE
-          </span>
+      <div className="h-11 bg-[#1a1a1a] border-b border-white/8 flex items-center gap-2 px-3.5">
+        <div className="mr-3">
+          <Logo size="sm" />
         </div>
         {TOOLBAR_BTNS.map((btn) => (
           <div
             key={btn}
-            className="px-2 py-[3px] rounded bg-white/[0.06] text-white/50 text-[11px]"
+            className="px-2 py-0.75 rounded bg-white/6 text-white/50 text-[11px]"
           >
             {btn}
           </div>
         ))}
         <div className="flex-1" />
-        <div className="px-[10px] py-[3px] rounded bg-[rgba(242,101,34,0.15)] border border-[rgba(242,101,34,0.3)] text-[#F26522] text-[10px] font-mono">
-          EXPLODE
+        <div className="px-2.5 py-0.75 rounded bg-[rgba(242,101,34,0.15)] border border-[rgba(242,101,34,0.3)] text-[#F26522] text-[10px] font-mono">
+          EXPLODED VIEW
         </div>
       </div>
 
       {/* Body */}
-      <div className="flex h-[320px]">
+      <div className="flex h-80">
         {/* Panel gauche */}
-        <div className="w-[160px] bg-[#141416] border-r border-white/[0.06] shrink-0">
-          <div className="px-3 py-2 border-b border-white/[0.06] flex justify-between items-center">
+        <div className="w-40 bg-[#141416] border-r border-white/6 shrink-0">
+          <div className="px-3 py-2 border-b border-white/6 flex justify-between items-center">
             <span className="text-white/30 text-[9px] font-mono tracking-[1px]">
               PARTS TREE
             </span>
@@ -57,12 +52,12 @@ export default function WorkspaceMockup() {
           {parts.map((part, i) => (
             <div
               key={i}
-              className={`flex items-center gap-2 px-3 py-[7px] ${i === 2 ? 'bg-[rgba(242,101,34,0.1)] border-l-2 border-[#F26522]' : 'border-l-2 border-transparent'}`}
+              className={`flex items-center gap-2 px-3 py-1.75 ${i === 2 ? 'bg-[rgba(242,101,34,0.1)] border-l-2 border-[#F26522]' : 'border-l-2 border-transparent'}`}
             >
               <input
                 type="checkbox"
                 defaultChecked
-                className="w-[10px] h-[10px] shrink-0 accent-[#F26522]"
+                className="w-2.5 h-2.5 shrink-0 accent-[#F26522]"
               />
               <div
                 className="w-2 h-2 rounded-full shrink-0 border border-white/20"
@@ -203,7 +198,7 @@ export default function WorkspaceMockup() {
           </svg>
 
           {/* Label sélection */}
-          <div className="absolute bottom-4 left-3 px-[10px] py-1 bg-[rgba(242,101,34,0.15)] border border-[rgba(242,101,34,0.3)] rounded text-[#F26522] text-[9px] font-mono tracking-[1px]">
+          <div className="absolute bottom-4 left-3 px-2.5 py-1 bg-[rgba(242,101,34,0.15)] border border-[rgba(242,101,34,0.3)] rounded text-[#F26522] text-[9px] font-mono tracking-[1px]">
             SHAFT_A · SELECTED
           </div>
 
@@ -266,7 +261,7 @@ export default function WorkspaceMockup() {
       </div>
 
       {/* Status bar */}
-      <div className="h-7 bg-[#1a1a1a] border-t border-white/[0.06] flex items-center px-[14px] gap-4">
+      <div className="h-7 bg-[#1a1a1a] border-t border-white/6 flex items-center px-3.5 gap-4">
         <span className="text-white/20 text-[9px] font-mono">
           assembly.spaxe
         </span>
@@ -275,7 +270,7 @@ export default function WorkspaceMockup() {
           6 parts loaded
         </span>
         <div className="flex-1" />
-        <div className="w-[6px] h-[6px] rounded-full bg-green-500" />
+        <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
       </div>
     </div>
   )

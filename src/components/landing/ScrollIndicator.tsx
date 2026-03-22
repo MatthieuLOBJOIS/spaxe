@@ -13,7 +13,7 @@ export default function ScrollIndicator() {
 
   return (
     <div
-      className={`absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 pointer-events-none transition-opacity duration-[400ms] ${visible ? 'opacity-100' : 'opacity-0'}`}
+      className={`absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 pointer-events-none transition-opacity duration-400 ${visible ? 'opacity-100' : 'opacity-0'}`}
     >
       <span className="text-white/30 font-mono text-[10px] tracking-[2px]">
         SCROLL

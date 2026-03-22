@@ -9,6 +9,33 @@ import { INTERNAL_LINKS, NAV_LINKS } from '@/config/links'
 import ExternalLink from '@/components/ui/ExternalLink'
 import Logo from '@/components/ui/Logo'
 
+function NavLink({
+  href,
+  label,
+  onClick,
+  className,
+}: {
+  href: string
+  label: string
+  onClick?: () => void
+  className?: string
+}) {
+  const isExternal = href.startsWith('http')
+  const defaultClass =
+    'text-white/55 hover:text-white transition-colors duration-150 text-sm no-underline'
+  const finalClass = className ?? defaultClass
+
+  return isExternal ? (
+    <ExternalLink href={href} className={finalClass} onClick={onClick}>
+      {label}
+    </ExternalLink>
+  ) : (
+    <Link href={href} className={finalClass} onClick={onClick}>
+      {label}
+    </Link>
+  )
+}
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -26,26 +53,9 @@ export default function Navbar() {
 
           {/* Liens — absolument centrés */}
           <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-            {NAV_LINKS.map(({ href, label }) => {
-              const isExternal = href.startsWith('http')
-              return isExternal ? (
-                <ExternalLink
-                  key={label}
-                  href={href}
-                  className="text-white/55 hover:text-white transition-colors duration-150 text-sm no-underline"
-                >
-                  {label}
-                </ExternalLink>
-              ) : (
-                <Link
-                  key={label}
-                  href={href}
-                  className="text-white/55 hover:text-white transition-colors duration-150 text-sm no-underline"
-                >
-                  {label}
-                </Link>
-              )
-            })}
+            {NAV_LINKS.map(({ href, label }) => (
+              <NavLink key={label} href={href} label={label} />
+            ))}
           </div>
 
           {/* CTA — droite */}
@@ -70,28 +80,15 @@ export default function Navbar() {
       {/* Menu mobile dropdown */}
       {menuOpen && (
         <div className="fixed top-16 left-0 right-0 z-99 bg-[rgba(20,20,22,0.98)] backdrop-blur-md border-b border-white/6 flex flex-col md:hidden">
-          {NAV_LINKS.map(({ href, label }) => {
-            const isExternal = href.startsWith('http')
-            return isExternal ? (
-              <ExternalLink
-                key={label}
-                href={href}
-                className="text-white/70 hover:text-white hover:bg-white/4 transition-colors text-base no-underline px-6 py-4 border-b border-white/6"
-                onClick={() => setMenuOpen(false)}
-              >
-                {label}
-              </ExternalLink>
-            ) : (
-              <Link
-                key={label}
-                href={href}
-                className="text-white/70 hover:text-white hover:bg-white/4 transition-colors text-base no-underline px-6 py-4 border-b border-white/6"
-                onClick={() => setMenuOpen(false)}
-              >
-                {label}
-              </Link>
-            )
-          })}
+          {NAV_LINKS.map(({ href, label }) => (
+            <NavLink
+              key={label}
+              href={href}
+              label={label}
+              className="text-white/70 hover:text-white hover:bg-white/4 transition-colors text-base no-underline px-6 py-4 border-b border-white/6"
+              onClick={() => setMenuOpen(false)}
+            />
+          ))}
         </div>
       )}
     </>
