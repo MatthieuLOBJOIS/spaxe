@@ -31,7 +31,7 @@ export default function ViewerScreen({
   return (
     <main className="page-fullscreen w-full h-screen bg-[#0a0a0a] flex flex-col">
       {/* Toolbar */}
-      <div className="shrink-0 h-[52px]">
+      <div className="shrink-0 h-13">
         <Toolbar
           {...toolbar}
           onResetCamera={() => {}}

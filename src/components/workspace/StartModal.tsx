@@ -22,7 +22,7 @@ function OptionItem({
 
   const content = (
     <>
-      <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-white/[0.06] group-hover:bg-[rgba(242,101,34,0.15)] transition-colors duration-150">
+      <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-white/6 group-hover:bg-[rgba(242,101,34,0.15)] transition-colors duration-150">
         <Icon
           size={18}
           className={available ? 'text-[#F26522]' : 'text-white/30'}
@@ -36,7 +36,7 @@ function OptionItem({
             {label}
           </span>
           {!available && (
-            <span className="px-2 py-[2px] bg-white/[0.06] rounded-full text-white/30 text-[10px] font-mono tracking-[1px]">
+            <span className="px-2 py-0.5 bg-white/6 rounded-full text-white/30 text-[10px] font-mono tracking-[1px]">
               SOON
             </span>
           )}
@@ -66,9 +66,9 @@ function OptionItem({
 // ── Modal ────────────────────────────────────────────────
 export default function StartModal() {
   return (
-    <div className="w-[480px] bg-[#1a1a1c] rounded-2xl border border-white/10 overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.8)]">
+    <div className="w-120 bg-[#1a1a1c] rounded-2xl border border-white/10 overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.8)]">
       {/* Header */}
-      <div className="px-8 pt-8 pb-6 border-b border-white/[0.06]">
+      <div className="px-8 pt-8 pb-6 border-b border-white/6">
         <div className="flex items-center mb-3">
           <span className="text-white font-bold text-[22px] tracking-[4px]">
             SP
@@ -91,7 +91,7 @@ export default function StartModal() {
       </div>
 
       {/* Footer */}
-      <div className="px-8 py-4 border-t border-white/[0.06] flex items-center justify-between">
+      <div className="px-8 py-4 border-t border-white/6 flex items-center justify-between">
         <span className="text-white/20 font-mono text-[10px] tracking-[1px]">
           V0.1 · ASSEMBLY VIEWER
         </span>

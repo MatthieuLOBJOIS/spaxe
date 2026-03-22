@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useMemo } from 'react'
 import { Canvas, useFrame, useThree, ThreeEvent } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
@@ -9,38 +9,24 @@ import * as THREE from 'three'
 // CONFIG
 // ============================================================
 
-const S = 0.75 // demi-taille du cube
+const S = 0.75
 
-// 6 faces
-const FACES = [
-  {
-    pos: [0, 0, S] as [number, number, number],
-    rot: [0, 0, 0] as [number, number, number],
-  },
-  {
-    pos: [0, 0, -S] as [number, number, number],
-    rot: [0, Math.PI, 0] as [number, number, number],
-  },
-  {
-    pos: [S, 0, 0] as [number, number, number],
-    rot: [0, Math.PI / 2, 0] as [number, number, number],
-  },
-  {
-    pos: [-S, 0, 0] as [number, number, number],
-    rot: [0, -Math.PI / 2, 0] as [number, number, number],
-  },
-  {
-    pos: [0, S, 0] as [number, number, number],
-    rot: [-Math.PI / 2, 0, 0] as [number, number, number],
-  },
-  {
-    pos: [0, -S, 0] as [number, number, number],
-    rot: [Math.PI / 2, 0, 0] as [number, number, number],
-  },
+const FACES: {
+  pos: [number, number, number]
+  rot: [number, number, number]
+}[] = [
+  { pos: [0, 0, S], rot: [0, 0, 0] },
+  { pos: [0, 0, -S], rot: [0, Math.PI, 0] },
+  { pos: [S, 0, 0], rot: [0, Math.PI / 2, 0] },
+  { pos: [-S, 0, 0], rot: [0, -Math.PI / 2, 0] },
+  { pos: [0, S, 0], rot: [-Math.PI / 2, 0, 0] },
+  { pos: [0, -S, 0], rot: [Math.PI / 2, 0, 0] },
 ]
 
-// 12 arêtes
-const EDGES = [
+const EDGES: {
+  start: [number, number, number]
+  end: [number, number, number]
+}[] = [
   [
     [-S, -S, S],
     [S, -S, S],
@@ -94,7 +80,6 @@ const EDGES = [
   end: b as [number, number, number],
 }))
 
-// 3 axes
 const AXES = [
   {
     id: 'x',
@@ -123,17 +108,25 @@ const AXES = [
 ]
 
 // ============================================================
-// COMPOSANTS INDIVIDUELS
+// COMPOSANTS
 // ============================================================
+
+interface ActiveProps {
+  active: boolean
+  onActivate: () => void
+}
 
 function Face({
   pos,
   rot,
+  active,
+  onActivate,
 }: {
   pos: [number, number, number]
   rot: [number, number, number]
-}) {
+} & ActiveProps) {
   const [hovered, setHovered] = useState(false)
+
   return (
     <mesh
       position={pos}
@@ -143,12 +136,16 @@ function Face({
         setHovered(true)
       }}
       onPointerOut={() => setHovered(false)}
+      onClick={(e: ThreeEvent<MouseEvent>) => {
+        e.stopPropagation()
+        onActivate()
+      }}
     >
       <planeGeometry args={[S * 2, S * 2]} />
       <meshStandardMaterial
         color="#F26522"
         transparent
-        opacity={hovered ? 0.2 : 0}
+        opacity={active ? 0.3 : hovered ? 0.15 : 0}
         side={THREE.DoubleSide}
         depthWrite={false}
       />
@@ -159,35 +156,38 @@ function Face({
 function EdgeLine({
   start,
   end,
+  active,
+  onActivate,
 }: {
   start: [number, number, number]
   end: [number, number, number]
-}) {
+} & ActiveProps) {
   const [hovered, setHovered] = useState(false)
 
-  const geo = new THREE.BufferGeometry().setFromPoints([
-    new THREE.Vector3(...start),
-    new THREE.Vector3(...end),
-  ])
-  const mat = new THREE.LineBasicMaterial({
-    color: hovered ? '#F26522' : 'rgba(255,255,255,0.35)',
-  })
-  const line = new THREE.Line(geo, mat)
+  const { line, len, mid, q } = useMemo(() => {
+    const geo = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(...start),
+      new THREE.Vector3(...end),
+    ])
+    const mat = new THREE.LineBasicMaterial({ color: 'rgba(255,255,255,0.35)' })
+    const line = new THREE.Line(geo, mat)
+    const dir = new THREE.Vector3(...end).sub(new THREE.Vector3(...start))
+    const len = dir.length()
+    const mid = new THREE.Vector3(...start).add(dir.clone().multiplyScalar(0.5))
+    const q = new THREE.Quaternion().setFromUnitVectors(
+      new THREE.Vector3(0, 1, 0),
+      dir.normalize()
+    )
+    return { line, len, mid, q }
+  }, [start, end])
 
-  // Tube invisible pour faciliter le hover
-  const dir = new THREE.Vector3(...end).sub(new THREE.Vector3(...start))
-  const len = dir.length()
-  const mid = new THREE.Vector3(...start).add(dir.clone().multiplyScalar(0.5))
-  dir.normalize()
-  const q = new THREE.Quaternion().setFromUnitVectors(
-    new THREE.Vector3(0, 1, 0),
-    dir
+  line.material.color.set(
+    active ? '#F26522' : hovered ? '#FF8C42' : 'rgba(255,255,255,0.35)'
   )
 
   return (
     <group>
       <primitive object={line} />
-      {/* Zone de hover invisible */}
       <mesh
         position={[mid.x, mid.y, mid.z]}
         quaternion={q}
@@ -196,6 +196,10 @@ function EdgeLine({
           setHovered(true)
         }}
         onPointerOut={() => setHovered(false)}
+        onClick={(e: ThreeEvent<MouseEvent>) => {
+          e.stopPropagation()
+          onActivate()
+        }}
       >
         <cylinderGeometry args={[0.08, 0.08, len, 4]} />
         <meshStandardMaterial transparent opacity={0} depthWrite={false} />
@@ -204,9 +208,17 @@ function EdgeLine({
   )
 }
 
-function Axis({ color, cylPos, cylRot, conePos, coneRot }: (typeof AXES)[0]) {
+function Axis({
+  color,
+  cylPos,
+  cylRot,
+  conePos,
+  coneRot,
+  active,
+  onActivate,
+}: (typeof AXES)[0] & ActiveProps) {
   const [hovered, setHovered] = useState(false)
-  const c = hovered ? '#F26522' : color
+  const c = active ? '#F26522' : hovered ? '#FF8C42' : color
 
   return (
     <group
@@ -215,6 +227,10 @@ function Axis({ color, cylPos, cylRot, conePos, coneRot }: (typeof AXES)[0]) {
         setHovered(true)
       }}
       onPointerOut={() => setHovered(false)}
+      onClick={(e: ThreeEvent<MouseEvent>) => {
+        e.stopPropagation()
+        onActivate()
+      }}
     >
       <mesh position={cylPos} rotation={cylRot}>
         <cylinderGeometry args={[0.05, 0.05, 1, 16]} />
@@ -229,7 +245,7 @@ function Axis({ color, cylPos, cylRot, conePos, coneRot }: (typeof AXES)[0]) {
 }
 
 // ============================================================
-// SCENE NAVCUBE
+// SCENE
 // ============================================================
 
 interface NavCubeObjectProps {
@@ -241,6 +257,11 @@ function NavCubeObject({ cameraQuatRef, navQuatRef }: NavCubeObjectProps) {
   const { camera } = useThree()
   const groupRef = useRef<THREE.Group>(null)
   const isDragging = useRef(false)
+  const [activeId, setActiveId] = useState<string | null>(null)
+
+  const handleActivate = (id: string) => {
+    setActiveId((prev) => (prev === id ? null : id))
+  }
 
   useFrame(() => {
     if (!groupRef.current || !cameraQuatRef.current) return
@@ -255,17 +276,31 @@ function NavCubeObject({ cameraQuatRef, navQuatRef }: NavCubeObjectProps) {
   return (
     <>
       <group ref={groupRef}>
-        {/* Faces */}
         {FACES.map((f, i) => (
-          <Face key={i} pos={f.pos} rot={f.rot} />
+          <Face
+            key={i}
+            pos={f.pos}
+            rot={f.rot}
+            active={activeId === `face-${i}`}
+            onActivate={() => handleActivate(`face-${i}`)}
+          />
         ))}
-        {/* Arêtes */}
         {EDGES.map((e, i) => (
-          <EdgeLine key={i} start={e.start} end={e.end} />
+          <EdgeLine
+            key={i}
+            start={e.start}
+            end={e.end}
+            active={activeId === `edge-${i}`}
+            onActivate={() => handleActivate(`edge-${i}`)}
+          />
         ))}
-        {/* Axes */}
         {AXES.map((a) => (
-          <Axis key={a.id} {...a} />
+          <Axis
+            key={a.id}
+            {...a}
+            active={activeId === `axis-${a.id}`}
+            onActivate={() => handleActivate(`axis-${a.id}`)}
+          />
         ))}
       </group>
 
@@ -303,17 +338,7 @@ export default function NavCube({
 }: NavCubeProps) {
   return (
     <div
-      style={{
-        position: 'absolute',
-        bottom: '24px',
-        right: '24px',
-        width: '200px',
-        height: '200px',
-        background: 'transparent',
-        opacity: hidden ? 0 : 1,
-        pointerEvents: hidden ? 'none' : 'auto',
-        zIndex: 10,
-      }}
+      className={`absolute bottom-6 right-6 w-50 h-50 z-10 transition-opacity duration-150 ${hidden ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
     >
       <Canvas camera={{ position: [2.5, 2.5, 2.5], fov: 40 }}>
         <ambientLight intensity={2} />
