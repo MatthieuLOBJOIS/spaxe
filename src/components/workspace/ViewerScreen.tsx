@@ -8,9 +8,10 @@ import PanelLeft from './PanelLeft'
 import NavCube from './NavCube'
 
 import DraggableModal from './DraggableModal'
+import LassoModal from './modals/LassoModal'
+import TransformModal from './modals/TransformModal'
 import BomModal from './modals/BomModal'
 import ShortcutsModal from './modals/ShortcutsModal'
-import LassoModal from './modals/LassoModal'
 import { useModalStore } from '@/store/modalStore'
 
 import { useAssembly } from '@/hooks/useAssembly'
@@ -47,6 +48,8 @@ export default function ViewerScreen({
           onColorPick={() => {}}
           lasso={modals.lasso.isOpen}
           onLassoToggle={() => toggleModal('lasso')}
+          transform={modals.transform.isOpen}
+          onTransformToggle={() => toggleModal('transform')}
           bom={modals.bom.isOpen}
           onBomToggle={() => toggleModal('bom')}
           shortcuts={modals.shortcuts.isOpen}
@@ -77,6 +80,10 @@ export default function ViewerScreen({
       {/* Modals */}
       <DraggableModal id="lasso" title="Lasso Select">
         <LassoModal />
+      </DraggableModal>
+
+      <DraggableModal id="transform" title="Transform XYZ">
+        <TransformModal />
       </DraggableModal>
 
       <DraggableModal id="bom" title="Bill of Materials">

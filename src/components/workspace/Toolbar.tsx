@@ -27,6 +27,8 @@ interface ToolbarProps extends ToolbarState {
   onColorPick: () => void
   lasso: boolean
   onLassoToggle: () => void
+  transform: boolean
+  onTransformToggle: () => void
   bom: boolean
   onBomToggle: () => void
   shortcuts: boolean

@@ -106,3 +106,10 @@
   height: 100vh;
   overflow: hidden;
 }
+
+/* Cache les flèches des inputs number */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

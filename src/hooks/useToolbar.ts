@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 export function useToolbar() {
-  const [transform, setTransform] = useState(false)
   const [exploded, setExploded] = useState(false)
   const [grid, setGrid] = useState(false)
   const [neighborhood, setNeighborhood] = useState(false)
@@ -12,8 +11,6 @@ export function useToolbar() {
   const [orthoMode, setOrthoMode] = useState(false)
 
   return {
-    transform,
-    onTransformToggle: () => setTransform((v) => !v),
     exploded,
     onExplodedToggle: () => setExploded((v) => !v),
     grid,
