@@ -28,7 +28,7 @@ function XYZInput({
         {AXES.map(({ label: axis, color }, i) => (
           <div
             key={axis}
-            className="flex-1 flex items-center gap-1.5 bg-white/[0.04] border border-white/[0.08] rounded-lg px-2.5 py-1.5"
+            className="flex-1 flex items-center gap-1.5 bg-white/4 border border-white/8 rounded-lg px-2.5 py-1.5"
           >
             <span
               className={`text-[11px] font-bold font-mono shrink-0 ${color}`}
@@ -86,7 +86,7 @@ export default function TransformModal() {
   return (
     <div className="flex flex-col gap-4">
       {/* Pièce sélectionnée */}
-      <div className="px-3 py-2 bg-white/[0.03] rounded-lg border border-white/[0.06]">
+      <div className="px-3 py-2 bg-white/3 rounded-lg border border-white/6">
         <span className="text-white/30 text-[10px] font-mono tracking-[1px]">
           SELECTED
         </span>
@@ -98,7 +98,7 @@ export default function TransformModal() {
       </div>
 
       {/* Toggle Translation / Rotation */}
-      <div className="flex items-center rounded-lg border border-white/[0.08] overflow-hidden">
+      <div className="flex items-center rounded-lg border border-white/8 overflow-hidden">
         {(['translation', 'rotation'] as Mode[]).map((m) => (
           <button
             key={m}
@@ -131,7 +131,7 @@ export default function TransformModal() {
       )}
 
       {/* Boutons reset */}
-      <div className="flex gap-2 pt-2 border-t border-white/[0.06]">
+      <div className="flex gap-2 pt-2 border-t border-white/6">
         <button
           onClick={resetSelected}
           disabled={!selectedPart}
@@ -139,14 +139,14 @@ export default function TransformModal() {
             ${
               selectedPart
                 ? 'bg-[rgba(242,101,34,0.08)] border-[rgba(242,101,34,0.3)] text-[#F26522] hover:bg-[rgba(242,101,34,0.15)] cursor-pointer'
-                : 'bg-white/[0.03] border-white/[0.06] text-white/20 cursor-not-allowed'
+                : 'bg-white/3 border-white/6 text-white/20 cursor-not-allowed'
             }`}
         >
           Reset selected
         </button>
         <button
           onClick={resetAll}
-          className="flex-1 px-3 py-2 rounded-lg text-[12px] font-semibold transition-colors duration-150 border bg-white/[0.03] border-white/[0.06] text-white/40 hover:text-white hover:bg-white/[0.06] cursor-pointer"
+          className="flex-1 px-3 py-2 rounded-lg text-[12px] font-semibold transition-colors duration-150 border bg-white/3 border-white/6 text-white/40 hover:text-white hover:bg-white/6 cursor-pointer"
         >
           Reset all
         </button>

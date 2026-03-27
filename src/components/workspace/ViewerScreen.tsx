@@ -16,6 +16,7 @@ import { useModalStore } from '@/store/modalStore'
 
 import { useAssembly } from '@/hooks/useAssembly'
 import { useToolbar } from '@/hooks/useToolbar'
+import ExplodedModal from './modals/ExplodedModal'
 
 const SceneCanvas = dynamic(() => import('@/components/viewer/SceneCanvas'), {
   ssr: false,
@@ -54,6 +55,8 @@ export default function ViewerScreen({
           onBomToggle={() => toggleModal('bom')}
           shortcuts={modals.shortcuts.isOpen}
           onShortcutsToggle={() => toggleModal('shortcuts')}
+          exploded={modals.exploded.isOpen}
+          onExplodedToggle={() => toggleModal('exploded')}
         />
       </div>
 
@@ -84,6 +87,10 @@ export default function ViewerScreen({
 
       <DraggableModal id="transform" title="Transform XYZ">
         <TransformModal />
+      </DraggableModal>
+
+      <DraggableModal id="exploded" title="Exploded View">
+        <ExplodedModal />
       </DraggableModal>
 
       <DraggableModal id="bom" title="Bill of Materials">

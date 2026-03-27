@@ -29,6 +29,8 @@ interface ToolbarProps extends ToolbarState {
   onLassoToggle: () => void
   transform: boolean
   onTransformToggle: () => void
+  exploded: boolean
+  onExplodedToggle: () => void
   bom: boolean
   onBomToggle: () => void
   shortcuts: boolean
