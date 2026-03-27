@@ -20,15 +20,15 @@ export default function DraggableModal({
     useModalStore()
   const modal = modals[id]
 
+  // ── Refs interaction ─────────────────────────────────
   const isDragging = useRef(false)
-  const isResizingCorner = useRef(false)
-  const isResizingLeft = useRef(false)
-  const isResizingRight = useRef(false)
+  const isResizing = useRef(false)
   const startMouse = useRef({ x: 0, y: 0 })
   const startPos = useRef({ x: 0, y: 0 })
   const startSize = useRef({ w: 0, h: 0 })
   const [cornerHovered, setCornerHovered] = useState(false)
 
+  // ── Drag header ──────────────────────────────────────
   const onDragStart = (e: React.MouseEvent) => {
     isDragging.current = true
     startMouse.current = { x: e.clientX, y: e.clientY }
@@ -37,8 +37,9 @@ export default function DraggableModal({
     e.preventDefault()
   }
 
-  const onResizeCornerStart = (e: React.MouseEvent) => {
-    isResizingCorner.current = true
+  // ── Resize coin bas-droite ───────────────────────────
+  const onResizeStart = (e: React.MouseEvent) => {
+    isResizing.current = true
     startMouse.current = { x: e.clientX, y: e.clientY }
     startSize.current = { ...modal.size }
     bringToFront(id)
@@ -46,6 +47,7 @@ export default function DraggableModal({
     e.stopPropagation()
   }
 
+  // ── Mouse move / up globaux ──────────────────────────
   useEffect(() => {
     const onMouseMove = (e: MouseEvent) => {
       const dx = e.clientX - startMouse.current.x
@@ -58,35 +60,17 @@ export default function DraggableModal({
         })
       }
 
-      if (isResizingCorner.current) {
+      if (isResizing.current) {
         setSize(id, {
           w: Math.max(200, startSize.current.w + dx),
           h: Math.max(200, startSize.current.h + dy),
         })
       }
-
-      if (isResizingRight.current) {
-        setSize(id, {
-          w: Math.max(200, startSize.current.w + dx),
-          h: modal.size.h,
-        })
-      }
-
-      if (isResizingLeft.current) {
-        const newW = Math.max(200, startSize.current.w - dx)
-        setPosition(id, {
-          x: startPos.current.x + (startSize.current.w - newW),
-          y: modal.position.y,
-        })
-        setSize(id, { w: newW, h: modal.size.h })
-      }
     }
 
     const onMouseUp = () => {
       isDragging.current = false
-      isResizingCorner.current = false
-      isResizingLeft.current = false
-      isResizingRight.current = false
+      isResizing.current = false
     }
 
     document.addEventListener('mousemove', onMouseMove)
@@ -95,7 +79,7 @@ export default function DraggableModal({
       document.removeEventListener('mousemove', onMouseMove)
       document.removeEventListener('mouseup', onMouseUp)
     }
-  }, [id, modal.position.y, modal.size.h, modal.size.w, setPosition, setSize])
+  }, [id, setPosition, setSize])
 
   if (!modal.isOpen) return null
 
@@ -128,7 +112,7 @@ export default function DraggableModal({
         </button>
       </div>
 
-      {/* Contenu — largeur fixe basée sur la taille initiale */}
+      {/* Contenu — largeur fixe, clippé par le modal */}
       <div className="flex-1 overflow-hidden relative">
         <div
           style={{ width: DEFAULT_MODALS[id].size.w }}
@@ -140,7 +124,7 @@ export default function DraggableModal({
 
       {/* Resize coin bas-droite */}
       <div
-        onMouseDown={onResizeCornerStart}
+        onMouseDown={onResizeStart}
         onMouseEnter={() => setCornerHovered(true)}
         onMouseLeave={() => setCornerHovered(false)}
         className="absolute bottom-0 right-0 w-6 h-6 cursor-se-resize flex items-end justify-end p-1 rounded-br-xl"

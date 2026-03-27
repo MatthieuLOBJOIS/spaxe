@@ -1,21 +1,6 @@
 'use client'
 
-const SHORTCUTS = [
-  { key: 'Click', action: 'Select part' },
-  { key: 'Ctrl + Click', action: 'Add part to selection' },
-  { key: 'Click + drag', action: 'Rotate camera' },
-  { key: 'Scroll', action: 'Zoom in/out' },
-  { key: 'Right click + drag', action: 'Pan camera' },
-  { key: 'Esc', action: 'Deselect all' },
-  { key: 'F', action: 'Focus selected part' },
-  { key: 'H', action: 'Hide selected part' },
-  { key: 'A', action: 'Select all parts' },
-  { key: 'I', action: 'Invert selection' },
-  { key: 'E', action: 'Isolate selected part' },
-  { key: 'L', action: 'Lasso select' },
-  { key: 'T', action: 'Transform XYZ' },
-  { key: 'Ctrl + Z', action: 'Undo last action' },
-]
+import { SHORTCUTS } from '@/config/modals'
 
 export default function ShortcutsModal() {
   return (

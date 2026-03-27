@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 export function useToolbar() {
-  const [lasso, setLasso] = useState(false)
   const [transform, setTransform] = useState(false)
   const [exploded, setExploded] = useState(false)
   const [grid, setGrid] = useState(false)
@@ -13,8 +12,6 @@ export function useToolbar() {
   const [orthoMode, setOrthoMode] = useState(false)
 
   return {
-    lasso,
-    onLassoToggle: () => setLasso((v) => !v),
     transform,
     onTransformToggle: () => setTransform((v) => !v),
     exploded,

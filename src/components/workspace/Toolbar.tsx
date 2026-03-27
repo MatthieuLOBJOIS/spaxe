@@ -25,6 +25,8 @@ interface ToolbarProps extends ToolbarState {
   onResetCamera: () => void
   onOrthoView: (view: 'top' | 'front' | 'side') => void
   onColorPick: () => void
+  lasso: boolean
+  onLassoToggle: () => void
   bom: boolean
   onBomToggle: () => void
   shortcuts: boolean

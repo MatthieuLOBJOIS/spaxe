@@ -10,6 +10,7 @@ import NavCube from './NavCube'
 import DraggableModal from './DraggableModal'
 import BomModal from './modals/BomModal'
 import ShortcutsModal from './modals/ShortcutsModal'
+import LassoModal from './modals/LassoModal'
 import { useModalStore } from '@/store/modalStore'
 
 import { useAssembly } from '@/hooks/useAssembly'
@@ -44,6 +45,8 @@ export default function ViewerScreen({
           onResetCamera={() => {}}
           onOrthoView={() => {}}
           onColorPick={() => {}}
+          lasso={modals.lasso.isOpen}
+          onLassoToggle={() => toggleModal('lasso')}
           bom={modals.bom.isOpen}
           onBomToggle={() => toggleModal('bom')}
           shortcuts={modals.shortcuts.isOpen}
@@ -72,6 +75,10 @@ export default function ViewerScreen({
       <NavCube cameraQuatRef={cameraQuatRef} navQuatRef={navQuatRef} />
 
       {/* Modals */}
+      <DraggableModal id="lasso" title="Lasso Select">
+        <LassoModal />
+      </DraggableModal>
+
       <DraggableModal id="bom" title="Bill of Materials">
         <BomModal assemblyUrl={assemblyUrl} />
       </DraggableModal>
