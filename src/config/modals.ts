@@ -43,6 +43,12 @@ export const DEFAULT_MODALS: Record<ModalId, ModalState> = {
     size: { w: 320, h: 400 },
     zIndex: 10,
   },
+  xray: {
+    isOpen: false,
+    position: { x: 300, y: 300 },
+    size: { w: 320, h: 400 },
+    zIndex: 10,
+  },
 }
 
 // ── Shortcuts ────────────────────────────────────────────

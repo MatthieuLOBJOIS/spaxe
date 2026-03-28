@@ -6,6 +6,7 @@ export type ModalId =
   | 'transform'
   | 'exploded'
   | 'neighborhood'
+  | 'xray'
   | 'bom'
   | 'color'
   | 'shortcuts'

@@ -11,7 +11,8 @@ import DraggableModal from './DraggableModal'
 import LassoModal from './modals/LassoModal'
 import TransformModal from './modals/TransformModal'
 import ExplodedModal from './modals/ExplodedModal'
-import NeighborhoodModal from './modals/Neighborhood'
+import NeighborhoodModal from './modals/NeighborhoodModal'
+import XRayModal from './modals/XRayModal'
 import BomModal from './modals/BomModal'
 import ShortcutsModal from './modals/ShortcutsModal'
 import { useModalStore } from '@/store/modalStore'
@@ -56,6 +57,8 @@ export default function ViewerScreen({
           onExplodedToggle={() => toggleModal('exploded')}
           neighborhood={modals.neighborhood.isOpen}
           onNeighborhoodToggle={() => toggleModal('neighborhood')}
+          xray={modals.xray.isOpen}
+          onXrayToggle={() => toggleModal('xray')}
           bom={modals.bom.isOpen}
           onBomToggle={() => toggleModal('bom')}
           shortcuts={modals.shortcuts.isOpen}
@@ -98,6 +101,10 @@ export default function ViewerScreen({
 
       <DraggableModal id="neighborhood" title="Neighborhood">
         <NeighborhoodModal />
+      </DraggableModal>
+
+      <DraggableModal id="xray" title="X-Ray">
+        <XRayModal />
       </DraggableModal>
 
       <DraggableModal id="bom" title="Bill of Materials">
