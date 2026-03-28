@@ -26,6 +26,15 @@ interface ViewerStore {
   visibleParts: Record<string, boolean>
   setPartVisible: (file: string, visible: boolean) => void
   initVisibleParts: (files: string[]) => void
+
+  // ── Neighborhood ─────────────────────────────
+  neighborhoodEnabled: boolean
+  neighborhoodLevel: number
+  neighbors: string[]
+  toggleNeighborhood: () => void
+  setNeighborhoodLevel: (level: number) => void
+  setNeighbors: (neighbors: string[]) => void
+  clearNeighborhood: () => void
 }
 
 export const useViewerStore = create<ViewerStore>((set) => ({
@@ -52,4 +61,30 @@ export const useViewerStore = create<ViewerStore>((set) => ({
     })),
   initVisibleParts: (files) =>
     set({ visibleParts: Object.fromEntries(files.map((f) => [f, true])) }),
+
+  // ── Neighborhood ───────────────────────────────
+  neighborhoodEnabled: false,
+  neighborhoodLevel: 1,
+  neighbors: [],
+
+  toggleNeighborhood: () =>
+    set((state) => ({
+      neighborhoodEnabled: !state.neighborhoodEnabled,
+    })),
+
+  setNeighborhoodLevel: (level) =>
+    set({
+      neighborhoodLevel: level,
+    }),
+
+  setNeighbors: (neighbors) =>
+    set({
+      neighbors,
+    }),
+
+  clearNeighborhood: () =>
+    set({
+      neighborhoodEnabled: false,
+      neighbors: [],
+    }),
 }))

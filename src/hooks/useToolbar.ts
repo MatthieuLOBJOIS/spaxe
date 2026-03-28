@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 export function useToolbar() {
   const [grid, setGrid] = useState(false)
-  const [neighborhood, setNeighborhood] = useState(false)
+
   const [xray, setXray] = useState(false)
 
   const [color, setColor] = useState(false)
@@ -12,8 +12,7 @@ export function useToolbar() {
   return {
     grid,
     onGridToggle: () => setGrid((v) => !v),
-    neighborhood,
-    onNeighborhoodToggle: () => setNeighborhood((v) => !v),
+
     xray,
     onXrayToggle: () => setXray((v) => !v),
 

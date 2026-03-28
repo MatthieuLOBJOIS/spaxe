@@ -61,7 +61,7 @@ export default function ExplodedModal() {
         <span className="text-white/30 text-[10px] font-mono tracking-[1px]">
           AXIS
         </span>
-        <div className="flex items-center rounded-lg border border-white/[0.08] overflow-hidden">
+        <div className="flex items-center rounded-lg border border-white/8 overflow-hidden">
           {AXES.map(({ id, label }) => (
             <button
               key={id}
@@ -101,7 +101,7 @@ export default function ExplodedModal() {
       </div>
 
       {/* Lecture + Reset */}
-      <div className="flex gap-2 pt-2 border-t border-white/[0.06]">
+      <div className="flex gap-2 pt-2 border-t border-white/6">
         <button
           onClick={() => setPlaying((p) => !p)}
           className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-[12px] font-semibold transition-colors duration-150 border bg-[rgba(242,101,34,0.08)] border-[rgba(242,101,34,0.3)] text-[#F26522] hover:bg-[rgba(242,101,34,0.15)] cursor-pointer"
@@ -111,7 +111,7 @@ export default function ExplodedModal() {
         </button>
         <button
           onClick={reset}
-          className="flex-1 px-3 py-2 rounded-lg text-[12px] font-semibold transition-colors duration-150 border bg-white/[0.03] border-white/[0.06] text-white/40 hover:text-white hover:bg-white/[0.06] cursor-pointer"
+          className="flex-1 px-3 py-2 rounded-lg text-[12px] font-semibold transition-colors duration-150 border bg-white/3 border-white/6 text-white/40 hover:text-white hover:bg-white/6 cursor-pointer"
         >
           Reset
         </button>

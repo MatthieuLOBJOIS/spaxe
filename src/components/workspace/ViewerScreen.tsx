@@ -10,13 +10,14 @@ import NavCube from './NavCube'
 import DraggableModal from './DraggableModal'
 import LassoModal from './modals/LassoModal'
 import TransformModal from './modals/TransformModal'
+import ExplodedModal from './modals/ExplodedModal'
+import NeighborhoodModal from './modals/Neighborhood'
 import BomModal from './modals/BomModal'
 import ShortcutsModal from './modals/ShortcutsModal'
 import { useModalStore } from '@/store/modalStore'
 
 import { useAssembly } from '@/hooks/useAssembly'
 import { useToolbar } from '@/hooks/useToolbar'
-import ExplodedModal from './modals/ExplodedModal'
 
 const SceneCanvas = dynamic(() => import('@/components/viewer/SceneCanvas'), {
   ssr: false,
@@ -51,12 +52,14 @@ export default function ViewerScreen({
           onLassoToggle={() => toggleModal('lasso')}
           transform={modals.transform.isOpen}
           onTransformToggle={() => toggleModal('transform')}
+          exploded={modals.exploded.isOpen}
+          onExplodedToggle={() => toggleModal('exploded')}
+          neighborhood={modals.neighborhood.isOpen}
+          onNeighborhoodToggle={() => toggleModal('neighborhood')}
           bom={modals.bom.isOpen}
           onBomToggle={() => toggleModal('bom')}
           shortcuts={modals.shortcuts.isOpen}
           onShortcutsToggle={() => toggleModal('shortcuts')}
-          exploded={modals.exploded.isOpen}
-          onExplodedToggle={() => toggleModal('exploded')}
         />
       </div>
 
@@ -91,6 +94,10 @@ export default function ViewerScreen({
 
       <DraggableModal id="exploded" title="Exploded View">
         <ExplodedModal />
+      </DraggableModal>
+
+      <DraggableModal id="neighborhood" title="Neighborhood">
+        <NeighborhoodModal />
       </DraggableModal>
 
       <DraggableModal id="bom" title="Bill of Materials">

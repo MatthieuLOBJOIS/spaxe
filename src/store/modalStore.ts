@@ -2,12 +2,13 @@ import { create } from 'zustand'
 import { DEFAULT_MODALS } from '@/config/modals'
 
 export type ModalId =
-  | 'bom'
-  | 'shortcuts'
-  | 'color'
   | 'lasso'
   | 'transform'
   | 'exploded'
+  | 'neighborhood'
+  | 'bom'
+  | 'color'
+  | 'shortcuts'
 
 export interface ModalState {
   isOpen: boolean
