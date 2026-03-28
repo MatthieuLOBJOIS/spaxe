@@ -33,8 +33,12 @@ interface ToolbarProps extends ToolbarState {
   onExplodedToggle: () => void
   neighborhood: boolean
   onNeighborhoodToggle: () => void
+  xray: boolean
+  onXrayToggle: () => void
   bom: boolean
   onBomToggle: () => void
+  color: boolean
+  onColorToggle: () => void
   shortcuts: boolean
   onShortcutsToggle: () => void
 }

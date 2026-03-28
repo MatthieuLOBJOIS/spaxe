@@ -19,6 +19,7 @@ import { useModalStore } from '@/store/modalStore'
 
 import { useAssembly } from '@/hooks/useAssembly'
 import { useToolbar } from '@/hooks/useToolbar'
+import ColorModal from './modals/ColorModal'
 
 const SceneCanvas = dynamic(() => import('@/components/viewer/SceneCanvas'), {
   ssr: false,
@@ -61,6 +62,8 @@ export default function ViewerScreen({
           onXrayToggle={() => toggleModal('xray')}
           bom={modals.bom.isOpen}
           onBomToggle={() => toggleModal('bom')}
+          color={modals.shortcuts.isOpen}
+          onColorToggle={() => toggleModal('color')}
           shortcuts={modals.shortcuts.isOpen}
           onShortcutsToggle={() => toggleModal('shortcuts')}
         />
@@ -109,6 +112,10 @@ export default function ViewerScreen({
 
       <DraggableModal id="bom" title="Bill of Materials">
         <BomModal assemblyUrl={assemblyUrl} />
+      </DraggableModal>
+
+      <DraggableModal id="color" title="Part Color">
+        <ColorModal />
       </DraggableModal>
 
       <DraggableModal id="shortcuts" title="Keyboard Shortcuts">
