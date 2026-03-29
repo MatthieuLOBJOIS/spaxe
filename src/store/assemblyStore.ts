@@ -28,6 +28,12 @@ interface AssemblyStore {
   setXrayMode: (mode: XRayMode) => void
   setXrayOpacity: (value: number) => void
   setXrayKeepSelectedSolid: (v: boolean) => void
+
+  // ── Colors
+  partColors: Record<string, string>
+  partOpacity: Record<string, number>
+  setPartColor: (file: string, color: string) => void
+  setPartOpacity: (file: string, opacity: number) => void
 }
 
 export const useAssemblyStore = create<AssemblyStore>((set) => ({
@@ -78,4 +84,14 @@ export const useAssemblyStore = create<AssemblyStore>((set) => ({
     set({
       xrayKeepSelectedSolid: v,
     }),
+
+  // ── Colors
+  partColors: {},
+  partOpacity: {},
+  setPartColor: (file, color) =>
+    set((state) => ({ partColors: { ...state.partColors, [file]: color } })),
+  setPartOpacity: (file, opacity) =>
+    set((state) => ({
+      partOpacity: { ...state.partOpacity, [file]: opacity },
+    })),
 }))

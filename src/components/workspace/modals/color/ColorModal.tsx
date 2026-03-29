@@ -1,13 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { HexColorPicker } from 'react-colorful'
 
 import SelectedPart from '@/components/workspace/modals/color/SelectedPart'
 import ColorPreview from '@/components/workspace/modals/color/ColorPreview'
 import ColorOpacity from '@/components/workspace/modals/color/ColorOpacity'
 import ColorPresets from '@/components/workspace/modals/color/ColorPresets'
-import ApplyButton from '@/components/workspace/modals/color/ApplyButton'
+
+import { useAssemblyStore } from '@/store/assemblyStore'
 
 import { hexToRgb } from '@/lib/hexToRgb'
 
@@ -15,6 +16,14 @@ export default function ColorModal() {
   const [color, setColor] = useState('#d46800')
   const [opacity, setOpacity] = useState(100)
   const rgb = hexToRgb(color)
+  const { selectedPart, setPartColor, setPartOpacity } = useAssemblyStore()
+
+  // ── Live update ──────────────────────────────────────
+  useEffect(() => {
+    if (!selectedPart) return
+    setPartColor(selectedPart, color)
+    setPartOpacity(selectedPart, opacity / 100)
+  }, [color, opacity, selectedPart, setPartColor, setPartOpacity])
 
   return (
     <div className="flex flex-col gap-4">
@@ -27,21 +36,13 @@ export default function ColorModal() {
       </div>
 
       {/* Couleur actuelle + HEX + RGB */}
-      <ColorPreview
-        color={color}
-        setColor={setColor}
-        opacity={opacity}
-        rgb={rgb}
-      />
+      <ColorPreview color={color} setColor={setColor} rgb={rgb} />
 
       {/* Opacité */}
       <ColorOpacity opacity={opacity} setOpacity={setOpacity} />
 
       {/* Couleurs par défaut */}
       <ColorPresets color={color} setColor={setColor} />
-
-      {/* Apply */}
-      <ApplyButton />
     </div>
   )
 }

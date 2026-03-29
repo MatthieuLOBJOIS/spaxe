@@ -2,12 +2,21 @@
 
 import { useAssemblyStore } from '@/store/assemblyStore'
 
-export default function ApplyButton() {
+interface ApplyButtonProps {
+  onApply: () => void
+  label?: string
+}
+
+export default function ApplyButton({
+  onApply,
+  label = 'Apply to selected part',
+}: ApplyButtonProps) {
   const { selectedPart } = useAssemblyStore()
 
   return (
     <button
       disabled={!selectedPart}
+      onClick={() => selectedPart && onApply()}
       className={`w-full px-3 py-2.5 rounded-lg text-[12px] font-semibold border transition-colors duration-150
         ${
           selectedPart
@@ -15,7 +24,7 @@ export default function ApplyButton() {
             : 'bg-white/3 border-white/6 text-white/20 cursor-not-allowed'
         }`}
     >
-      Apply to selected part
+      {label}
     </button>
   )
 }

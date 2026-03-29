@@ -5,14 +5,14 @@ import { HexColorInput } from 'react-colorful'
 interface ColorPreviewProps {
   color: string
   setColor: (value: string) => void
-  opacity: number
+
   rgb: { r: number; g: number; b: number }
 }
 
 export default function ColorPreview({
   color,
   setColor,
-  opacity,
+
   rgb,
 }: ColorPreviewProps) {
   return (
@@ -20,7 +20,7 @@ export default function ColorPreview({
       {/* Preview */}
       <div
         className="w-10 h-10 rounded-lg border border-white/20 shrink-0"
-        style={{ background: color, opacity: opacity / 100 }}
+        style={{ background: color }}
       />
 
       {/* HEX */}

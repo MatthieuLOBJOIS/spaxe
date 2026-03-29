@@ -17,9 +17,12 @@ function PartMesh({ part, basePath }: PartMeshProps) {
   const geometry = useLoader(STLLoader, url)
   const color = getPartColor(part)
 
-  const { selectedPart, setSelectedPart, visibleParts } = useAssemblyStore()
+  const selectedPart = useAssemblyStore((s) => s.selectedPart)
+  const setSelectedPart = useAssemblyStore((s) => s.setSelectedPart)
+  const isVisible = useAssemblyStore((s) => s.visibleParts[part.file] ?? true)
+  const finalColor = useAssemblyStore((s) => s.partColors[part.file] ?? color)
+  const finalOpacity = useAssemblyStore((s) => s.partOpacity[part.file] ?? 1)
   const isSelected = selectedPart === part.file
-  const isVisible = visibleParts[part.file] ?? true
 
   const position = hasTransforms(part) ? part.position : [0, 0, 0]
   const rotation = hasTransforms(part) ? part.rotation : [0, 0, 0]
@@ -37,8 +40,17 @@ function PartMesh({ part, basePath }: PartMeshProps) {
       position={position as [number, number, number]}
       rotation={rotation as [number, number, number]}
       onClick={handleClick}
+      renderOrder={finalOpacity < 1 ? 1 : 0}
     >
-      <meshStandardMaterial color={color} roughness={0.6} metalness={0.2} />
+      <meshStandardMaterial
+        key={finalOpacity < 1 ? 'transparent' : 'opaque'}
+        color={finalColor}
+        roughness={0.6}
+        metalness={0.2}
+        transparent={finalOpacity < 1}
+        opacity={finalOpacity}
+        depthWrite={finalOpacity >= 1}
+      />
       {/* Contour cyan uniquement si sélectionné */}
       {isSelected && <Outlines thickness={3} color="#22d3ee" />}
     </mesh>
