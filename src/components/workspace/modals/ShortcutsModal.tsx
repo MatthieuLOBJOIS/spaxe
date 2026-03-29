@@ -1,6 +1,6 @@
 'use client'
 
-import { SHORTCUTS } from '@/config/modals'
+import { SHORTCUTS } from '@/config/workspace/modals'
 
 export default function ShortcutsModal() {
   return (

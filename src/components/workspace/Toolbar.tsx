@@ -3,28 +3,20 @@
 import Link from 'next/link'
 import { RotateCcw, PaintBucket, Keyboard } from 'lucide-react'
 
-import { INTERNAL_LINKS } from '@/config/links'
+import { INTERNAL_LINKS } from '@/config/landing/links'
 import {
   SELECTION_TOOLS,
   DISPLAY_TOOLS,
   ORTHO_VIEWS,
   ORTHO_OPTIONS,
-} from '@/config/toolbarConfig'
-
-import type { useToolbar } from '@/hooks/useToolbar'
+} from '@/config/workspace/toolbar'
 
 import ToolButton from '@/components/ui/ToolButton'
 import ViewButton from '@/components/ui/ViewButton'
 import ToggleButton from '@/components/ui/ToggleButton'
 import Logo from '@/components/ui/Logo'
 
-// ── Types ────────────────────────────────────────────────
-type ToolbarState = ReturnType<typeof useToolbar>
-
-interface ToolbarProps extends ToolbarState {
-  onResetCamera: () => void
-  onOrthoView: (view: 'top' | 'front' | 'side') => void
-  onColorPick: () => void
+interface ModalControls {
   lasso: boolean
   onLassoToggle: () => void
   transform: boolean
@@ -43,6 +35,17 @@ interface ToolbarProps extends ToolbarState {
   onShortcutsToggle: () => void
 }
 
+interface SceneControls {
+  onResetCamera: () => void
+  onOrthoView: (view: 'top' | 'front' | 'side') => void
+  orthoMode: boolean
+  onOrthoModeToggle: () => void
+  grid: boolean
+  onGridToggle: () => void
+}
+
+type ToolbarProps = ModalControls & SceneControls
+
 // ── Séparateur ───────────────────────────────────────────
 function Sep() {
   return <div className="w-px h-5 bg-white/8 mx-1 shrink-0" />
@@ -50,14 +53,19 @@ function Sep() {
 
 // ── Toolbar ──────────────────────────────────────────────
 export default function Toolbar({
+  onResetCamera,
+  onOrthoView,
+  orthoMode,
+  onOrthoModeToggle,
+  grid,
+  onGridToggle,
+
   lasso,
   onLassoToggle,
   transform,
   onTransformToggle,
   exploded,
   onExplodedToggle,
-  grid,
-  onGridToggle,
   neighborhood,
   onNeighborhoodToggle,
   xray,
@@ -68,10 +76,6 @@ export default function Toolbar({
   onColorToggle,
   shortcuts,
   onShortcutsToggle,
-  orthoMode,
-  onOrthoModeToggle,
-  onResetCamera,
-  onOrthoView,
 }: ToolbarProps) {
   const selectionStates = { lasso, transform, exploded }
   const selectionHandlers = {
@@ -114,6 +118,7 @@ export default function Toolbar({
         label="Reset Camera"
         onClick={onResetCamera}
       />
+
       {ORTHO_VIEWS.map((view) => (
         <ViewButton
           key={view}

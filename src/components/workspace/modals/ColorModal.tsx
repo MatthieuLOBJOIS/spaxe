@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { HexColorPicker, HexColorInput } from 'react-colorful'
-import { useViewerStore } from '@/store/viewerStore'
+import { useAssemblyStore } from '@/store/assemblyStore'
 
 // ── Couleurs par défaut ──────────────────────────────────
 const DEFAULT_COLORS = [
@@ -41,7 +41,7 @@ function hexToRgb(hex: string): { r: number; g: number; b: number } {
 }
 
 export default function ColorModal() {
-  const { selectedPart } = useViewerStore()
+  const { selectedPart } = useAssemblyStore()
   const [color, setColor] = useState('#d46800')
   const [opacity, setOpacity] = useState(100)
 

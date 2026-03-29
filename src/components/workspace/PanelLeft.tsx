@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { Part } from '@/types/assembly'
-import { useViewerStore } from '@/store/viewerStore'
+import { useAssemblyStore } from '@/store/assemblyStore'
 
 interface PanelLeftProps {
   parts: Part[]
@@ -68,7 +68,7 @@ export default function PanelLeft({ parts }: PanelLeftProps) {
     visibleParts,
     setPartVisible,
     initVisibleParts,
-  } = useViewerStore()
+  } = useAssemblyStore()
 
   useEffect(() => {
     initVisibleParts(parts.map((p) => p.file))

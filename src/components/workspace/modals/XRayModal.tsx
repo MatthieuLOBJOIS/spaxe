@@ -1,6 +1,6 @@
 'use client'
 
-import { useViewerStore } from '@/store/viewerStore'
+import { useAssemblyStore } from '@/store/assemblyStore'
 
 type XRayMode = 'wireframe' | 'ghost'
 
@@ -17,7 +17,7 @@ export default function XRayModal() {
     setXrayMode,
     setXrayOpacity,
     setXrayKeepSelectedSolid,
-  } = useViewerStore()
+  } = useAssemblyStore()
 
   return (
     <div className="flex flex-col gap-4">

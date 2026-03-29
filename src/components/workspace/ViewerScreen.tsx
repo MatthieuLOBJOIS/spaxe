@@ -14,12 +14,13 @@ import ExplodedModal from './modals/ExplodedModal'
 import NeighborhoodModal from './modals/NeighborhoodModal'
 import XRayModal from './modals/XRayModal'
 import BomModal from './modals/BomModal'
+import ColorModal from './modals/ColorModal'
 import ShortcutsModal from './modals/ShortcutsModal'
-import { useModalStore } from '@/store/modalStore'
 
 import { useAssembly } from '@/hooks/useAssembly'
-import { useToolbar } from '@/hooks/useToolbar'
-import ColorModal from './modals/ColorModal'
+
+import { useModalStore } from '@/store/modalStore'
+import { useSceneStore } from '@/store/sceneStore'
 
 const SceneCanvas = dynamic(() => import('@/components/viewer/SceneCanvas'), {
   ssr: false,
@@ -35,8 +36,9 @@ export default function ViewerScreen({
   basePath,
 }: ViewerScreenProps) {
   const assembly = useAssembly(assemblyUrl)
-  const toolbar = useToolbar()
+
   const { toggleModal, modals } = useModalStore()
+  const { grid, onGridToggle, orthoMode, onOrthoModeToggle } = useSceneStore()
 
   const cameraQuatRef = useRef<THREE.Quaternion>(new THREE.Quaternion())
   const navQuatRef = useRef<THREE.Quaternion>(new THREE.Quaternion())
@@ -46,10 +48,12 @@ export default function ViewerScreen({
       {/* Toolbar */}
       <div className="shrink-0 h-16">
         <Toolbar
-          {...toolbar}
           onResetCamera={() => {}}
           onOrthoView={() => {}}
-          onColorPick={() => {}}
+          orthoMode={orthoMode}
+          onOrthoModeToggle={onOrthoModeToggle}
+          grid={grid}
+          onGridToggle={onGridToggle}
           lasso={modals.lasso.isOpen}
           onLassoToggle={() => toggleModal('lasso')}
           transform={modals.transform.isOpen}
@@ -79,7 +83,7 @@ export default function ViewerScreen({
           <SceneCanvas
             assembly={assembly}
             basePath={basePath}
-            orthoMode={toolbar.orthoMode}
+            orthoMode={orthoMode}
             cameraQuatRef={cameraQuatRef}
             navQuatRef={navQuatRef}
           />

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useViewerStore } from '@/store/viewerStore'
+import { useAssemblyStore } from '@/store/assemblyStore'
 
 // ── Input XYZ ────────────────────────────────────────────
 function XYZInput({
@@ -55,7 +55,7 @@ function XYZInput({
 type Mode = 'translation' | 'rotation'
 
 export default function TransformModal() {
-  const { selectedPart } = useViewerStore()
+  const { selectedPart } = useAssemblyStore()
 
   const [mode, setMode] = useState<Mode>('translation')
   const [position, setPosition] = useState<[number, number, number]>([0, 0, 0])

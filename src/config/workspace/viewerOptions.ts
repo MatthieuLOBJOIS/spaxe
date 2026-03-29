@@ -1,6 +1,6 @@
 import { Play, FolderOpen, Sparkles } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
-import { DEMO_LINK } from '@/config/links'
+import { DEMO_LINK } from '@/config/landing/links'
 
 export interface ViewerOption {
   id: string

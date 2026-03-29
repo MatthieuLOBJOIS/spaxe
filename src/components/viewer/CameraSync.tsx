@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib'
 import * as THREE from 'three'
-import { useViewerStore } from '@/store/viewerStore'
+import { useCameraStore } from '@/store/cameraStore'
 
 interface CameraSyncProps {
   hasAssembly: boolean
@@ -20,9 +20,10 @@ export default function CameraSync({
   orbitRef,
 }: CameraSyncProps) {
   const { camera } = useThree()
-  const setCameraQuaternion = useViewerStore((s) => s.setCameraQuaternion)
-  const cameraTarget = useViewerStore((s) => s.cameraTarget)
-  const setCameraTarget = useViewerStore((s) => s.setCameraTarget)
+
+  const setCameraQuaternion = useCameraStore((s) => s.setCameraQuaternion)
+  const cameraTarget = useCameraStore((s) => s.cameraTarget)
+  const setCameraTarget = useCameraStore((s) => s.setCameraTarget)
 
   // ── Position initiale ──────────────────────────────────
   useEffect(() => {

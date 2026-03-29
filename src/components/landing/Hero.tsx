@@ -6,7 +6,7 @@ import { ArrowRight } from 'lucide-react'
 import ScrollIndicator from './ScrollIndicator'
 import WorkspaceMockup from './WorkspaceMockup'
 import ExternalLink from '@/components/ui/ExternalLink'
-import { EXTERNAL_LINKS, INTERNAL_LINKS } from '@/config/links'
+import { EXTERNAL_LINKS, INTERNAL_LINKS } from '@/config/landing/links'
 import { useIsMobile } from '@/hooks/useIsMobile'
 
 const SceneCanvas = dynamic(() => import('@/components/viewer/SceneCanvas'), {

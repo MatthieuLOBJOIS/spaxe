@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
-import { DEMO_LINK } from '@/config/links'
+import { DEMO_LINK } from '@/config/landing/links'
 
 export default function CTABanner() {
   return (

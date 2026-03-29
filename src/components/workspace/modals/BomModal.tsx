@@ -1,6 +1,6 @@
 'use client'
 
-import { useViewerStore } from '@/store/viewerStore'
+import { useAssemblyStore } from '@/store/assemblyStore'
 import { useAssembly } from '@/hooks/useAssembly'
 
 interface BomModalProps {
@@ -9,7 +9,7 @@ interface BomModalProps {
 
 export default function BomModal({ assemblyUrl }: BomModalProps) {
   const assembly = useAssembly(assemblyUrl)
-  const { selectedPart, setSelectedPart } = useViewerStore()
+  const { selectedPart, setSelectedPart } = useAssemblyStore()
 
   if (!assembly)
     return <div className="text-white/30 text-xs font-mono">Loading...</div>

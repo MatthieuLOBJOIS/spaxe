@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useViewerStore } from '@/store/viewerStore'
+import { useAssemblyStore } from '@/store/assemblyStore'
 
 type NeighborMode = 'proximity' | 'hierarchy'
 
@@ -53,7 +53,7 @@ export default function NeighborhoodModal() {
     neighborhoodLevel,
     setNeighborhoodLevel,
     clearNeighborhood,
-  } = useViewerStore()
+  } = useAssemblyStore()
   const [mode, setMode] = useState<NeighborMode>('hierarchy')
 
   return (

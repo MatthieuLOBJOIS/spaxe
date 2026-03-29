@@ -1,7 +1,7 @@
 'use client'
 
 import type { LucideIcon } from 'lucide-react'
-import { FEATURES } from '@/config/features'
+import { FEATURES } from '@/config/landing/features'
 
 function FeatureCard({
   icon: Icon,

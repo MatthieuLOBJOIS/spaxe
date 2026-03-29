@@ -1,9 +1,9 @@
 'use client'
 
-import { useViewerStore } from '@/store/viewerStore'
+import { useAssemblyStore } from '@/store/assemblyStore'
 
 export default function LassoModal() {
-  const { selectedPart, setSelectedPart } = useViewerStore()
+  const { selectedPart, setSelectedPart } = useAssemblyStore()
 
   const selectedCount = selectedPart ? 1 : 0
 

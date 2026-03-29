@@ -1,6 +1,6 @@
 'use client'
 
-import { STEPS, type Step } from '@/config/steps'
+import { STEPS, type Step } from '@/config/landing/steps'
 
 function StepCard({
   num,

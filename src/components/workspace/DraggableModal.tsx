@@ -3,7 +3,7 @@
 import { useEffect, useRef, ReactNode, useState } from 'react'
 import { X } from 'lucide-react'
 import { useModalStore, type ModalId } from '@/store/modalStore'
-import { DEFAULT_MODALS } from '@/config/modals'
+import { DEFAULT_MODALS } from '@/config/workspace/modals'
 
 interface DraggableModalProps {
   id: ModalId

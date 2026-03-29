@@ -4,7 +4,7 @@ import { useLoader, ThreeEvent } from '@react-three/fiber'
 import { STLLoader } from 'three-stdlib'
 import { Part } from '@/types/assembly'
 import { getPartColor, getSTLUrl, hasTransforms } from '@/lib/assemblyLoader'
-import { useViewerStore } from '@/store/viewerStore'
+import { useAssemblyStore } from '@/store/assemblyStore'
 import { Outlines } from '@react-three/drei'
 
 interface PartMeshProps {
@@ -17,7 +17,7 @@ function PartMesh({ part, basePath }: PartMeshProps) {
   const geometry = useLoader(STLLoader, url)
   const color = getPartColor(part)
 
-  const { selectedPart, setSelectedPart, visibleParts } = useViewerStore()
+  const { selectedPart, setSelectedPart, visibleParts } = useAssemblyStore()
   const isSelected = selectedPart === part.file
   const isVisible = visibleParts[part.file] ?? true
 
@@ -58,7 +58,7 @@ export default function AssemblyViewer({
     <group
       onClick={(e) => {
         // Clic dans le vide — désélectionne
-        if (e.delta < 2) useViewerStore.getState().setSelectedPart(null)
+        if (e.delta < 2) useAssemblyStore.getState().setSelectedPart(null)
       }}
     >
       {parts.map((part) => (

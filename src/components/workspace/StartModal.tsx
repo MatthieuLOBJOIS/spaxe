@@ -1,8 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { INTERNAL_LINKS } from '@/config/links'
-import { VIEWER_OPTIONS, type ViewerOption } from '@/config/viewerOptions'
+import { INTERNAL_LINKS } from '@/config/landing/links'
+import {
+  VIEWER_OPTIONS,
+  type ViewerOption,
+} from '@/config/workspace/viewerOptions'
 import Logo from '@/components/ui/Logo'
 
 // ── Sous-composant option ────────────────────────────────

@@ -7,7 +7,7 @@ import {
   EXTERNAL_LINKS,
   FOOTER_PRODUCT_LINKS,
   FOOTER_STACK_LINKS,
-} from '@/config/links'
+} from '@/config/landing/links'
 import ExternalLink from '@/components/ui/ExternalLink'
 import Logo from '@/components/ui/Logo'
 

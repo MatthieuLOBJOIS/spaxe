@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 
-import { INTERNAL_LINKS, NAV_LINKS } from '@/config/links'
+import { INTERNAL_LINKS, NAV_LINKS } from '@/config/landing/links'
 
 import ExternalLink from '@/components/ui/ExternalLink'
 import Logo from '@/components/ui/Logo'
