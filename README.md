@@ -19,7 +19,7 @@ Spaxe lets you import STL files, manually build exploded views, inspect connecte
 
 ## Stack
 
-- **Framework** — Next.js 15 · TypeScript
+- **Framework** — Next.js 16 · TypeScript
 - **UI** — Tailwind CSS · shadcn/ui
 - **3D** — Three.js · React Three Fiber · React Three Drei · three-stdlib · React Three Postprocessing
 - **State** — Zustand
@@ -38,12 +38,10 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ## Roadmap
 
-- [ ] Project setup
-- [x] STL viewer
-- [ ] Assembly system
-- [ ] Exploded view
-- [ ] Neighborhood
-- [ ] X-Ray layer
+- [x] Project setup
+- [] STL viewer (Demo View ok)
+- [-->] Modals Tools Features (Colors, Exploded view, Neighborhood etc...)
+- [ ] Assembly system (import 3d files)
 - [ ] URL/PDF links
 - [ ] Iframe export
 

@@ -9,7 +9,7 @@ export const INTERNAL_LINKS = {
 // Liens externes
 export const EXTERNAL_LINKS = {
   github: { href: 'https://github.com/MatthieuLOBJOIS/spaxe', label: 'GitHub' },
-  nextjs: { href: 'https://nextjs.org', label: 'Next.js 15' },
+  nextjs: { href: 'https://nextjs.org', label: 'Next.js 16' },
   threejs: { href: 'https://threejs.org', label: 'Three.js' },
   r3f: { href: 'https://r3f.docs.pmnd.rs', label: 'React Three Fiber' },
   vercel: { href: 'https://vercel.com', label: 'Vercel' },
