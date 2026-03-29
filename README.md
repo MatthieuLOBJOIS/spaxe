@@ -39,8 +39,8 @@ Open [http://localhost:3000](http://localhost:3000)
 ## Roadmap
 
 - [x] Project setup
-- [] STL viewer (Demo View ok)
-- [-->] Modals Tools Features (Colors, Exploded view, Neighborhood etc...)
+- [ ] STL viewer (Demo Viewer ok)
+- [➡] Modals Tools Features (Colors, Exploded view, Neighborhood etc...)
 - [ ] Assembly system (import 3d files)
 - [ ] URL/PDF links
 - [ ] Iframe export
