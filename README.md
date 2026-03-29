@@ -52,4 +52,4 @@ Feel free to watch the repo for updates.
 
 ## License
 
-All rights reserved © 2025 Spaxe
+All rights reserved © 2026 Spaxe
