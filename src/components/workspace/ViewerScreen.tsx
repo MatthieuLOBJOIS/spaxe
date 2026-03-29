@@ -14,7 +14,7 @@ import ExplodedModal from './modals/ExplodedModal'
 import NeighborhoodModal from './modals/NeighborhoodModal'
 import XRayModal from './modals/XRayModal'
 import BomModal from './modals/BomModal'
-import ColorModal from './modals/ColorModal'
+import ColorModal from './modals/color/ColorModal'
 import ShortcutsModal from './modals/ShortcutsModal'
 
 import { useAssembly } from '@/hooks/useAssembly'

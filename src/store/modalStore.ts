@@ -1,32 +1,7 @@
 import { create } from 'zustand'
-import { DEFAULT_MODALS } from '@/config/workspace/modals'
+import { DEFAULT_MODALS } from '@/config/workspace/modals/defaultModals'
 import { updateRecord } from '@/lib/storeUtils'
-
-export type ModalId =
-  | 'lasso'
-  | 'transform'
-  | 'exploded'
-  | 'neighborhood'
-  | 'xray'
-  | 'bom'
-  | 'color'
-  | 'shortcuts'
-
-export interface ModalState {
-  isOpen: boolean
-  position: { x: number; y: number }
-  size: { w: number; h: number }
-  zIndex: number
-}
-
-interface ModalStore {
-  modals: Record<ModalId, ModalState>
-  topZIndex: number
-  toggleModal: (id: ModalId) => void
-  setPosition: (id: ModalId, position: { x: number; y: number }) => void
-  setSize: (id: ModalId, size: { w: number; h: number }) => void
-  bringToFront: (id: ModalId) => void
-}
+import { ModalStore } from '@/types/modal'
 
 export const useModalStore = create<ModalStore>((set) => ({
   modals: DEFAULT_MODALS,

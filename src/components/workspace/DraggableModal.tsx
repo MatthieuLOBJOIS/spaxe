@@ -1,15 +1,10 @@
 'use client'
 
-import { useEffect, useRef, ReactNode, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { X } from 'lucide-react'
-import { useModalStore, type ModalId } from '@/store/modalStore'
-import { DEFAULT_MODALS } from '@/config/workspace/modals'
 
-interface DraggableModalProps {
-  id: ModalId
-  title: string
-  children: ReactNode
-}
+import { useModalStore } from '@/store/modalStore'
+import type { DraggableModalProps } from '@/types/modal'
 
 export default function DraggableModal({
   id,
@@ -81,6 +76,7 @@ export default function DraggableModal({
     }
   }, [id, setPosition, setSize])
 
+  if (!modal) return null
   if (!modal.isOpen) return null
 
   return (
@@ -115,7 +111,7 @@ export default function DraggableModal({
       {/* Contenu — largeur fixe, clippé par le modal */}
       <div className="flex-1 overflow-hidden relative">
         <div
-          style={{ width: DEFAULT_MODALS[id].size.w }}
+          style={{ width: modal.size.w }}
           className="absolute top-0 left-0 p-4"
         >
           {children}

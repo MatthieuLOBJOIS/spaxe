@@ -1,11 +1,11 @@
 'use client'
 
-import { SHORTCUTS } from '@/config/workspace/modals'
+import { DEFAULT_SHORTCUTS } from '@/config/workspace/modals/defaultShortcuts'
 
 export default function ShortcutsModal() {
   return (
     <div className="flex flex-col gap-1">
-      {SHORTCUTS.map(({ key, action }) => (
+      {DEFAULT_SHORTCUTS.map(({ key, action }) => (
         <div
           key={key}
           className="flex items-center justify-between px-2 py-2 rounded-lg hover:bg-white/4 transition-colors"

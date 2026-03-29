@@ -3,30 +3,7 @@
 import { useState } from 'react'
 import { HexColorPicker, HexColorInput } from 'react-colorful'
 import { useAssemblyStore } from '@/store/assemblyStore'
-
-// ── Couleurs par défaut ──────────────────────────────────
-const DEFAULT_COLORS = [
-  '#ffffff',
-  '#d4d4d4',
-  '#737373',
-  '#404040',
-  '#171717',
-  '#ef4444',
-  '#f97316',
-  '#eab308',
-  '#22c55e',
-  '#14b8a6',
-  '#3b82f6',
-  '#8b5cf6',
-  '#ec4899',
-  '#f43f5e',
-  '#84cc16',
-  '#06b6d4',
-  '#6366f1',
-  '#a855f7',
-  '#d46800',
-  '#0ea5e9',
-]
+import { DEFAULT_COLORS } from '@/config/workspace/modals/defaultColors'
 
 // ── Hex → RGB ────────────────────────────────────────────
 function hexToRgb(hex: string): { r: number; g: number; b: number } {
