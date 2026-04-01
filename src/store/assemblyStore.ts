@@ -4,8 +4,9 @@ type XRayMode = 'wireframe' | 'ghost'
 
 interface AssemblyStore {
   // Pièce sélectionnée
-  selectedPart: string | null
-  setSelectedPart: (file: string | null) => void
+  selectedParts: string[]
+  setSelectedPart: (file: string, multi?: boolean) => void
+  clearSelection: () => void
 
   // Pièces visibles
   visibleParts: Record<string, boolean>
@@ -38,8 +39,27 @@ interface AssemblyStore {
 
 export const useAssemblyStore = create<AssemblyStore>((set) => ({
   // Pièce sélectionnée
-  selectedPart: null,
-  setSelectedPart: (file) => set({ selectedPart: file }),
+  selectedParts: [],
+  setSelectedPart: (file, multi = false) =>
+    set((state) => {
+      if (multi) {
+        // Ctrl+click — toggle la pièce dans la sélection
+        const already = state.selectedParts.includes(file)
+        return {
+          selectedParts: already
+            ? state.selectedParts.filter((f) => f !== file)
+            : [...state.selectedParts, file],
+        }
+      }
+      // Click normal — sélection unique
+      return {
+        selectedParts:
+          state.selectedParts.includes(file) && state.selectedParts.length === 1
+            ? []
+            : [file],
+      }
+    }),
+  clearSelection: () => set({ selectedParts: [] }),
 
   // Pièces visibles
   visibleParts: {},

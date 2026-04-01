@@ -2,10 +2,11 @@
 
 import { useLoader, ThreeEvent } from '@react-three/fiber'
 import { STLLoader } from 'three-stdlib'
+import { Outlines } from '@react-three/drei'
+
 import { Part } from '@/types/assembly'
 import { getPartColor, getSTLUrl, hasTransforms } from '@/lib/assemblyLoader'
 import { useAssemblyStore } from '@/store/assemblyStore'
-import { Outlines } from '@react-three/drei'
 
 interface PartMeshProps {
   part: Part
@@ -15,25 +16,36 @@ interface PartMeshProps {
 function PartMesh({ part, basePath }: PartMeshProps) {
   const url = getSTLUrl(basePath, part.file)
   const geometry = useLoader(STLLoader, url)
-  const color = getPartColor(part)
 
-  const selectedPart = useAssemblyStore((s) => s.selectedPart)
+  const baseColor = getPartColor(part)
+
+  const selectedParts = useAssemblyStore((s) => s.selectedParts)
   const setSelectedPart = useAssemblyStore((s) => s.setSelectedPart)
+
   const isVisible = useAssemblyStore((s) => s.visibleParts[part.file] ?? true)
-  const finalColor = useAssemblyStore((s) => s.partColors[part.file] ?? color)
+
+  const finalColor = useAssemblyStore(
+    (s) => s.partColors[part.file] ?? baseColor
+  )
+
   const finalOpacity = useAssemblyStore((s) => s.partOpacity[part.file] ?? 1)
-  const isSelected = selectedPart === part.file
+
+  if (!isVisible) return null
+
+  const isSelected = selectedParts.includes(part.file)
 
   const position = hasTransforms(part) ? part.position : [0, 0, 0]
   const rotation = hasTransforms(part) ? part.rotation : [0, 0, 0]
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation()
-    // Ignore si c'est un drag (delta > 2 pixels)
+
+    // ignore drag
     if (e.delta > 2) return
-    setSelectedPart(isSelected ? null : part.file)
+
+    setSelectedPart(part.file, e.ctrlKey || e.metaKey)
   }
-  if (!isVisible) return null
+
   return (
     <mesh
       geometry={geometry}
@@ -51,7 +63,7 @@ function PartMesh({ part, basePath }: PartMeshProps) {
         opacity={finalOpacity}
         depthWrite={finalOpacity >= 1}
       />
-      {/* Contour cyan uniquement si sélectionné */}
+
       {isSelected && <Outlines thickness={3} color="#22d3ee" />}
     </mesh>
   )
@@ -67,12 +79,7 @@ export default function AssemblyViewer({
   basePath,
 }: AssemblyViewerProps) {
   return (
-    <group
-      onClick={(e) => {
-        // Clic dans le vide — désélectionne
-        if (e.delta < 2) useAssemblyStore.getState().setSelectedPart(null)
-      }}
-    >
+    <group>
       {parts.map((part) => (
         <PartMesh key={part.file} part={part} basePath={basePath} />
       ))}

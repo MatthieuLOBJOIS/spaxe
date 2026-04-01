@@ -2,6 +2,7 @@
 
 import { useAssemblyStore } from '@/store/assemblyStore'
 import { useAssembly } from '@/hooks/useAssembly'
+import { getEffectiveColor } from '@/lib/assemblyLoader'
 
 interface BomModalProps {
   assemblyUrl: string
@@ -9,7 +10,7 @@ interface BomModalProps {
 
 export default function BomModal({ assemblyUrl }: BomModalProps) {
   const assembly = useAssembly(assemblyUrl)
-  const { selectedPart, setSelectedPart } = useAssemblyStore()
+  const { selectedParts, setSelectedPart, partColors } = useAssemblyStore()
 
   if (!assembly)
     return <div className="text-white/30 text-xs font-mono">Loading...</div>
@@ -31,11 +32,12 @@ export default function BomModal({ assemblyUrl }: BomModalProps) {
 
       {/* Lignes */}
       {assembly.parts.map((part) => {
-        const isSelected = selectedPart === part.file
+        const isSelected = selectedParts.includes(part.file)
+        const effectiveColor = getEffectiveColor(part, partColors)
         return (
           <div
             key={part.file}
-            onClick={() => setSelectedPart(isSelected ? null : part.file)}
+            onClick={(e) => setSelectedPart(part.file, e.ctrlKey || e.metaKey)}
             className={`grid grid-cols-3 gap-2 px-2 py-1.5 rounded-lg cursor-pointer transition-colors duration-100
               ${isSelected ? 'bg-[rgba(34,211,238,0.08)]' : 'hover:bg-white/4'}`}
           >
@@ -50,10 +52,10 @@ export default function BomModal({ assemblyUrl }: BomModalProps) {
             <div className="flex items-center gap-1.5">
               <div
                 className="w-3 h-3 rounded-full border border-white/20 shrink-0"
-                style={{ background: part.color_hint ?? '#cccccc' }}
+                style={{ background: effectiveColor }}
               />
               <span className="text-white/30 text-[10px] font-mono">
-                {part.color_hint ?? '—'}
+                {effectiveColor}
               </span>
             </div>
           </div>

@@ -9,21 +9,36 @@ import ColorOpacity from '@/components/workspace/modals/color/ColorOpacity'
 import ColorPresets from '@/components/workspace/modals/color/ColorPresets'
 
 import { useAssemblyStore } from '@/store/assemblyStore'
-
 import { hexToRgb } from '@/lib/hexToRgb'
 
 export default function ColorModal() {
   const [color, setColor] = useState('#d46800')
   const [opacity, setOpacity] = useState(100)
+
   const rgb = hexToRgb(color)
-  const { selectedPart, setPartColor, setPartOpacity } = useAssemblyStore()
+
+  const selectedParts = useAssemblyStore((s) => s.selectedParts)
+  const setPartColor = useAssemblyStore((s) => s.setPartColor)
+  const setPartOpacity = useAssemblyStore((s) => s.setPartOpacity)
+
+  const hasSelection = selectedParts.length > 0
 
   // ── Live update ──────────────────────────────────────
   useEffect(() => {
-    if (!selectedPart) return
-    setPartColor(selectedPart, color)
-    setPartOpacity(selectedPart, opacity / 100)
-  }, [color, opacity, selectedPart, setPartColor, setPartOpacity])
+    if (!hasSelection) return
+
+    selectedParts.forEach((file) => {
+      setPartColor(file, color)
+      setPartOpacity(file, opacity / 100)
+    })
+  }, [
+    color,
+    opacity,
+    selectedParts,
+    setPartColor,
+    setPartOpacity,
+    hasSelection,
+  ])
 
   return (
     <div className="flex flex-col gap-4">
@@ -31,7 +46,7 @@ export default function ColorModal() {
       <SelectedPart />
 
       {/* Color picker gradient */}
-      <div className="w-full [&_.react-colorful]:w-full [&_.react-colorful]:rounded-lg [&_.react-colorful\_\_saturation]:rounded-t-lg [&_.react-colorful\_\_last-control]:rounded-b-lg">
+      <div className="w-full [&_.react-colorful]:w-full [&_.react-colorful]:rounded-lg [&_.react-colorful__saturation]:rounded-t-lg [&_.react-colorful__last-control]:rounded-b-lg">
         <HexColorPicker color={color} onChange={setColor} />
       </div>
 

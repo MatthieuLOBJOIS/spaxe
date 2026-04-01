@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import { Part } from '@/types/assembly'
 import { useAssemblyStore } from '@/store/assemblyStore'
+import { getEffectiveColor } from '@/lib/assemblyLoader'
 
 interface PanelLeftProps {
   parts: Part[]
@@ -13,7 +14,8 @@ interface PartRowProps {
   part: Part
   isSelected: boolean
   isVisible: boolean
-  onSelect: () => void
+  effectiveColor: string
+  onSelect: (e: React.MouseEvent) => void
   onToggleVisible: (e: React.MouseEvent) => void
 }
 
@@ -21,6 +23,7 @@ function PartRow({
   part,
   isSelected,
   isVisible,
+  effectiveColor,
   onSelect,
   onToggleVisible,
 }: PartRowProps) {
@@ -51,10 +54,10 @@ function PartRow({
         {part.label}
       </span>
 
-      {/* Rond couleur — valeur dynamique → inline style justifié */}
+      {/* Rond couleur */}
       <div
         className="w-3 h-3 rounded-full shrink-0 border border-white/20"
-        style={{ background: part.color_hint ?? '#cccccc' }}
+        style={{ background: effectiveColor }}
       />
     </div>
   )
@@ -63,11 +66,12 @@ function PartRow({
 // ── Panel principal ──────────────────────────────────────
 export default function PanelLeft({ parts }: PanelLeftProps) {
   const {
-    selectedPart,
+    selectedParts,
     setSelectedPart,
     visibleParts,
     setPartVisible,
     initVisibleParts,
+    partColors,
   } = useAssemblyStore()
 
   useEffect(() => {
@@ -97,11 +101,10 @@ export default function PanelLeft({ parts }: PanelLeftProps) {
           <PartRow
             key={part.file}
             part={part}
-            isSelected={selectedPart === part.file}
+            isSelected={selectedParts.includes(part.file)}
             isVisible={visibleParts[part.file] ?? true}
-            onSelect={() =>
-              setSelectedPart(selectedPart === part.file ? null : part.file)
-            }
+            effectiveColor={getEffectiveColor(part, partColors)}
+            onSelect={(e) => setSelectedPart(part.file, e.ctrlKey || e.metaKey)}
             onToggleVisible={(e) => toggleVisible(part.file, e)}
           />
         ))}
