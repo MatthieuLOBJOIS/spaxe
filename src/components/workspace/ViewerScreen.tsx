@@ -66,7 +66,7 @@ export default function ViewerScreen({
           onXrayToggle={() => toggleModal('xray')}
           bom={modals.bom.isOpen}
           onBomToggle={() => toggleModal('bom')}
-          color={modals.shortcuts.isOpen}
+          color={modals.color.isOpen}
           onColorToggle={() => toggleModal('color')}
           shortcuts={modals.shortcuts.isOpen}
           onShortcutsToggle={() => toggleModal('shortcuts')}

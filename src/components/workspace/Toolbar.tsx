@@ -46,6 +46,15 @@ interface SceneControls {
 
 type ToolbarProps = ModalControls & SceneControls
 
+const DISABLED_TOOLS = new Set([
+  'lasso',
+  'transform',
+  'exploded',
+  'neighborhood',
+  'xray',
+  'grid',
+])
+
 // ── Séparateur ───────────────────────────────────────────
 function Sep() {
   return <div className="w-px h-5 bg-white/8 mx-1 shrink-0" />
@@ -107,6 +116,7 @@ export default function Toolbar({
           label={label}
           onClick={selectionHandlers[key]}
           active={selectionStates[key]}
+          disabled={DISABLED_TOOLS.has(key)}
         />
       ))}
 
@@ -117,12 +127,14 @@ export default function Toolbar({
         icon={RotateCcw}
         label="Reset Camera"
         onClick={onResetCamera}
+        disabled={true}
       />
 
       {ORTHO_VIEWS.map((view) => (
         <ViewButton
           key={view}
           label={view}
+          disabled={true}
           onClick={() =>
             onOrthoView(view.toLowerCase() as 'top' | 'front' | 'side')
           }
@@ -139,6 +151,7 @@ export default function Toolbar({
           label={label}
           onClick={displayHandlers[key]}
           active={displayStates[key]}
+          disabled={DISABLED_TOOLS.has(key)}
         />
       ))}
 
@@ -158,6 +171,7 @@ export default function Toolbar({
       <ToggleButton
         options={ORTHO_OPTIONS}
         activeIndex={orthoMode ? 1 : 0}
+        disabled={true}
         onChange={(i) => {
           if ((i === 1) !== orthoMode) onOrthoModeToggle()
         }}

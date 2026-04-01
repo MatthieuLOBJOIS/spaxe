@@ -18,7 +18,7 @@ export default function SelectedPart() {
         : `${count} parts selected`
 
   return (
-    <div className="px-3 py-2 bg-white/[0.03] rounded-lg border border-white/[0.06] flex items-center justify-between">
+    <div className="px-3 py-2 bg-white/3 rounded-lg border border-white/6 flex items-center justify-between">
       <div>
         <span className="text-white/30 text-[10px] font-mono tracking-[1px]">
           SELECTED
