@@ -4,12 +4,12 @@ import { useAssemblyStore } from '@/store/assemblyStore'
 
 interface ApplyButtonProps {
   onApply: () => void
-  label?: string
+  label?: string // nommage du bouton
 }
 
 export default function ApplyButton({
   onApply,
-  label = 'Apply to selected part',
+  label = 'Apply',
 }: ApplyButtonProps) {
   const selectedParts = useAssemblyStore((s) => s.selectedParts)
 

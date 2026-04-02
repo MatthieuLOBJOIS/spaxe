@@ -4,11 +4,9 @@ import { useAssemblyStore } from '@/store/assemblyStore'
 
 export default function SelectedPart() {
   const selectedParts = useAssemblyStore((s) => s.selectedParts)
-  const partColors = useAssemblyStore((s) => s.partColors)
 
   const count = selectedParts.length
   const singlePart = count === 1 ? selectedParts[0] : null
-  const currentColor = singlePart ? partColors[singlePart] : null
 
   const label =
     count === 0
@@ -32,13 +30,6 @@ export default function SelectedPart() {
           {label}
         </p>
       </div>
-
-      {currentColor && (
-        <div
-          className="w-6 h-6 rounded-md border border-white/20 shrink-0"
-          style={{ background: currentColor }}
-        />
-      )}
     </div>
   )
 }

@@ -1,21 +1,30 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { HexColorPicker } from 'react-colorful'
 
 import SelectedPart from '@/components/workspace/modals/color/SelectedPart'
 import ColorPreview from '@/components/workspace/modals/color/ColorPreview'
-import ColorOpacity from '@/components/workspace/modals/color/ColorOpacity'
+import EyeDropperButton from '@/components/workspace/modals/color/EyeDropperButton'
+import RandomColorButton from '@/components/workspace/modals/color/RandomColorButton'
+import Slider from '@/components/ui/Slider'
 import ColorPresets from '@/components/workspace/modals/color/ColorPresets'
+import ApplyButton from '@/components/ui/ApplyButton'
 
 import { useAssemblyStore } from '@/store/assemblyStore'
-import { hexToRgb } from '@/lib/hexToRgb'
+import { randomHex } from '@/lib/colorUtils'
 
-export default function ColorModal() {
-  const [color, setColor] = useState('#d46800')
-  const [opacity, setOpacity] = useState(100)
+interface ColorModalProps {
+  initialColor?: string
+  initialOpacity?: number
+}
 
-  const rgb = hexToRgb(color)
+export default function ColorModal({
+  initialColor = '#d46800',
+  initialOpacity = 100,
+}: ColorModalProps) {
+  const [color, setColor] = useState(initialColor)
+  const [opacity, setOpacity] = useState(initialOpacity)
 
   const selectedParts = useAssemblyStore((s) => s.selectedParts)
   const setPartColor = useAssemblyStore((s) => s.setPartColor)
@@ -23,41 +32,36 @@ export default function ColorModal() {
 
   const hasSelection = selectedParts.length > 0
 
-  // ── Live update ──────────────────────────────────────
-  useEffect(() => {
+  const handleOnApply = () => {
     if (!hasSelection) return
-
     selectedParts.forEach((file) => {
       setPartColor(file, color)
       setPartOpacity(file, opacity / 100)
     })
-  }, [
-    color,
-    opacity,
-    selectedParts,
-    setPartColor,
-    setPartOpacity,
-    hasSelection,
-  ])
+  }
+
+  const handleRandom = () => {
+    const firstColor = randomHex()
+    selectedParts.forEach((file) => setPartColor(file, randomHex()))
+    setColor(firstColor)
+  }
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Pièce sélectionnée */}
       <SelectedPart />
 
-      {/* Color picker gradient */}
-      <div className="w-full [&_.react-colorful]:w-full [&_.react-colorful]:rounded-lg [&_.react-colorful__saturation]:rounded-t-lg [&_.react-colorful__last-control]:rounded-b-lg">
-        <HexColorPicker color={color} onChange={setColor} />
+      <HexColorPicker color={color} onChange={setColor} />
+
+      <div className="flex items-center gap-2">
+        <ColorPreview color={color} setColor={setColor} />
+        <EyeDropperButton setColor={setColor} />
+        <RandomColorButton onRandom={handleRandom} />
       </div>
 
-      {/* Couleur actuelle + HEX + RGB */}
-      <ColorPreview color={color} setColor={setColor} rgb={rgb} />
+      <Slider label="OPACITY" value={opacity} unit="%" onChange={setOpacity} />
 
-      {/* Opacité */}
-      <ColorOpacity opacity={opacity} setOpacity={setOpacity} />
-
-      {/* Couleurs par défaut */}
       <ColorPresets color={color} setColor={setColor} />
+      <ApplyButton onApply={handleOnApply} />
     </div>
   )
 }

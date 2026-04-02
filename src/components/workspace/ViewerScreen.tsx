@@ -18,9 +18,10 @@ import ColorModal from './modals/color/ColorModal'
 import ShortcutsModal from './modals/ShortcutsModal'
 
 import { useAssembly } from '@/hooks/useAssembly'
-
 import { useModalStore } from '@/store/modalStore'
 import { useSceneStore } from '@/store/sceneStore'
+
+import { useColorModalInit } from '@/hooks/useColorModalInit'
 
 const SceneCanvas = dynamic(() => import('@/components/viewer/SceneCanvas'), {
   ssr: false,
@@ -39,6 +40,9 @@ export default function ViewerScreen({
 
   const { toggleModal, modals } = useModalStore()
   const { grid, onGridToggle, orthoMode, onOrthoModeToggle } = useSceneStore()
+
+  const { firstFile, initialColor, initialOpacity } =
+    useColorModalInit(assembly)
 
   const cameraQuatRef = useRef<THREE.Quaternion>(new THREE.Quaternion())
   const navQuatRef = useRef<THREE.Quaternion>(new THREE.Quaternion())
@@ -75,10 +79,8 @@ export default function ViewerScreen({
 
       {/* Workspace */}
       <div className="flex-1 flex overflow-visible relative">
-        {/* Panel gauche */}
         {assembly && <PanelLeft parts={assembly.parts} />}
 
-        {/* Canvas 3D */}
         <div className="flex-1 relative overflow-visible">
           <SceneCanvas
             assembly={assembly}
@@ -119,7 +121,11 @@ export default function ViewerScreen({
       </DraggableModal>
 
       <DraggableModal id="color" title="Part Color">
-        <ColorModal />
+        <ColorModal
+          key={firstFile ?? 'none'}
+          initialColor={initialColor}
+          initialOpacity={initialOpacity}
+        />
       </DraggableModal>
 
       <DraggableModal id="shortcuts" title="Keyboard Shortcuts">
