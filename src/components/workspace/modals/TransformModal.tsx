@@ -55,7 +55,7 @@ function XYZInput({
 type Mode = 'translation' | 'rotation'
 
 export default function TransformModal() {
-  const { selectedPart } = useAssemblyStore()
+  const selectedPart = useAssemblyStore((s) => s.selectedParts[0] ?? null)
 
   const [mode, setMode] = useState<Mode>('translation')
   const [position, setPosition] = useState<[number, number, number]>([0, 0, 0])

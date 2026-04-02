@@ -47,14 +47,14 @@ function NeighborsList({
 }
 
 export default function NeighborhoodModal() {
-  const {
-    selectedPart,
-    neighbors,
-    neighborhoodLevel,
-    setNeighborhoodLevel,
-    clearNeighborhood,
-  } = useAssemblyStore()
+  const selectedParts = useAssemblyStore((s) => s.selectedParts)
+  const neighbors = useAssemblyStore((s) => s.neighbors)
+  const neighborhoodLevel = useAssemblyStore((s) => s.neighborhoodLevel)
+  const setNeighborhoodLevel = useAssemblyStore((s) => s.setNeighborhoodLevel)
+  const clearNeighborhood = useAssemblyStore((s) => s.clearNeighborhood)
   const [mode, setMode] = useState<NeighborMode>('hierarchy')
+
+  const selectedPart = selectedParts[0] ?? null
 
   return (
     <div className="flex flex-col gap-4">

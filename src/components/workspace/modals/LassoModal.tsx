@@ -3,9 +3,10 @@
 import { useAssemblyStore } from '@/store/assemblyStore'
 
 export default function LassoModal() {
-  const { selectedPart, setSelectedPart } = useAssemblyStore()
+  const selectedParts = useAssemblyStore((s) => s.selectedParts)
+  const clearSelection = useAssemblyStore((s) => s.clearSelection)
 
-  const selectedCount = selectedPart ? 1 : 0
+  const selectedCount = selectedParts.length
 
   return (
     <div className="flex flex-col gap-4">
@@ -19,7 +20,7 @@ export default function LassoModal() {
 
       {/* Reset */}
       <button
-        onClick={() => setSelectedPart(null)}
+        onClick={clearSelection}
         disabled={selectedCount === 0}
         className={`w-full px-3 py-2.5 rounded-lg text-[13px] font-semibold transition-colors duration-150 border
           ${
