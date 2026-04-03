@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { HexColorPicker } from 'react-colorful'
 
-import SelectedPart from '@/components/workspace/modals/color/SelectedPart'
+import SelectedParts from '@/components/ui/SelectedParts'
 import ColorPreview from '@/components/workspace/modals/color/ColorPreview'
 import EyeDropperButton from '@/components/workspace/modals/color/EyeDropperButton'
 import RandomColorButton from '@/components/workspace/modals/color/RandomColorButton'
@@ -48,7 +48,7 @@ export default function ColorModal({
 
   return (
     <div className="flex flex-col gap-4">
-      <SelectedPart />
+      <SelectedParts />
 
       <HexColorPicker color={color} onChange={setColor} />
 

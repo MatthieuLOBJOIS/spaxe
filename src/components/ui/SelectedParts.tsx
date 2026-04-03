@@ -2,7 +2,7 @@
 
 import { useAssemblyStore } from '@/store/assemblyStore'
 
-export default function SelectedPart() {
+export default function SelectedParts() {
   const selectedParts = useAssemblyStore((s) => s.selectedParts)
 
   const count = selectedParts.length

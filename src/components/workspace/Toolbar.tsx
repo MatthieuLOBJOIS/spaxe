@@ -48,7 +48,6 @@ type ToolbarProps = ModalControls & SceneControls
 
 const DISABLED_TOOLS = new Set([
   'lasso',
-  'transform',
   'exploded',
   'neighborhood',
   'xray',
