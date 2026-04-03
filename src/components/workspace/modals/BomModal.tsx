@@ -1,6 +1,7 @@
 'use client'
 
 import { useAssemblyStore } from '@/store/assemblyStore'
+import { useColorStore } from '@/store/colorStore'
 import { useAssembly } from '@/hooks/useAssembly'
 import { getEffectiveColor } from '@/lib/assemblyLoader'
 
@@ -10,7 +11,8 @@ interface BomModalProps {
 
 export default function BomModal({ assemblyUrl }: BomModalProps) {
   const assembly = useAssembly(assemblyUrl)
-  const { selectedParts, setSelectedPart, partColors } = useAssemblyStore()
+  const { selectedParts, setSelectedPart } = useAssemblyStore()
+  const { partColors } = useColorStore()
 
   if (!assembly)
     return <div className="text-white/30 text-xs font-mono">Loading...</div>

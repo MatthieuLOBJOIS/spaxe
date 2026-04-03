@@ -7,6 +7,7 @@ import { Outlines } from '@react-three/drei'
 import { Part } from '@/types/assembly'
 import { getPartColor, getSTLUrl, hasTransforms } from '@/lib/assemblyLoader'
 import { useAssemblyStore } from '@/store/assemblyStore'
+import { useColorStore } from '@/store/colorStore'
 
 interface PartMeshProps {
   part: Part
@@ -24,11 +25,9 @@ function PartMesh({ part, basePath }: PartMeshProps) {
 
   const isVisible = useAssemblyStore((s) => s.visibleParts[part.file] ?? true)
 
-  const finalColor = useAssemblyStore(
-    (s) => s.partColors[part.file] ?? baseColor
-  )
+  const finalColor = useColorStore((s) => s.partColors[part.file] ?? baseColor)
 
-  const finalOpacity = useAssemblyStore((s) => s.partOpacity[part.file] ?? 1)
+  const finalOpacity = useColorStore((s) => s.partOpacity[part.file] ?? 1)
 
   if (!isVisible) return null
 

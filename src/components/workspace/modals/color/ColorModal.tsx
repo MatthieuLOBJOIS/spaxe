@@ -12,6 +12,7 @@ import ColorPresets from '@/components/workspace/modals/color/ColorPresets'
 import ApplyButton from '@/components/ui/ApplyButton'
 
 import { useAssemblyStore } from '@/store/assemblyStore'
+import { useColorStore } from '@/store/colorStore'
 import { randomHex } from '@/lib/colorUtils'
 
 interface ColorModalProps {
@@ -27,8 +28,8 @@ export default function ColorModal({
   const [opacity, setOpacity] = useState(initialOpacity)
 
   const selectedParts = useAssemblyStore((s) => s.selectedParts)
-  const setPartColor = useAssemblyStore((s) => s.setPartColor)
-  const setPartOpacity = useAssemblyStore((s) => s.setPartOpacity)
+  const setPartColor = useColorStore((s) => s.setPartColor)
+  const setPartOpacity = useColorStore((s) => s.setPartOpacity)
 
   const hasSelection = selectedParts.length > 0
 

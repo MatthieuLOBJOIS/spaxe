@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { Part } from '@/types/assembly'
 import { useAssemblyStore } from '@/store/assemblyStore'
 import { getEffectiveColor } from '@/lib/assemblyLoader'
+import { useColorStore } from '@/store/colorStore'
 
 interface PanelLeftProps {
   parts: Part[]
@@ -71,8 +72,9 @@ export default function PanelLeft({ parts }: PanelLeftProps) {
     visibleParts,
     setPartVisible,
     initVisibleParts,
-    partColors,
   } = useAssemblyStore()
+
+  const { partColors } = useColorStore()
 
   useEffect(() => {
     initVisibleParts(parts.map((p) => p.file))
