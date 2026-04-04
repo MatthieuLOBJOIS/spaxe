@@ -45,13 +45,7 @@ interface SceneControls {
 
 type ToolbarProps = ModalControls & SceneControls
 
-const DISABLED_TOOLS = new Set([
-  'lasso',
-  'exploded',
-  'neighborhood',
-  'xray',
-  'grid',
-])
+const DISABLED_TOOLS = new Set(['lasso', 'neighborhood', 'xray', 'grid'])
 
 // ── Séparateur ───────────────────────────────────────────
 function Sep() {
