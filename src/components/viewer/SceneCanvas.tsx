@@ -7,10 +7,11 @@ import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib'
 import * as THREE from 'three'
 
 import { Assembly } from '@/types/assembly'
-import AssemblyViewer from './AssemblyViewer'
-import GhostShape from './GhostShape'
-import CameraSync from './CameraSync'
+import AssemblyViewer from '@/components/viewer/AssemblyViewer'
+import GhostShape from '@/components/viewer/GhostShape'
+import CameraSync from '@/components/viewer/CameraSync'
 import { useAssemblyStore } from '@/store/assemblyStore'
+import { useCameraStore } from '@/store/cameraStore'
 
 interface SceneCanvasProps {
   assembly?: Assembly | null
@@ -32,7 +33,7 @@ export default function SceneCanvas({
   navQuatRef,
 }: SceneCanvasProps) {
   const orbitRef = useRef<OrbitControlsImpl>(null)
-
+  const orbitEnabled = useCameraStore((s) => s.orbitEnabled)
   const clearSelection = useAssemblyStore((s) => s.clearSelection)
 
   const hasAssembly = !!(assembly && basePath)
@@ -84,6 +85,7 @@ export default function SceneCanvas({
       {/* Controls */}
       <OrbitControls
         ref={orbitRef}
+        enabled={orbitEnabled}
         enablePan={interactive}
         enableZoom={interactive}
         enableRotate={interactive}

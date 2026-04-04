@@ -14,6 +14,9 @@ interface CameraStore {
 
   isDraggingNav: boolean
   setIsDraggingNav: (v: boolean) => void
+
+  orbitEnabled: boolean
+  setOrbitEnabled: (enabled: boolean) => void
 }
 
 export const useCameraStore = create<CameraStore>((set) => ({
@@ -29,4 +32,7 @@ export const useCameraStore = create<CameraStore>((set) => ({
 
   isDraggingNav: false,
   setIsDraggingNav: (v) => set({ isDraggingNav: v }),
+
+  orbitEnabled: true,
+  setOrbitEnabled: (enabled) => set({ orbitEnabled: enabled }),
 }))

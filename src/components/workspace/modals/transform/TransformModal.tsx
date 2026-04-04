@@ -1,61 +1,71 @@
 'use client'
 
-import { useState } from 'react'
 import { useAssemblyStore } from '@/store/assemblyStore'
+import { useTransformStore } from '@/store/transformStore'
+import { ManualDelta } from '@/types/transform'
+import { DEFAULT_DELTA } from '@/config/workspace/modals/defaultTransform'
+
 import SelectedParts from '@/components/ui/SelectedParts'
 import XYZInput from '@/components/workspace/modals/transform/XYZInput'
-
+import ResetButton from '@/components/ui/ResetButton'
 import ResetAllButton from '@/components/ui/ResetAllButton'
-import ResetButton from '@/components/ui/ResetButtons'
 
 export default function TransformModal() {
   const selectedPart = useAssemblyStore((s) => s.selectedParts[0] ?? null)
 
-  const [position, setPosition] = useState<[number, number, number]>([0, 0, 0])
-  const [rotation, setRotation] = useState<[number, number, number]>([0, 0, 0])
+  const manualDelta = useTransformStore((s) =>
+    selectedPart
+      ? (s.manualDeltas[selectedPart] ?? DEFAULT_DELTA)
+      : DEFAULT_DELTA
+  )
+  const setManualDelta = useTransformStore((s) => s.setManualDelta)
+  const resetManualDelta = useTransformStore((s) => s.resetManualDelta)
+  const resetAllManualDeltas = useTransformStore((s) => s.resetAllManualDeltas)
+  const transformMode = useTransformStore((s) => s.transformMode)
+  const setTransformMode = useTransformStore((s) => s.setTransformMode)
 
   const updateAxis = (
-    setter: React.Dispatch<React.SetStateAction<[number, number, number]>>,
+    field: keyof ManualDelta,
     axis: 0 | 1 | 2,
     value: number
   ) => {
-    setter((prev) => {
-      const next: [number, number, number] = [...prev]
-      next[axis] = value
-      return next
-    })
+    if (!selectedPart) return
+    const next = [...manualDelta[field]] as ManualDelta[typeof field]
+    next[axis] = value
+    setManualDelta(selectedPart, { [field]: next })
   }
 
-  const resetSelected = () => {
-    setPosition([0, 0, 0])
-    setRotation([0, 0, 0])
+  const resetSelected = (): void => {
+    if (!selectedPart) return
+    resetManualDelta(selectedPart)
   }
 
-  const resetAll = () => {
-    setPosition([0, 0, 0])
-    setRotation([0, 0, 0])
+  const resetAll = (): void => {
+    resetAllManualDeltas()
   }
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Pièce sélectionnée */}
       <SelectedParts />
 
       {/* Translation */}
       <XYZInput
         label="POSITION"
-        values={position}
-        onChange={(axis, val) => updateAxis(setPosition, axis, val)}
+        labelActive={transformMode === 'translate'}
+        onLabelClick={() => setTransformMode('translate')}
+        values={manualDelta.translation}
+        onChange={(axis, val) => updateAxis('translation', axis, val)}
       />
 
       {/* Rotation */}
       <XYZInput
         label="ROTATION (°)"
-        values={rotation}
-        onChange={(axis, val) => updateAxis(setRotation, axis, val)}
+        labelActive={transformMode === 'rotate'}
+        onLabelClick={() => setTransformMode('rotate')}
+        values={manualDelta.rotation}
+        onChange={(axis, val) => updateAxis('rotation', axis, val)}
       />
 
-      {/* Boutons reset */}
       <div className="flex gap-2 pt-2 border-t border-white/6">
         <ResetButton onReset={resetSelected} disabled={!selectedPart} />
         <ResetAllButton onReset={resetAll} />

@@ -8,16 +8,29 @@ const AXES = [
 
 type XYZInputProps = {
   label: string
+  labelActive?: boolean
+  onLabelClick?: () => void
   values: [number, number, number]
   onChange: (axis: 0 | 1 | 2, value: number) => void
 }
 
-export default function XYZInput({ label, values, onChange }: XYZInputProps) {
+export default function XYZInput({
+  label,
+  labelActive,
+  onLabelClick,
+  values,
+  onChange,
+}: XYZInputProps) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-white/30 text-[10px] font-mono tracking-[1px]">
+      <button
+        onClick={onLabelClick}
+        className={`text-[10px] font-mono tracking-[1px] text-left transition-colors duration-150
+          ${labelActive ? 'text-[#F26522]' : 'text-white/30 hover:text-white/50'}
+          ${onLabelClick ? 'cursor-pointer' : 'cursor-default'}`}
+      >
         {label}
-      </span>
+      </button>
       <div className="flex gap-2">
         {AXES.map(({ label: axis, color }, i) => (
           <div

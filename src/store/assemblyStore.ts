@@ -8,24 +8,6 @@ interface AssemblyStore {
   visibleParts: Record<string, boolean>
   setPartVisible: (file: string, visible: boolean) => void
   initVisibleParts: (files: string[]) => void
-
-  // ── Transform manuel
-  manualDeltas: Record<
-    string,
-    {
-      translation: [number, number, number]
-      rotation: [number, number, number]
-    }
-  >
-  setManualDelta: (
-    partId: string,
-    delta: Partial<{
-      translation: [number, number, number]
-      rotation: [number, number, number]
-    }>
-  ) => void
-  resetManualDelta: (partId: string) => void
-  resetAllManualDeltas: () => void
 }
 
 export const useAssemblyStore = create<AssemblyStore>((set) => ({
@@ -56,26 +38,4 @@ export const useAssemblyStore = create<AssemblyStore>((set) => ({
     })),
   initVisibleParts: (files) =>
     set({ visibleParts: Object.fromEntries(files.map((f) => [f, true])) }),
-
-  manualDeltas: {},
-  setManualDelta: (partId, delta) =>
-    set((s) => ({
-      manualDeltas: {
-        ...s.manualDeltas,
-        [partId]: {
-          translation: delta.translation ??
-            s.manualDeltas[partId]?.translation ?? [0, 0, 0],
-          rotation: delta.rotation ??
-            s.manualDeltas[partId]?.rotation ?? [0, 0, 0],
-        },
-      },
-    })),
-  resetManualDelta: (partId) =>
-    set((s) => ({
-      manualDeltas: {
-        ...s.manualDeltas,
-        [partId]: { translation: [0, 0, 0], rotation: [0, 0, 0] },
-      },
-    })),
-  resetAllManualDeltas: () => set({ manualDeltas: {} }),
 }))
