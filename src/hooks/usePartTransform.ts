@@ -11,7 +11,6 @@ export function usePartTransform(
   const manualDelta = useTransformStore(
     (s) => s.manualDeltas[partFile] ?? DEFAULT_DELTA
   )
-  console.log(partFile, 'translation:', manualDelta.translation)
 
   const finalPosition: ManualDelta['translation'] = [
     basePosition[0] + manualDelta.translation[0],

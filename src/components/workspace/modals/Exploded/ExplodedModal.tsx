@@ -6,6 +6,7 @@ import Slider from '@/components/ui/Slider'
 import PlayResetButton from '@/components/workspace/modals/Exploded/PlayResetButton'
 import AxisSelector from '@/components/workspace/modals/Exploded/AxisSelector'
 
+import { useExplodedStore } from '@/store/explodedStore'
 import { useExplodedAnimation } from '@/hooks/useExplodedAnimation'
 import { type Axis } from '@/config/workspace/modals/defaultExploded'
 
@@ -18,13 +19,23 @@ export default function ExplodedModal() {
   useExplodedAnimation({
     playing,
     directionRef,
-    onTick: setValue,
+    onTick: (updater) => {
+      setValue((prev) => {
+        const next = updater(prev)
+        setExplosionFactor(next)
+        return next
+      })
+    },
     onEnd: () => setPlaying(false),
   })
+
+  const setExplosionFactor = useExplodedStore((s) => s.setExplosionFactor)
+  const setExplosionAxis = useExplodedStore((s) => s.setExplosionAxis)
 
   // ── Handlers ─────────────────────────────────────────
 
   const handlePlay = () => {
+    if (value >= 100) setValue(0)
     directionRef.current = 'forward'
     setPlaying(true)
   }
@@ -42,12 +53,19 @@ export default function ExplodedModal() {
   const handleSlider = (v: number) => {
     setPlaying(false)
     setValue(v)
+    setExplosionFactor(v)
   }
 
   return (
     <div className="flex flex-col gap-4">
       {/* ── Axe d'explosion ─────────────────────────── */}
-      <AxisSelector value={axis} onChange={setAxis} />
+      <AxisSelector
+        value={axis}
+        onChange={(a) => {
+          setAxis(a)
+          setExplosionAxis(a)
+        }}
+      />
 
       {/* ── Slider ──────────────────────────────────── */}
       <Slider

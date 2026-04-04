@@ -4,6 +4,10 @@ import { useEffect, useRef } from 'react'
 
 const SPEED = 0.5
 
+// Gère la boucle d'animation requestAnimationFrame pour l'explosion.
+// Incrémente ou décrémente la valeur à chaque frame selon la direction
+// (forward = 0→100, backward = 100→0) jusqu'à atteindre la limite.
+
 interface UseExplodedAnimationProps {
   playing: boolean
   directionRef: React.RefObject<'forward' | 'backward'>

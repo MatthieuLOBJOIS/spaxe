@@ -1,8 +1,8 @@
 'use client'
 
-import { useRef, useMemo } from 'react'
-import { useLoader, ThreeEvent } from '@react-three/fiber'
-import { STLLoader } from 'three-stdlib'
+import { useRef } from 'react'
+import { ThreeEvent } from '@react-three/fiber'
+
 import { Outlines } from '@react-three/drei'
 import * as THREE from 'three'
 
@@ -13,12 +13,16 @@ import { useModalStore } from '@/store/modalStore'
 import { useAssemblyStore } from '@/store/assemblyStore'
 import { useColorStore } from '@/store/colorStore'
 import { useTransformStore } from '@/store/transformStore'
-import { usePartTransform } from '@/hooks/usePartTransform'
 
-import { getPartColor, getSTLUrl, hasTransforms } from '@/lib/assemblyLoader'
+import { usePartGeometry } from '@/hooks/usePartGeometry'
+import { useRegisterPartCentroid } from '@/hooks/useRegisterPartCentroid'
+import { useExplosionOffset } from '@/hooks/useExplosionOffset'
+import { usePartTransform } from '@/hooks/usePartTransform'
+import { getPartColor, hasTransforms } from '@/lib/assemblyLoader'
+import { DEFAULT_DELTA } from '@/config/workspace/modals/defaultTransform'
+
 import { Part } from '@/types/assembly'
 import { ManualDelta } from '@/types/transform'
-import { DEFAULT_DELTA } from '@/config/workspace/modals/defaultTransform'
 
 interface PartMeshProps {
   part: Part
@@ -28,17 +32,11 @@ interface PartMeshProps {
 export default function PartMesh({ part, basePath }: PartMeshProps) {
   const meshRef = useRef<THREE.Mesh>(null!)
 
-  const url = getSTLUrl(basePath, part.file)
-  const geometry = useLoader(STLLoader, url)
-
-  const { centeredGeometry, geometryOffset } = useMemo(() => {
-    const clone = geometry.clone()
-    clone.computeBoundingBox()
-    const offset = new THREE.Vector3()
-    clone.boundingBox!.getCenter(offset)
-    clone.center()
-    return { centeredGeometry: clone, geometryOffset: offset }
-  }, [geometry])
+  const { centeredGeometry, geometryOffset } = usePartGeometry(
+    basePath,
+    part.file
+  )
+  useRegisterPartCentroid(part.file, geometryOffset)
 
   const baseColor = getPartColor(part)
 
@@ -62,12 +60,12 @@ export default function PartMesh({ part, basePath }: PartMeshProps) {
   const { finalPosition: baseComputedPosition, finalRotation } =
     usePartTransform(part.file, basePosition, baseRotation)
 
+  const explosionOffset = useExplosionOffset(part.file)
   const finalPosition: ManualDelta['translation'] = [
-    baseComputedPosition[0] + geometryOffset.x,
-    baseComputedPosition[1] + geometryOffset.y,
-    baseComputedPosition[2] + geometryOffset.z,
+    baseComputedPosition[0] + geometryOffset.x + explosionOffset[0],
+    baseComputedPosition[1] + geometryOffset.y + explosionOffset[1],
+    baseComputedPosition[2] + geometryOffset.z + explosionOffset[2],
   ]
-
   const isSelected = selectedParts.includes(part.file)
 
   const primaryPart = selectedParts[0]
