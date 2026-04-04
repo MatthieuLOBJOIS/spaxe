@@ -70,6 +70,9 @@ export default function PartMesh({ part, basePath }: PartMeshProps) {
 
   const isSelected = selectedParts.includes(part.file)
 
+  const primaryPart = selectedParts[0]
+  const isPrimary = part.file === primaryPart
+
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation()
     if (e.delta > 2) return
@@ -100,7 +103,7 @@ export default function PartMesh({ part, basePath }: PartMeshProps) {
         {isSelected && <Outlines thickness={3} color="#22d3ee" />}
       </mesh>
 
-      {isSelected && isTransformOpen && transformMode === 'translate' && (
+      {isPrimary && isTransformOpen && transformMode === 'translate' && (
         <GizmoTranslate
           meshRef={meshRef}
           partFile={part.file}
@@ -108,7 +111,7 @@ export default function PartMesh({ part, basePath }: PartMeshProps) {
           geometryOffset={geometryOffset}
         />
       )}
-      {isSelected && isTransformOpen && transformMode === 'rotate' && (
+      {isPrimary && isTransformOpen && transformMode === 'rotate' && (
         <GizmoRotate
           meshRef={meshRef}
           partFile={part.file}

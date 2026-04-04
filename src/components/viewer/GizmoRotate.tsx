@@ -1,9 +1,9 @@
-import { RefObject } from 'react'
+import { RefObject, useRef } from 'react'
 import { TransformControls } from '@react-three/drei'
+import type { TransformControls as TransformControlsImpl } from 'three-stdlib'
 import * as THREE from 'three'
 
-import { useTransformStore } from '@/store/transformStore'
-import { useCameraStore } from '@/store/cameraStore'
+import { useGizmoControls } from '@/hooks/useGizmoControls'
 import { ManualDelta } from '@/types/transform'
 
 interface GizmoRotateProps {
@@ -17,32 +17,25 @@ export default function GizmoRotate({
   partFile,
   baseRotation,
 }: GizmoRotateProps) {
-  const setManualDelta = useTransformStore((s) => s.setManualDelta)
-  const setOrbitEnabled = useCameraStore((s) => s.setOrbitEnabled)
+  const controlsRef = useRef<TransformControlsImpl>(null)
 
-  const handleMouseDown = () => setOrbitEnabled(false)
-
-  const handleMouseUp = () => {
-    setOrbitEnabled(true)
-    if (!meshRef.current) return
-    const rot = meshRef.current.rotation
-    setManualDelta(partFile, {
-      rotation: [
-        THREE.MathUtils.radToDeg(rot.x) - baseRotation[0],
-        THREE.MathUtils.radToDeg(rot.y) - baseRotation[1],
-        THREE.MathUtils.radToDeg(rot.z) - baseRotation[2],
-      ],
-    })
-  }
+  const { handleMouseDown, handleMouseUp, handleChange } = useGizmoControls({
+    meshRef,
+    partFile,
+    mode: 'rotate',
+    baseRotation,
+  })
 
   return (
     <TransformControls
+      ref={controlsRef}
       object={meshRef}
       mode="rotate"
       size={0.8}
       space="local"
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
+      onChange={handleChange}
     />
   )
 }

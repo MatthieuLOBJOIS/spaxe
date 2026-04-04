@@ -10,6 +10,7 @@ interface TransformStore {
 
   manualDeltas: Record<string, ManualDelta>
   setManualDelta: (partId: string, delta: Partial<ManualDelta>) => void
+  setManualDeltas: (updates: Record<string, Partial<ManualDelta>>) => void
   resetManualDelta: (partId: string) => void
   resetAllManualDeltas: () => void
 }
@@ -31,6 +32,18 @@ export const useTransformStore = create<TransformStore>((set) => ({
         },
       },
     })),
+  setManualDeltas: (updates: Record<string, Partial<ManualDelta>>) =>
+    set((s) => {
+      const newDeltas = { ...s.manualDeltas }
+      Object.entries(updates).forEach(([id, delta]) => {
+        newDeltas[id] = {
+          translation: delta.translation ??
+            newDeltas[id]?.translation ?? [0, 0, 0],
+          rotation: delta.rotation ?? newDeltas[id]?.rotation ?? [0, 0, 0],
+        }
+      })
+      return { manualDeltas: newDeltas }
+    }),
   resetManualDelta: (partId) =>
     set((s) => ({
       manualDeltas: {
