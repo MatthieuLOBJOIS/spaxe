@@ -8,6 +8,7 @@ interface NeighborhoodStore {
   setNeighborhoodLevel: (level: number) => void
   setNeighbors: (neighbors: string[]) => void
   clearNeighborhood: () => void
+  reset: () => void
 }
 
 export const useNeighborhoodStore = create<NeighborhoodStore>((set) => ({
@@ -19,4 +20,6 @@ export const useNeighborhoodStore = create<NeighborhoodStore>((set) => ({
   setNeighborhoodLevel: (level) => set({ neighborhoodLevel: level }),
   setNeighbors: (neighbors) => set({ neighbors }),
   clearNeighborhood: () => set({ neighborhoodEnabled: false, neighbors: [] }),
+  reset: () =>
+    set({ neighborhoodEnabled: false, neighborhoodLevel: 1, neighbors: [] }),
 }))

@@ -9,6 +9,7 @@ interface XRayStore {
   setXrayMode: (mode: XRayMode) => void
   setXrayOpacity: (value: number) => void
   setXrayKeepSelectedSolid: (v: boolean) => void
+  reset: () => void
 }
 
 export const useXRayStore = create<XRayStore>((set) => ({
@@ -18,4 +19,6 @@ export const useXRayStore = create<XRayStore>((set) => ({
   setXrayMode: (mode) => set({ xrayMode: mode }),
   setXrayOpacity: (value) => set({ xrayOpacity: value }),
   setXrayKeepSelectedSolid: (v) => set({ xrayKeepSelectedSolid: v }),
+  reset: () =>
+    set({ xrayMode: 'ghost', xrayOpacity: 40, xrayKeepSelectedSolid: true }),
 }))

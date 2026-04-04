@@ -8,6 +8,7 @@ interface AssemblyStore {
   visibleParts: Record<string, boolean>
   setPartVisible: (file: string, visible: boolean) => void
   initVisibleParts: (files: string[]) => void
+  reset: () => void
 }
 
 export const useAssemblyStore = create<AssemblyStore>((set) => ({
@@ -38,4 +39,6 @@ export const useAssemblyStore = create<AssemblyStore>((set) => ({
     })),
   initVisibleParts: (files) =>
     set({ visibleParts: Object.fromEntries(files.map((f) => [f, true])) }),
+
+  reset: () => set({ selectedParts: [], visibleParts: {} }),
 }))

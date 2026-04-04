@@ -5,6 +5,7 @@ interface SceneStore {
   orthoMode: boolean
   onGridToggle: () => void
   onOrthoModeToggle: () => void
+  reset: () => void
 }
 
 export const useSceneStore = create<SceneStore>((set) => ({
@@ -12,4 +13,5 @@ export const useSceneStore = create<SceneStore>((set) => ({
   orthoMode: false,
   onGridToggle: () => set((state) => ({ grid: !state.grid })),
   onOrthoModeToggle: () => set((state) => ({ orthoMode: !state.orthoMode })),
+  reset: () => set({ grid: false, orthoMode: false }),
 }))

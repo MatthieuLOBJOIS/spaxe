@@ -38,4 +38,5 @@ export const useModalStore = create<ModalStore>((set) => ({
         topZIndex: newZ,
       }
     }),
+  reset: () => set({ modals: DEFAULT_MODALS, topZIndex: 10 }),
 }))

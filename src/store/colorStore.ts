@@ -5,6 +5,7 @@ interface ColorStore {
   partOpacity: Record<string, number>
   setPartColor: (file: string, color: string) => void
   setPartOpacity: (file: string, opacity: number) => void
+  reset: () => void
 }
 
 export const useColorStore = create<ColorStore>((set) => ({
@@ -16,4 +17,5 @@ export const useColorStore = create<ColorStore>((set) => ({
     set((state) => ({
       partOpacity: { ...state.partOpacity, [file]: opacity },
     })),
+  reset: () => set({ partColors: {}, partOpacity: {} }),
 }))

@@ -17,6 +17,8 @@ interface CameraStore {
 
   orbitEnabled: boolean
   setOrbitEnabled: (enabled: boolean) => void
+
+  reset: () => void
 }
 
 export const useCameraStore = create<CameraStore>((set) => ({
@@ -35,4 +37,6 @@ export const useCameraStore = create<CameraStore>((set) => ({
 
   orbitEnabled: true,
   setOrbitEnabled: (enabled) => set({ orbitEnabled: enabled }),
+
+  reset: () => set({ orbitEnabled: true }),
 }))

@@ -13,6 +13,7 @@ interface TransformStore {
   setManualDeltas: (updates: Record<string, Partial<ManualDelta>>) => void
   resetManualDelta: (partId: string) => void
   resetAllManualDeltas: () => void
+  reset: () => void
 }
 
 export const useTransformStore = create<TransformStore>((set) => ({
@@ -52,4 +53,6 @@ export const useTransformStore = create<TransformStore>((set) => ({
       },
     })),
   resetAllManualDeltas: () => set({ manualDeltas: {} }),
+
+  reset: () => set({ transformMode: 'translate', manualDeltas: {} }),
 }))

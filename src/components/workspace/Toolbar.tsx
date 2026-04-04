@@ -1,20 +1,19 @@
 'use client'
 
-import Link from 'next/link'
 import { RotateCcw, PaintBucket, Keyboard } from 'lucide-react'
 
-import { INTERNAL_LINKS } from '@/config/landing/links'
+import ToolButton from '@/components/ui/ToolButton'
+import ViewButton from '@/components/ui/ViewButton'
+import ToggleButton from '@/components/ui/ToggleButton'
+import Logo from '@/components/ui/Logo'
+import BackButton from '@/components/ui/BackButton'
+
 import {
   SELECTION_TOOLS,
   DISPLAY_TOOLS,
   ORTHO_VIEWS,
   ORTHO_OPTIONS,
 } from '@/config/workspace/toolbar'
-
-import ToolButton from '@/components/ui/ToolButton'
-import ViewButton from '@/components/ui/ViewButton'
-import ToggleButton from '@/components/ui/ToggleButton'
-import Logo from '@/components/ui/Logo'
 
 interface ModalControls {
   lasso: boolean
@@ -189,11 +188,7 @@ export default function Toolbar({
       <Sep />
 
       {/* Back */}
-      <Link href={INTERNAL_LINKS.home.href} className="no-underline">
-        <div className="px-3.5 py-1.5 rounded-md border border-white/8 text-white/40 text-[13px] cursor-pointer transition-colors duration-150 hover:text-white hover:border-white/20">
-          Back
-        </div>
-      </Link>
+      <BackButton />
     </div>
   )
 }

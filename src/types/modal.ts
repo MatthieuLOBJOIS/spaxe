@@ -24,6 +24,7 @@ export interface ModalStore {
   setPosition: (id: ModalId, position: { x: number; y: number }) => void
   setSize: (id: ModalId, size: { w: number; h: number }) => void
   bringToFront: (id: ModalId) => void
+  reset: () => void
 }
 
 export interface DraggableModalProps {
