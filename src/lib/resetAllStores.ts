@@ -6,6 +6,7 @@ import { useXRayStore } from '@/store/xrayStore'
 import { useSceneStore } from '@/store/sceneStore'
 import { useModalStore } from '@/store/modalStore'
 import { useCameraStore } from '@/store/cameraStore'
+import { useExplodedStore } from '@/store/explodedStore'
 
 export function resetAllStores() {
   useAssemblyStore.getState().reset()
@@ -16,4 +17,5 @@ export function resetAllStores() {
   useSceneStore.getState().reset()
   useModalStore.getState().reset()
   useCameraStore.getState().reset()
+  useExplodedStore.getState().reset()
 }

@@ -38,5 +38,11 @@ export const useCameraStore = create<CameraStore>((set) => ({
   orbitEnabled: true,
   setOrbitEnabled: (enabled) => set({ orbitEnabled: enabled }),
 
-  reset: () => set({ orbitEnabled: true }),
+  reset: () =>
+    set({
+      orbitEnabled: true,
+      isDraggingNav: false,
+      navCameraQuaternion: null,
+      cameraTarget: null,
+    }),
 }))
