@@ -1,3 +1,4 @@
+/* ─── Imports ─────────────────────────────────────────────── */
 @import 'tailwindcss';
 @import '@fontsource/space-grotesk/700.css';
 @import '@fontsource/space-grotesk/400.css';
@@ -5,8 +6,11 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
+/* dark theme */
 @custom-variant dark (&:is(.dark *));
 
+/* ─── Design tokens ────────────────────────────────────────── */
+/* Spaxe brand tokens and shadcn semantic variables */
 :root {
   --color-orange: #f26522;
   --color-orange-hover: #ff8c42;
@@ -31,6 +35,8 @@
   --ring: oklch(0.65 0.18 40);
 }
 
+/* ─── Tailwind theme mapping ───────────────────────────────── */
+/* Maps CSS variables to Tailwind utility classes */
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: var(--font-sans);
@@ -74,6 +80,7 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* ─── Base styles ──────────────────────────────────────────── */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -85,6 +92,7 @@
   }
 }
 
+/* ─── Animations ───────────────────────────────────────────── */
 @keyframes bounce {
   0%,
   100% {
@@ -100,14 +108,15 @@
   z-index: 9999 !important;
 }
 
-/* Viewer fullscreen */
+/* ─── Overrides ────────────────────────────────────────────── */
+/* Viewer fullscreen layout */
 .page-fullscreen {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
 }
 
-/* Cache les flèches des inputs number */
+/* Hide number input spinners */
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;

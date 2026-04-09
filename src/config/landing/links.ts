@@ -1,4 +1,3 @@
-// Liens internes
 export const INTERNAL_LINKS = {
   home: { href: '/', label: 'Home' },
   viewer: { href: '/viewer', label: 'Start' },
@@ -6,7 +5,6 @@ export const INTERNAL_LINKS = {
   howItWorks: { href: '#how-it-works', label: 'How it works' },
 } as const
 
-// Liens externes
 export const EXTERNAL_LINKS = {
   github: { href: 'https://github.com/MatthieuLOBJOIS/spaxe', label: 'GitHub' },
   nextjs: { href: 'https://nextjs.org', label: 'Next.js 16' },
@@ -15,7 +13,6 @@ export const EXTERNAL_LINKS = {
   vercel: { href: 'https://vercel.com', label: 'Vercel' },
 } as const
 
-// Groupes de liens pour la navbar et le footer
 export const NAV_LINKS = [
   INTERNAL_LINKS.features,
   INTERNAL_LINKS.howItWorks,
@@ -35,5 +32,4 @@ export const FOOTER_STACK_LINKS = [
   EXTERNAL_LINKS.vercel,
 ] as const
 
-// DEMO
-export const DEMO_LINK = '/viewer?demo=robot-atos'
+export const DEMO_LINK = '/viewer/demo/robot-atos'

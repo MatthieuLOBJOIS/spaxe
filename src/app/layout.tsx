@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { PropsWithChildren } from 'react'
 import { TooltipProvider } from '@/components/ui/tooltip'
 
 export const metadata: Metadata = {
@@ -11,11 +12,8 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+// Root layout — defines shared HTML structure, metadata, and global styles
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <body>
