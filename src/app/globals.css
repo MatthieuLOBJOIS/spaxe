@@ -33,11 +33,16 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.65 0.18 40);
+  --color-axis-x: #e85c5c;
+  --color-axis-y: #6bc668;
+  --color-axis-z: #5b9ee8;
 }
 
 /* ─── Tailwind theme mapping ───────────────────────────────── */
 /* Maps CSS variables to Tailwind utility classes */
 @theme inline {
+  --color-orange: var(--color-orange);
+  --color-orange-hover: var(--color-orange-hover);
   --font-heading: var(--font-sans);
   --font-sans: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
