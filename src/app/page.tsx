@@ -1,9 +1,9 @@
-import Navbar from '@/components/landing/Navbar'
-import Hero from '@/components/landing/Hero/Hero'
-import Features from '@/components/landing/Features/Features'
-import HowItWorks from '@/components/landing/HowItWorks/HowItWorks'
+import Navbar from '@/components/landing/navbar/Navbar'
+import Hero from '@/components/landing/hero/Hero'
+import Features from '@/components/landing/features/Features'
+import HowItWorks from '@/components/landing/howitworks/HowItWorks'
 import CTABanner from '@/components/landing/CTABanner'
-import Footer from '@/components/landing/Footer/Footer'
+import Footer from '@/components/landing/footer/Footer'
 
 // Landing page — entry point of the application
 export default function HomePage() {
