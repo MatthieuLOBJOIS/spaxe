@@ -54,8 +54,20 @@
   --ring: oklch(0.65 0.18 40);
 
   /* Spaxe brand */
-  --color-orange: #f26522;
-  --color-orange-hover: #ff8c42;
+  --color-orange: oklch(67.584% 0.18861 42.024);
+  --color-orange-hover: oklch(75.356% 0.16361 50.386);
+
+  /* ─── Hero tokens ───────────────────────────── */
+  --hero-accent: oklch(67.584% 0.18861 42.024);
+  --hero-accent-hover: oklch(75.356% 0.16361 50.386);
+
+  /* badge */
+  --hero-badge-bg: oklch(0.18 0.04 40 / 12%);
+  --hero-badge-border: oklch(0.18 0.04 40 / 30%);
+
+  /* text system */
+  --text-hero-muted: oklch(1 0 0 / 50%);
+  --text-hero-dim: oklch(1 0 0 / 30%);
 
   /* ─── Footer ───────────────────────────── */
   --footer: oklch(0.12 0 0);
@@ -66,9 +78,9 @@
   --text-dim: oklch(1 0 0 / 22%);
 
   /* Debug axes */
-  --color-axis-x: #e85c5c;
-  --color-axis-y: #6bc668;
-  --color-axis-z: #5b9ee8;
+  --color-axis-x: oklch(65.57% 0.17436 23.171);
+  --color-axis-y: oklch(74.778% 0.15679 143.214);
+  --color-axis-z: oklch(68.7% 0.12963 252.322);
 }
 
 /* ─────────────────────────────────────────────
@@ -110,6 +122,14 @@
   /* Custom brand */
   --color-orange: var(--color-orange);
   --color-orange-hover: var(--color-orange-hover);
+
+  /* Hero */
+  --color-hero-accent: var(--hero-accent);
+  --color-hero-accent-hover: var(--hero-accent-hover);
+  --color-hero-badge-bg: var(--hero-badge-bg);
+  --color-hero-badge-border: var(--hero-badge-border);
+  --color-text-hero-muted: var(--text-hero-muted);
+  --color-text-hero-dim: var(--text-hero-dim);
 
   /* Footer */
   --color-footer: var(--footer);
