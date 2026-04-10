@@ -12,12 +12,14 @@
 /* ─── Design tokens ────────────────────────────────────────── */
 /* Spaxe brand tokens and shadcn semantic variables */
 :root {
+  --border: oklch(1 0 0 / 10%);
+  --color-surface: #1a1a1c;
   --color-orange: #f26522;
   --color-orange-hover: #ff8c42;
   --radius: 0.625rem;
   --background: oklch(0.1 0 0);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.13 0 0);
+  --card: oklch(41.302% 0.20662 272.715);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.13 0 0);
   --popover-foreground: oklch(0.985 0 0);
@@ -41,6 +43,8 @@
 /* ─── Tailwind theme mapping ───────────────────────────────── */
 /* Maps CSS variables to Tailwind utility classes */
 @theme inline {
+  --border: oklch(1 0 0 / 7%);
+  --color-surface: var(--color-surface);
   --color-orange: var(--color-orange);
   --color-orange-hover: var(--color-orange-hover);
   --font-heading: var(--font-sans);
