@@ -3,7 +3,7 @@ import Hero from '@/components/landing/Hero'
 import Features from '@/components/landing/Features/Features'
 import HowItWorks from '@/components/landing/HowItWorks'
 import CTABanner from '@/components/landing/CTABanner'
-import Footer from '@/components/landing/Footer'
+import Footer from '@/components/landing/Features/Footer/Footer'
 
 // Landing page — entry point of the application
 export default function HomePage() {

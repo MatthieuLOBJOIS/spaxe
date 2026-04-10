@@ -1,107 +1,168 @@
-/* ─── Imports ─────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────
+   IMPORTS
+────────────────────────────────────────────── */
 @import 'tailwindcss';
-@import '@fontsource/space-grotesk/700.css';
-@import '@fontsource/space-grotesk/400.css';
-@import '@fontsource/geist-mono/400.css';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
-/* dark theme */
+@import '@fontsource/space-grotesk/700.css';
+@import '@fontsource/space-grotesk/400.css';
+@import '@fontsource/geist-mono/400.css';
+
+/* ─────────────────────────────────────────────
+   DARK MODE VARIANT
+────────────────────────────────────────────── */
 @custom-variant dark (&:is(.dark *));
 
-/* ─── Design tokens ────────────────────────────────────────── */
-/* Spaxe brand tokens and shadcn semantic variables */
+/* ─────────────────────────────────────────────
+   DESIGN TOKENS
+────────────────────────────────────────────── */
 :root {
-  --border: oklch(1 0 0 / 10%);
-  --color-surface: #1a1a1c;
-  --color-orange: #f26522;
-  --color-orange-hover: #ff8c42;
+  /* Layout */
   --radius: 0.625rem;
+
+  /* Base */
   --background: oklch(0.1 0 0);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(41.302% 0.20662 272.715);
+
+  /* Cards */
+  --card: oklch(19.212% 0.00401 285.944);
   --card-foreground: oklch(0.985 0 0);
+  --color-surface: #1a1a1c;
+
   --popover: oklch(0.13 0 0);
   --popover-foreground: oklch(0.985 0 0);
+
+  /* Core UI */
   --primary: oklch(0.65 0.18 40);
   --primary-foreground: oklch(0.985 0 0);
+
   --secondary: oklch(0.18 0 0);
   --secondary-foreground: oklch(0.985 0 0);
+
   --muted: oklch(0.18 0 0);
   --muted-foreground: oklch(0.6 0 0);
+
   --accent: oklch(0.18 0 0);
   --accent-foreground: oklch(0.985 0 0);
+
   --destructive: oklch(0.577 0.245 27.325);
+
+  /* Borders / Inputs */
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.65 0.18 40);
+
+  /* Spaxe brand */
+  --color-orange: #f26522;
+  --color-orange-hover: #ff8c42;
+
+  /* ─── Footer ───────────────────────────── */
+  --footer: oklch(0.12 0 0);
+  --footer-border: oklch(1 0 0 / 8%);
+
+  /* Text system (cleaner than white/xx) */
+  --text-muted: oklch(1 0 0 / 40%);
+  --text-dim: oklch(1 0 0 / 22%);
+
+  /* Debug axes */
   --color-axis-x: #e85c5c;
   --color-axis-y: #6bc668;
   --color-axis-z: #5b9ee8;
 }
 
-/* ─── Tailwind theme mapping ───────────────────────────────── */
-/* Maps CSS variables to Tailwind utility classes */
+/* ─────────────────────────────────────────────
+   TAILWIND THEME MAPPING 
+────────────────────────────────────────────── */
 @theme inline {
-  --border: oklch(1 0 0 / 7%);
+  /* Base */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Cards */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
   --color-surface: var(--color-surface);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* UI */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  /* System */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Custom brand */
   --color-orange: var(--color-orange);
   --color-orange-hover: var(--color-orange-hover);
-  --font-heading: var(--font-sans);
-  --font-sans: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-foreground: var(--foreground);
-  --color-background: var(--background);
+
+  /* Footer */
+  --color-footer: var(--footer);
+  --color-footer-border: var(--footer-border);
+  --color-text-muted: var(--text-muted);
+  --color-text-dim: var(--text-dim);
+
+  /* Radius system */
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* ─── Base styles ──────────────────────────────────────────── */
+/* ─────────────────────────────────────────────
+   BASE STYLES
+────────────────────────────────────────────── */
 @layer base {
   * {
     @apply border-border outline-ring/50;
     box-sizing: border-box;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Space Grotesk', sans-serif;
   }
 }
 
-/* ─── Animations ───────────────────────────────────────────── */
+/* ─────────────────────────────────────────────
+   UTILITIES / FIXES
+────────────────────────────────────────────── */
+
+/* fullscreen layout */
+.page-fullscreen {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* remove number input arrows */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* radix tooltip fix */
+[data-radix-popper-content-wrapper] {
+  z-index: 9999 !important;
+}
+
+/* animation */
 @keyframes bounce {
   0%,
   100% {
@@ -110,24 +171,4 @@
   50% {
     transform: translateY(6px);
   }
-}
-
-/* Shadcn tooltip override */
-[data-radix-popper-content-wrapper] {
-  z-index: 9999 !important;
-}
-
-/* ─── Overrides ────────────────────────────────────────────── */
-/* Viewer fullscreen layout */
-.page-fullscreen {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* Hide number input spinners */
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
