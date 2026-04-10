@@ -131,6 +131,13 @@
   --color-text-hero-muted: var(--text-hero-muted);
   --color-text-hero-dim: var(--text-hero-dim);
 
+  /* How it Works */
+  --hiw-bg: var(--footer);
+  --hiw-card-bg: var(--card);
+  --hiw-card-border: var(--border);
+  --hiw-accent: var(--hero-accent);
+  --hiw-text-dim: var(--text-muted);
+
   /* Footer */
   --color-footer: var(--footer);
   --color-footer-border: var(--footer-border);
