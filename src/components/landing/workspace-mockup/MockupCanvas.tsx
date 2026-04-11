@@ -1,7 +1,3 @@
-'use client'
-
-import cn from '@/lib/utils'
-
 export default function MockupCanvas() {
   return (
     <div className="flex-1 bg-background flex items-center justify-center relative">
