@@ -26,19 +26,19 @@ export default function MockupPartsTree() {
       {parts.map((part, i) => (
         <div
           key={i}
-          className={cn('flex items-center gap-2 px-3 py-1.75 border-l-2', i === 2 ? 'bg-orange/10 border-orange' : 'border-transparent')}
+          className={cn('flex items-center gap-2 px-3 py-1.75 border-l-2', i === 2 ? 'bg-[rgba(242,101,34,0.1)] border-[#F26522]' : 'border-transparent')}
         >
           <input
             type="checkbox"
             defaultChecked
-            className="w-2.5 h-2.5 shrink-0 accent-[var(--color-orange)]"
+            className="w-2.5 h-2.5 shrink-0 accent-[#F26522]"
           />
           <div
             className="w-2 h-2 rounded-full shrink-0 border border-white/20"
             style={{ background: part.color }}
           />
           <span
-            className={cn('text-[10px] truncate', i === 2 ? 'text-orange' : 'text-white/50')}
+            className={cn('text-[10px] truncate', i === 2 ? 'text-[#F26522]' : 'text-white/50')}
           >
             {part.label}
           </span>

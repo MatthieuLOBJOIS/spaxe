@@ -1,6 +1,6 @@
 export default function MockupCanvas() {
   return (
-    <div className="flex-1 bg-background flex items-center justify-center relative">
+    <div className="flex-1 bg-[#0a0a0a] flex items-center justify-center relative">
       <svg
         width="240"
         height="240"
@@ -125,7 +125,7 @@ export default function MockupCanvas() {
       </svg>
 
       {/* Label sélection */}
-      <div className="absolute bottom-4 left-3 px-2.5 py-1 bg-orange/15 border border-orange/30 rounded text-orange text-[9px] font-mono tracking-[1px]">
+      <div className="absolute bottom-4 left-3 px-2.5 py-1 bg-[rgba(242,101,34,0.15)] border border-[rgba(242,101,34,0.3)] rounded text-[#F26522] text-[9px] font-mono tracking-[1px]">
         SHAFT_A · SELECTED
       </div>
 
