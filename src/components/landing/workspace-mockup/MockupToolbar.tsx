@@ -1,7 +1,4 @@
-'use client'
-
 import Logo from '@/components/ui/Logo'
-import cn from '@/lib/utils'
 
 const TOOLBAR_BTNS = ['⤢', '↺', 'Top', 'Front']
 
