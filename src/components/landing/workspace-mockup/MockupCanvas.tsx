@@ -20,7 +20,7 @@ export default function MockupCanvas() {
             y1={y1}
             x2={x2}
             y2={y2}
-            stroke="var(--color-orange)"
+            stroke="rgba(242,101,34,0.2)"
             strokeWidth="1"
             strokeDasharray="3,3"
           />
