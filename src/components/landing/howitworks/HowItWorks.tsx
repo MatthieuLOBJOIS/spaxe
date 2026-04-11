@@ -6,7 +6,6 @@ import { STEPS } from '@/config/landing/steps'
 export default function HowItWorks() {
   return (
     <section id="how-it-works" className="bg-surface/60 px-6 md:px-[12%] py-30">
-      {/* Header */}
       <div className="mb-16">
         <div className="inline-flex px-3 py-1.5 bg-primary/10 border border-primary/25 rounded-full mb-5">
           <span className="text-primary text-[11px] font-mono tracking-[1px]">
@@ -21,14 +20,12 @@ export default function HowItWorks() {
         </h2>
       </div>
 
-      {/* Desktop grid */}
       <div className="hidden md:grid grid-cols-2 gap-8">
         {STEPS.map((s) => (
           <StepCard key={s.num} {...s} className="gap-6 p-8" />
         ))}
       </div>
 
-      {/* Mobile carousel */}
       <div className="md:hidden -mx-6 px-6">
         <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
           {STEPS.map((s) => (

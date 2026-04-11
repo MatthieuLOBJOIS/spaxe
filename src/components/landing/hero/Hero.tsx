@@ -13,7 +13,6 @@ const SceneCanvas = dynamic(() => import('@/components/viewer/SceneCanvas'), {
 export default function Hero() {
   return (
     <section className="relative min-h-screen pt-16 flex items-center overflow-hidden">
-      {/* Background 3D scene */}
       <div className="absolute inset-0 z-0">
         <SceneCanvas interactive={false} showGhost />
       </div>

@@ -24,7 +24,6 @@ export default function Navbar() {
 
           <DesktopMenu />
 
-          {/* Mobile button */}
           <button
             aria-label="Toggle menu"
             onClick={() => setMenuOpen(!menuOpen)}
