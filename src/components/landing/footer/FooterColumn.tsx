@@ -8,7 +8,7 @@ type PropsFooterColumn = {
 export default function FooterColumn({ title, children }: PropsFooterColumn) {
   return (
     <div className="flex flex-col gap-4">
-      <span className="text-foreground font-semibold text-[13px]">{title}</span>
+      <span className="text-foreground font-semibold text-sm">{title}</span>
       {children}
     </div>
   )

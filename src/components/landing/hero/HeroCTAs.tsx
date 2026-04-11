@@ -10,12 +10,12 @@ export default function HeroCTAs({ isMobile }: { isMobile: boolean }) {
     <div className="flex flex-col gap-3 items-center md:items-start">
       <div className="flex gap-3 flex-wrap justify-center md:justify-start">
         {isMobile ? (
-          <div className="flex items-center gap-2 px-7 py-3.5 bg-white/5 rounded-lg border border-white/10 text-white/30 font-bold text-[15px] cursor-not-allowed">
+          <div className="flex items-center gap-2 px-7 py-3.5 bg-white/5 rounded-lg border border-white/10 text-white/30 font-medium text-[15px] cursor-not-allowed">
             {INTERNAL_LINKS.viewer.label}
           </div>
         ) : (
           <Link href={INTERNAL_LINKS.viewer.href}>
-            <div className="flex items-center gap-2 px-7 py-3.5 bg-hero-accent hover:bg-hero-accent-hover rounded-lg text-white font-bold text-[15px] transition-colors duration-150">
+            <div className="flex items-center gap-2 px-7 py-3.5 bg-primary hover:bg-primary-hover rounded-lg text-white font-medium text-[15px] transition-colors duration-150">
               {INTERNAL_LINKS.viewer.label} <ArrowRight size={16} />
             </div>
           </Link>
@@ -23,7 +23,7 @@ export default function HeroCTAs({ isMobile }: { isMobile: boolean }) {
 
         <ExternalLink
           href={EXTERNAL_LINKS.github.href}
-          className="flex items-center gap-2 px-7 py-3.5 border border-white/20 text-white/70 font-bold text-[15px] no-underline hover:text-white hover:border-white/40 transition-colors duration-150 rounded-lg"
+          className="flex items-center gap-2 px-7 py-3.5 border border-white/20 text-white/70 font-medium text-[15px] no-underline hover:text-white hover:border-white/40 transition-colors duration-150 rounded-lg"
         >
           {EXTERNAL_LINKS.github.label}
         </ExternalLink>

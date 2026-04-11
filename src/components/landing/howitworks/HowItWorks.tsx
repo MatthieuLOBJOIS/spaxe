@@ -5,16 +5,16 @@ import { STEPS } from '@/config/landing/steps'
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="bg-hiw-bg px-[12%] py-30">
+    <section id="how-it-works" className="bg-surface/60 px-6 md:px-[12%] py-30">
       {/* Header */}
       <div className="mb-16">
-        <div className="inline-flex px-3 py-1.5 bg-hiw-card-border border border-hiw-card-border rounded-full mb-5">
-          <span className="text-hiw-accent text-[11px] font-mono tracking-[1px]">
+        <div className="inline-flex px-3 py-1.5 bg-primary/10 border border-primary/25 rounded-full mb-5">
+          <span className="text-primary text-[11px] font-mono tracking-[1px]">
             HOW IT WORKS
           </span>
         </div>
 
-        <h2 className="text-foreground font-bold text-4xl md:text-5xl tracking-[-1px] m-0">
+        <h2 className="text-foreground font-bold text-4xl md:text-5xl tracking-tight m-0">
           From file to interactive
           <br />
           assembly in seconds.

@@ -23,7 +23,7 @@ export default function ScrollIndicator() {
         height="20"
         viewBox="0 0 20 20"
         fill="none"
-        className="animate-bounce"
+        className="animate-scroll-bounce"
       >
         <path
           d="M10 4 L10 16 M4 10 L10 16 L16 10"

@@ -16,7 +16,7 @@ export default function DesktopMenu() {
       {/* CTA */}
       <div className="ml-auto hidden md:block">
         <Link href={INTERNAL_LINKS.viewer.href}>
-          <div className="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+          <div className="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-hover">
             {INTERNAL_LINKS.viewer.label}
           </div>
         </Link>

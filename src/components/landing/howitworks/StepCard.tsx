@@ -14,18 +14,18 @@ export default function StepCard({
   return (
     <div
       className={cn(
-        'flex bg-hiw-card-bg border border-hiw-card-border rounded-xl',
+        'flex bg-card border border-border rounded-xl',
         className
       )}
     >
-      <span className="text-hiw-accent font-mono font-bold opacity-40 shrink-0 leading-none text-[32px]">
+      <span className="text-primary font-mono font-bold opacity-40 shrink-0 leading-none text-[32px]">
         {num}
       </span>
 
       <div className="flex flex-col gap-2.5">
         <span className="text-foreground font-bold text-lg">{title}</span>
 
-        <span className="text-hiw-text-dim text-sm leading-relaxed">
+        <span className="text-muted-foreground text-sm leading-relaxed">
           {desc}
         </span>
       </div>

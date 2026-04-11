@@ -61,27 +61,9 @@
   --input: oklch(1 0 0 / 12%);
   --ring: var(--primary);
 
-  /* Text system */
+  /* Text */
   --text-muted: oklch(1 0 0 / 40%);
   --text-dim: oklch(1 0 0 / 22%);
-
-  /* ─── Hero ───────────────────────────── */
-  --hero-accent: var(--primary);
-  --hero-accent-hover: var(--primary-hover);
-
-  --hero-badge-bg: oklch(0.18 0.04 40 / 12%);
-  --hero-badge-border: oklch(0.18 0.04 40 / 30%);
-
-  /* ─── How It Works ───────────────────── */
-  --hiw-bg: oklch(0.12 0 0);
-  --hiw-card-bg: var(--card);
-  --hiw-card-border: var(--border);
-  --hiw-accent: var(--primary);
-  --hiw-text-dim: var(--text-muted);
-
-  /* ─── Footer ─────────────────────────── */
-  --footer-bg: oklch(0.12 0 0);
-  --footer-border: var(--border);
 
   /* Debug axes */
   --color-axis-x: oklch(65.57% 0.17436 23.171);
@@ -134,31 +116,22 @@
   --color-text-muted: var(--text-muted);
   --color-text-dim: var(--text-dim);
 
-  /* Hero */
-  --color-hero-accent: var(--hero-accent);
-  --color-hero-accent-hover: var(--hero-accent-hover);
-  --color-hero-badge-bg: var(--hero-badge-bg);
-  --color-hero-badge-border: var(--hero-badge-border);
-
-  /* How It Works */
-  --color-hiw-bg: var(--hiw-bg);
-  --color-hiw-card-bg: var(--hiw-card-bg);
-  --color-hiw-card-border: var(--hiw-card-border);
-  --color-hiw-accent: var(--hiw-accent);
-  --color-hiw-text-dim: var(--hiw-text-dim);
-
-  /* Footer */
-  --color-footer: var(--footer-bg);
-  --color-footer-border: var(--footer-border);
-
   /* Radius */
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
 
-  /* Custom color */
+  /* Custom */
   --color-orange: var(--primary);
+  --color-orange-hover: var(--primary-hover);
+
+  /* Spacing */
+  --spacing-25: 6.25rem;
+  --spacing-30: 7.5rem;
+
+  /* Custom sizes */
+  --size-130: 32.5rem;
 }
 
 /* ─────────────────────────────────────────────
@@ -210,7 +183,7 @@ html {
    ANIMATIONS
 ────────────────────────────────────────────── */
 
-@keyframes bounce {
+@keyframes scroll-bounce {
   0%,
   100% {
     transform: translateY(0);
@@ -218,4 +191,8 @@ html {
   50% {
     transform: translateY(6px);
   }
+}
+
+.animate-scroll-bounce {
+  animation: scroll-bounce 1s ease-in-out infinite;
 }

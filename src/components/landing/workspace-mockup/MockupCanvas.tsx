@@ -124,12 +124,10 @@ export default function MockupCanvas() {
         />
       </svg>
 
-      {/* Label sélection */}
-      <div className="absolute bottom-4 left-3 px-2.5 py-1 bg-[rgba(242,101,34,0.15)] border border-[rgba(242,101,34,0.3)] rounded text-[#F26522] text-[9px] font-mono tracking-[1px]">
+      <div className="absolute bottom-4 left-3 px-2.5 py-1 bg-primary/15 border border-primary/30 rounded text-primary text-[9px] font-mono tracking-[1px]">
         SHAFT_A · SELECTED
       </div>
 
-      {/* NavCube */}
       <div className="absolute bottom-3 right-3 w-9 h-9 border border-white/10 rounded flex items-center justify-center">
         <svg width="24" height="24" viewBox="0 0 24 24">
           <rect

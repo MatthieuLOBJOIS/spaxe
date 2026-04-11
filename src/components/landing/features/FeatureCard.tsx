@@ -21,8 +21,8 @@ export default function FeatureCard({
         className
       )}
     >
-      <div className="w-10 h-10 bg-orange/10 rounded-lg flex items-center justify-center">
-        <Icon size={20} className="text-orange" />
+      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+        <Icon size={20} className="text-primary" />
       </div>
       <span className="text-white font-bold text-base">{label}</span>
       <span className="text-muted-foreground text-sm leading-relaxed">

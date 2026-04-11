@@ -3,10 +3,10 @@ import FeatureCard from './FeatureCard'
 
 export default function Features() {
   return (
-    <section id="features" className="bg-surface px-[12%] py-30 md:px-[12%]">
+    <section id="features" className="bg-surface px-6 md:px-[12%] py-30">
       <div className="mb-16">
-        <div className="inline-flex px-3 py-1.25 bg-orange/10 border border-orange/25 rounded-full mb-5">
-          <span className="text-orange text-[11px] font-mono tracking-[1px]">
+        <div className="inline-flex px-3 py-1.25 bg-primary/10 border border-primary/25 rounded-full mb-5">
+          <span className="text-primary text-[11px] font-mono tracking-[1px]">
             FEATURES
           </span>
         </div>

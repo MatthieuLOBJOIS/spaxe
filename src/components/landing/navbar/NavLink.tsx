@@ -18,9 +18,7 @@ export default function NavLink({
 }: NavLinkProps) {
   const isExternal = href.startsWith('http')
 
-  const baseClass =
-    'text-sm text-muted-foreground hover:text-foreground transition-colors'
-
+  const baseClass = 'text-sm text-muted-foreground hover:text-foreground transition-colors'
   const finalClass = className ?? baseClass
 
   if (isExternal) {

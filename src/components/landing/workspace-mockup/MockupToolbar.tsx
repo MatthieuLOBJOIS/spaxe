@@ -17,7 +17,7 @@ export default function MockupToolbar() {
         </div>
       ))}
       <div className="flex-1" />
-      <div className="px-2.5 py-0.75 rounded bg-[rgba(242,101,34,0.15)] border border-[rgba(242,101,34,0.3)] text-[#F26522] text-[10px] font-mono">
+      <div className="px-2.5 py-0.75 rounded bg-primary/15 border border-primary/30 text-primary text-[10px] font-mono">
         EXPLODED VIEW
       </div>
     </div>

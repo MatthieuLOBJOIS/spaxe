@@ -13,7 +13,7 @@ npm run lint     # Run ESLint
 
 ## Architecture
 
-**Stack:** Next.js 16, React 19, TypeScript, Three.js (via @react-three/fibern, @react-three/drei, three-stdlib), Zustand for state management, Tailwind CSS v4, shadcn ui, clsx, lucide-react.
+**Stack:** Next.js 16, React 19, TypeScript, Three.js (via @react-three/fiber, @react-three/drei, three-stdlib), Zustand for state management, Tailwind CSS v4, shadcn ui, clsx, lucide-react.
 
 **Project structure:**
 

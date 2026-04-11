@@ -11,12 +11,11 @@ import {
   FOOTER_STACK_LINKS,
 } from '@/config/landing/links'
 
-const linkClass =
-  'text-text-muted text-[13px] no-underline hover:text-foreground transition-colors duration-150'
+const linkClass = 'text-muted-foreground/80 text-sm no-underline hover:text-foreground transition-colors'
 
 export default function Footer() {
   return (
-    <footer className="bg-footer px-6 md:px-[12%] pt-16 pb-10 border-t border-footer-border">
+    <footer className="bg-surface px-6 md:px-[12%] pt-16 pb-10 border-t border-border">
       <div className="flex flex-col md:flex-row md:justify-between gap-12 mb-12">
         {/* ───── Brand ───── */}
         <div className="flex flex-col gap-4 md:max-w-72">
@@ -24,7 +23,7 @@ export default function Footer() {
             <Logo size="md" />
           </Link>
 
-          <p className="text-text-dim text-[13px] leading-relaxed m-0">
+          <p className="text-muted-foreground/60 text-[13px] leading-relaxed m-0">
             Interactive 3D navigation for complex assemblies. Built for makers
             and industrial teams.
           </p>
@@ -65,12 +64,12 @@ export default function Footer() {
       </div>
 
       {/* ───── Bottom bar ───── */}
-      <div className="flex flex-col md:flex-row items-center md:justify-between gap-2 pt-6 border-t border-footer-border">
-        <span className="text-text-dim font-mono text-[11px] tracking-[1px]">
+      <div className="flex flex-col md:flex-row items-center md:justify-between gap-2 pt-6 border-t border-border">
+        <span className="text-muted-foreground/60 font-mono text-[11px] tracking-[1px]">
           © 2026 SPAXE — ALL RIGHTS RESERVED
         </span>
 
-        <span className="text-text-dim font-mono text-[11px] tracking-[1px]">
+        <span className="text-muted-foreground/60 font-mono text-[11px] tracking-[1px]">
           V0.1 · BUILT WITH NEXT.JS + THREE.JS
         </span>
       </div>
