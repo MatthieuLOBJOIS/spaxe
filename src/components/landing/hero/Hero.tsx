@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import ScrollIndicator from '@/components/landing/ScrollIndicator'
-import WorkspaceMockup from '@/components/landing/WorkspaceMockup'
+import WorkspaceMockup from '@/components/landing/workspace-mockup/WorkspaceMockup'
 import HeroContent from './HeroContent'
 import HeroDecorations from './HeroDecorations'
 
