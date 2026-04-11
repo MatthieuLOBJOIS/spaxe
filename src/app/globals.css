@@ -12,7 +12,9 @@
 /* ─────────────────────────────────────────────
    DARK MODE VARIANT
 ────────────────────────────────────────────── */
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark *)) {
+  /* Add your dark mode styles here if needed */
+}
 
 /* ─────────────────────────────────────────────
    DESIGN TOKENS
