@@ -1,12 +1,9 @@
 'use client'
 
 /**
- * BackButton component
+ * Generic back button used in multi-step flows.
  *
- * This component renders a button that navigates back to the previous page.
- * It uses the `handleBack` prop to perform the navigation action.
- *
- * @param {BackButtonProps} props - The properties for the BackButton component.
+ * @param handleBack - Callback fired when the button is clicked.
  */
 interface BackButtonProps {
   handleBack: () => void

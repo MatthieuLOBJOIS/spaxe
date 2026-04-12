@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import cn from '@/lib/utils'
+import { cn } from '@/lib/utils'
 
 interface ExternalLinkProps {
   href: string
@@ -16,6 +16,7 @@ interface ExternalLinkProps {
  *
  * @param {ExternalLinkProps} props - The properties for the ExternalLink component.
  */
+
 export function ExternalLink({
   href,
   children,
