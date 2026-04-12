@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Tooltip,
   TooltipContent,
@@ -9,6 +11,14 @@ interface ToggleOption {
   tooltip: string
 }
 
+/**
+ * ToggleButton component
+ *
+ * This component renders a toggle button with two options.
+ * It uses the `options`, `activeIndex`, `onChange`, and `disabled` props to control its behavior and appearance.
+ *
+ * @param {ToggleButtonProps} props - The properties for the ToggleButton component.
+ */
 interface ToggleButtonProps {
   options: readonly [ToggleOption, ToggleOption]
   activeIndex: 0 | 1
@@ -16,7 +26,7 @@ interface ToggleButtonProps {
   disabled?: boolean
 }
 
-export default function ToggleButton({
+export function ToggleButton({
   options,
   activeIndex,
   onChange,
@@ -42,7 +52,7 @@ export default function ToggleButton({
                 disabled
                   ? 'text-white/15 cursor-not-allowed'
                   : activeIndex === i
-                    ? 'bg-[rgba(242,101,34,0.15)] text-[#F26522]'
+                    ? 'bg-orange/15 text-orange'
                     : 'bg-transparent text-white/35 cursor-pointer'
               }`}
             >

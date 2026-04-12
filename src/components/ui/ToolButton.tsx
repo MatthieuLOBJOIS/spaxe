@@ -1,3 +1,5 @@
+'use client'
+
 import type { LucideIcon } from 'lucide-react'
 import {
   Tooltip,
@@ -5,6 +7,14 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 
+/**
+ * ToolButton component
+ *
+ * This component renders a button with an icon and label.
+ * It uses the `icon`, `label`, `onClick`, `active`, and `disabled` props to control its behavior and appearance.
+ *
+ * @param {ToolButtonProps} props - The properties for the ToolButton component.
+ */
 interface ToolButtonProps {
   icon: LucideIcon
   label: string
@@ -13,7 +23,7 @@ interface ToolButtonProps {
   disabled?: boolean
 }
 
-export default function ToolButton({
+export function ToolButton({
   icon: Icon,
   label,
   onClick,
@@ -32,7 +42,7 @@ export default function ToolButton({
             disabled
               ? 'text-white/15 bg-transparent border-transparent cursor-not-allowed'
               : active
-                ? 'text-[#F26522] bg-[rgba(242,101,34,0.12)] border-[rgba(242,101,34,0.3)] cursor-pointer'
+                ? 'text-orange bg-orange/12 border-orange/30 cursor-pointer'
                 : 'text-white/50 bg-transparent border-transparent hover:text-white hover:bg-white/6 cursor-pointer'
           }`}
         >

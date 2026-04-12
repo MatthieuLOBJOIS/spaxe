@@ -1,10 +1,18 @@
-// Bouton de reset global pour toutes les pièces
+'use client'
 
-type ResetAllButtonProps = {
+/**
+ * ResetAllButton component
+ *
+ * This component renders a button to reset all parts.
+ * It uses the `onReset` prop to control its behavior.
+ *
+ * @param {ResetAllButtonProps} props - The properties for the ResetAllButton component.
+ */
+interface ResetAllButtonProps {
   onReset: () => void
 }
 
-export default function ResetAllButton({ onReset }: ResetAllButtonProps) {
+export function ResetAllButton({ onReset }: ResetAllButtonProps) {
   return (
     <button
       onClick={onReset}

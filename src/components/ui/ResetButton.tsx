@@ -1,11 +1,19 @@
-// Bouton de reset pour la pièce sélectionnée
+'use client'
 
-type ResetButtonProps = {
+/**
+ * ResetButton component
+ *
+ * This component renders a button to reset the selected part.
+ * It uses the `onReset` and `disabled` props to control its behavior and appearance.
+ *
+ * @param {ResetButtonProps} props - The properties for the ResetButton component.
+ */
+interface ResetButtonProps {
   onReset: () => void
   disabled?: boolean
 }
 
-export default function ResetButton({
+export function ResetButton({
   onReset,
   disabled = false,
 }: ResetButtonProps) {
@@ -17,7 +25,7 @@ export default function ResetButton({
         ${
           disabled
             ? 'bg-white/3 border-white/6 text-white/20 cursor-not-allowed'
-            : 'bg-[rgba(242,101,34,0.08)] border-[rgba(242,101,34,0.3)] text-[#F26522] hover:bg-[rgba(242,101,34,0.15)] cursor-pointer'
+            : 'bg-orange/8 border-orange/30 text-orange hover:bg-orange/15 cursor-pointer'
         }`}
     >
       Reset selected
