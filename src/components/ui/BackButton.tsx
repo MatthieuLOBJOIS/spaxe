@@ -1,17 +1,10 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { resetAllStores } from '@/lib/resetAllStores'
-import { INTERNAL_LINKS } from '@/config/landing/links'
+type BackButtonProps = {
+  handleBack: () => void
+}
 
-export default function BackButton() {
-  const router = useRouter()
-
-  const handleBack = () => {
-    resetAllStores()
-    router.push(INTERNAL_LINKS.home.href)
-  }
-
+export default function BackButton({ handleBack }: BackButtonProps) {
   return (
     <button
       onClick={handleBack}
