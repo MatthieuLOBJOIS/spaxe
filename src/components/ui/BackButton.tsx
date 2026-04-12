@@ -1,9 +1,9 @@
 'use client'
 
 /**
- * Generic back button used in multi-step flows.
+ * Renders a back button.
  *
- * @param handleBack - Callback fired when the button is clicked.
+ * @param handleBack - Callback function triggered when the button is clicked.
  */
 interface BackButtonProps {
   handleBack: () => void

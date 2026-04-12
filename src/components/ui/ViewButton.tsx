@@ -1,12 +1,11 @@
 'use client'
 
 /**
- * ViewButton component
+ * Renders a button with a label.
  *
- * This component renders a button with a label.
- * It uses the `label`, `onClick`, and `disabled` props to control its behavior and appearance.
- *
- * @param {ViewButtonProps} props - The properties for the ViewButton component.
+ * @param label - The text label for the button.
+ * @param onClick - Callback function triggered when the button is clicked.
+ * @param disabled - Whether the button is disabled.
  */
 interface ViewButtonProps {
   label: string

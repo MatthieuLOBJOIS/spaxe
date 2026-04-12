@@ -12,12 +12,12 @@ interface ToggleOption {
 }
 
 /**
- * ToggleButton component
+ * Renders a toggle button with two options.
  *
- * This component renders a toggle button with two options.
- * It uses the `options`, `activeIndex`, `onChange`, and `disabled` props to control its behavior and appearance.
- *
- * @param {ToggleButtonProps} props - The properties for the ToggleButton component.
+ * @param options - An array of two toggle options, each with a label and tooltip.
+ * @param activeIndex - The index of the currently active option (0 or 1).
+ * @param onChange - Callback function triggered when the active option changes.
+ * @param disabled - Whether the button is disabled.
  */
 interface ToggleButtonProps {
   options: readonly [ToggleOption, ToggleOption]

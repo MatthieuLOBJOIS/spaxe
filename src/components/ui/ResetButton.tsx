@@ -1,12 +1,10 @@
 'use client'
 
 /**
- * ResetButton component
+ * Renders a button to reset the selected part.
  *
- * This component renders a button to reset the selected part.
- * It uses the `onReset` and `disabled` props to control its behavior and appearance.
- *
- * @param {ResetButtonProps} props - The properties for the ResetButton component.
+ * @param onReset - Callback function triggered when the button is clicked.
+ * @param disabled - Whether the button is disabled.
  */
 interface ResetButtonProps {
   onReset: () => void

@@ -8,12 +8,13 @@ import {
 } from '@/components/ui/tooltip'
 
 /**
- * ToolButton component
+ * Renders a button with an icon and label.
  *
- * This component renders a button with an icon and label.
- * It uses the `icon`, `label`, `onClick`, `active`, and `disabled` props to control its behavior and appearance.
- *
- * @param {ToolButtonProps} props - The properties for the ToolButton component.
+ * @param icon - The Lucide icon component to display.
+ * @param label - The text label for the button.
+ * @param onClick - Callback function triggered when the button is clicked.
+ * @param active - Whether the button is in an active state.
+ * @param disabled - Whether the button is disabled.
  */
 interface ToolButtonProps {
   icon: LucideIcon

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { cn } from '@/lib/utils'
+import cn from '@/lib/utils'
 
 interface ExternalLinkProps {
   href: string
@@ -9,14 +9,13 @@ interface ExternalLinkProps {
 }
 
 /**
- * ExternalLink component
+ * Renders a link that opens in a new tab.
  *
- * This component renders a link that opens in a new tab.
- * It uses the `href` prop to specify the URL and the `onClick` prop for additional actions.
- *
- * @param {ExternalLinkProps} props - The properties for the ExternalLink component.
+ * @param href - The URL to navigate to when the link is clicked.
+ * @param children - The content of the link.
+ * @param className - Additional CSS classes for styling.
+ * @param onClick - Optional callback function triggered on click.
  */
-
 export function ExternalLink({
   href,
   children,

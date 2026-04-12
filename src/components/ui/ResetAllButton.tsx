@@ -1,12 +1,9 @@
 'use client'
 
 /**
- * ResetAllButton component
+ * Renders a button to reset all parts.
  *
- * This component renders a button to reset all parts.
- * It uses the `onReset` prop to control its behavior.
- *
- * @param {ResetAllButtonProps} props - The properties for the ResetAllButton component.
+ * @param onReset - Callback function triggered when the button is clicked.
  */
 interface ResetAllButtonProps {
   onReset: () => void
