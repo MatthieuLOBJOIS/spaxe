@@ -2,7 +2,10 @@
 
 import { useAssemblyStore } from '@/store/assemblyStore'
 
-export default function SelectedParts() {
+/**
+ * Displays the current part selection state, reading directly from assemblyStore.
+ */
+export function SelectedParts() {
   const selectedParts = useAssemblyStore((s) => s.selectedParts)
 
   const count = selectedParts.length
@@ -24,7 +27,7 @@ export default function SelectedParts() {
 
         <p
           className={`text-[13px] font-semibold mt-0.5 truncate ${
-            count > 0 ? 'text-[#22d3ee]' : 'text-white/20'
+            count > 0 ? 'text-cyan-400' : 'text-white/20'
           }`}
         >
           {label}

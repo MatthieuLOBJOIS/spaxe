@@ -1,5 +1,16 @@
 'use client'
 
+/**
+ * Controlled range input with a label and optional unit suffix.
+ *
+ * @param label - Label displayed above the slider.
+ * @param value - Current numeric value.
+ * @param min - Minimum bound (default 0).
+ * @param max - Maximum bound (default 100).
+ * @param step - Step increment (default 1).
+ * @param unit - Optional unit suffix displayed next to the value.
+ * @param onChange - Callback fired with the parsed float value on input change.
+ */
 interface SliderProps {
   label: string
   value: number
@@ -10,7 +21,7 @@ interface SliderProps {
   onChange: (value: number) => void
 }
 
-export default function Slider({
+export function Slider({
   label,
   value,
   min = 0,
@@ -37,7 +48,7 @@ export default function Slider({
         step={step}
         value={value}
         onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full accent-[#F26522] cursor-pointer"
+        className="w-full accent-orange cursor-pointer"
       />
     </div>
   )

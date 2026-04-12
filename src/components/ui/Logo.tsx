@@ -1,9 +1,3 @@
-type LogoSize = keyof typeof sizes
-
-interface LogoProps {
-  size?: LogoSize
-}
-
 const sizes = {
   sm: { text: 'text-xs', tracking: 'tracking-[3px]', triangle: 'text-[11px]' },
   md: { text: 'text-lg', tracking: 'tracking-[4px]', triangle: 'text-base' },
@@ -19,12 +13,23 @@ const sizes = {
   },
 }
 
-export default function Logo({ size = 'md' }: LogoProps) {
+type LogoSize = keyof typeof sizes
+
+interface LogoProps {
+  size?: LogoSize
+}
+
+/**
+ * Renders the SP▲XE logotype at a fixed size variant.
+ *
+ * @param size - Visual size variant. Defaults to `'md'`.
+ */
+export function Logo({ size = 'md' }: LogoProps) {
   const s = sizes[size]
   return (
     <div className="flex items-center">
       <span className={`text-white font-bold ${s.text} ${s.tracking}`}>SP</span>
-      <span className={`text-[#F26522] ${s.triangle} ${s.tracking}`}>▲</span>
+      <span className={`text-orange ${s.triangle} ${s.tracking}`}>▲</span>
       <span className={`text-white font-bold ${s.text} ${s.tracking}`}>XE</span>
     </div>
   )
