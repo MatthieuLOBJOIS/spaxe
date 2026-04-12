@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import Logo from '@/components/ui/Logo'
-import ExternalLink from '@/components/ui/ExternalLink'
+import { Logo } from '@/components/ui/Logo'
+import { ExternalLink } from '@/components/ui/ExternalLink'
 
 import FooterColumn from './FooterColumn'
 
@@ -11,7 +11,8 @@ import {
   FOOTER_STACK_LINKS,
 } from '@/config/landing/links'
 
-const linkClass = 'text-muted-foreground/80 text-sm no-underline hover:text-foreground transition-colors'
+const linkClass =
+  'text-muted-foreground/80 text-sm no-underline hover:text-foreground transition-colors'
 
 export default function Footer() {
   return (

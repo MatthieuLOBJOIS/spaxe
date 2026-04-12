@@ -3,13 +3,13 @@
 import { useState } from 'react'
 import { HexColorPicker } from 'react-colorful'
 
-import SelectedParts from '@/components/ui/SelectedParts'
+import { SelectedParts } from '@/components/ui/SelectedParts'
 import ColorPreview from '@/components/workspace/modals/color/ColorPreview'
 import EyeDropperButton from '@/components/workspace/modals/color/EyeDropperButton'
 import RandomColorButton from '@/components/workspace/modals/color/RandomColorButton'
-import Slider from '@/components/ui/Slider'
+import { Slider } from '@/components/ui/Slider'
 import ColorPresets from '@/components/workspace/modals/color/ColorPresets'
-import ApplyButton from '@/components/ui/ApplyButton'
+import { ApplyButton } from '@/components/ui/ApplyButton'
 
 import { useAssemblyStore } from '@/store/assemblyStore'
 import { useColorStore } from '@/store/colorStore'

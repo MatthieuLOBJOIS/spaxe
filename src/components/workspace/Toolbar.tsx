@@ -2,11 +2,15 @@
 
 import { RotateCcw, PaintBucket, Keyboard } from 'lucide-react'
 
-import ToolButton from '@/components/ui/ToolButton'
-import ViewButton from '@/components/ui/ViewButton'
-import ToggleButton from '@/components/ui/ToggleButton'
-import Logo from '@/components/ui/Logo'
-import BackButton from '@/components/ui/BackButton'
+import { useRouter } from 'next/navigation'
+import { resetAllStores } from '@/lib/resetAllStores'
+import { INTERNAL_LINKS } from '@/config/landing/links'
+
+import { ToolButton } from '@/components/ui/ToolButton'
+import { ViewButton } from '@/components/ui/ViewButton'
+import { ToggleButton } from '@/components/ui/ToggleButton'
+import { Logo } from '@/components/ui/Logo'
+import { BackButton } from '@/components/ui/BackButton'
 
 import {
   SELECTION_TOOLS,
@@ -91,6 +95,14 @@ export default function Toolbar({
     neighborhood: onNeighborhoodToggle,
     xray: onXrayToggle,
     bom: onBomToggle,
+  }
+
+  // Back to home
+  const router = useRouter()
+
+  const handleBack = () => {
+    resetAllStores()
+    router.push(INTERNAL_LINKS.home.href)
   }
 
   return (
@@ -182,7 +194,7 @@ export default function Toolbar({
       <Sep />
 
       {/* Back */}
-      <BackButton />
+      <BackButton handleBack={handleBack} />
     </div>
   )
 }

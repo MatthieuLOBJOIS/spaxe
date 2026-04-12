@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 
-import Slider from '@/components/ui/Slider'
+import { Slider } from '@/components/ui/Slider'
 import PlayResetButton from '@/components/workspace/modals/Exploded/PlayResetButton'
 import AxisSelector from '@/components/workspace/modals/Exploded/AxisSelector'
 

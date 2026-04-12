@@ -1,4 +1,4 @@
-import Logo from '@/components/ui/Logo'
+import { Logo } from '@/components/ui/Logo'
 
 const TOOLBAR_BTNS = ['⤢', '↺', 'Top', 'Front']
 

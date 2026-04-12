@@ -4,13 +4,18 @@ import { useAssemblyStore } from '@/store/assemblyStore'
 
 interface ApplyButtonProps {
   onApply: () => void
-  label?: string // nommage du bouton
+  label?: string
 }
 
-export function ApplyButton({
-  onApply,
-  label = 'Apply',
-}: ApplyButtonProps) {
+/**
+ * Apply button — disabled when no parts are selected.
+ * Reads selectedParts from assemblyStore internally.
+ *
+ * @param onApply - Callback fired on click (only when selection exists)
+ * @param label   - Button label (default: "Apply")
+ */
+
+export function ApplyButton({ onApply, label = 'Apply' }: ApplyButtonProps) {
   const selectedParts = useAssemblyStore((s) => s.selectedParts)
 
   const hasSelection = selectedParts.length > 0

@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import ExternalLink from '@/components/ui/ExternalLink'
+import { ExternalLink } from '@/components/ui/ExternalLink'
 import { EXTERNAL_LINKS, INTERNAL_LINKS } from '@/config/landing/links'
 
 export default function HeroCTAs({ isMobile }: { isMobile: boolean }) {

@@ -5,10 +5,10 @@ import { useTransformStore } from '@/store/transformStore'
 import { ManualDelta } from '@/types/transform'
 import { DEFAULT_DELTA } from '@/config/workspace/modals/defaultTransform'
 
-import SelectedParts from '@/components/ui/SelectedParts'
+import { SelectedParts } from '@/components/ui/SelectedParts'
 import XYZInput from '@/components/workspace/modals/transform/XYZInput'
-import ResetButton from '@/components/ui/ResetButton'
-import ResetAllButton from '@/components/ui/ResetAllButton'
+import { ResetButton } from '@/components/ui/ResetButton'
+import { ResetAllButton } from '@/components/ui/ResetAllButton'
 
 export default function TransformModal() {
   const selectedPart = useAssemblyStore((s) => s.selectedParts[0] ?? null)

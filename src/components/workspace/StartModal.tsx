@@ -6,7 +6,7 @@ import {
   VIEWER_OPTIONS,
   type ViewerOption,
 } from '@/config/workspace/viewerOptions'
-import Logo from '@/components/ui/Logo'
+import { Logo } from '@/components/ui/Logo'
 
 // ── Sous-composant option ────────────────────────────────
 function OptionItem({

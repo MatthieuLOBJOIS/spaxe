@@ -6,7 +6,7 @@ import { Menu, X } from 'lucide-react'
 
 import { INTERNAL_LINKS } from '@/config/landing/links'
 
-import Logo from '@/components/ui/Logo'
+import { Logo } from '@/components/ui/Logo'
 
 import DesktopMenu from './DesktopMenu'
 import MobileMenu from './MobileMenu'

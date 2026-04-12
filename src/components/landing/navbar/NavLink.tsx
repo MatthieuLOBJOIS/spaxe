@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import ExternalLink from '@/components/ui/ExternalLink'
+import { ExternalLink } from '@/components/ui/ExternalLink'
 
 type NavLinkProps = {
   href: string
@@ -18,7 +18,8 @@ export default function NavLink({
 }: NavLinkProps) {
   const isExternal = href.startsWith('http')
 
-  const baseClass = 'text-sm text-muted-foreground hover:text-foreground transition-colors'
+  const baseClass =
+    'text-sm text-muted-foreground hover:text-foreground transition-colors'
   const finalClass = className ?? baseClass
 
   if (isExternal) {
