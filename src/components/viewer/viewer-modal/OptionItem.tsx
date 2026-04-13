@@ -1,15 +1,17 @@
 import { LucideIcon } from 'lucide-react'
 import Link from 'next/link'
+import { ViewerOption } from '@/config/workspace/viewerOptions'
 
-interface OptionItemProps {
-  id: string
-  icon: LucideIcon
-  label: string
-  desc: string
-  available: boolean
-  href?: string
-}
-
+/**
+ * Represents an option item in the viewer modal.
+ *
+ * @param id - Unique identifier for the option.
+ * @param icon - Icon component to display alongside the label.
+ * @param label - Label text for the option.
+ * @param desc - Description text for the option.
+ * @param available - Indicates if the option is available for use.
+ * @param href - Optional URL to navigate to when the option is clicked.
+ */
 export default function OptionItem({
   id,
   icon: Icon,
@@ -17,7 +19,7 @@ export default function OptionItem({
   desc,
   available,
   href,
-}: OptionItemProps) {
+}: ViewerOption) {
   const baseClass = `group flex items-center gap-4 p-4 rounded-xl transition-all duration-150 border w-full text-left
     ${
       available

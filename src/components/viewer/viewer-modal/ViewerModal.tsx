@@ -1,11 +1,12 @@
-'use client'
-
 import Link from 'next/link'
 import { INTERNAL_LINKS } from '@/config/landing/links'
 import { VIEWER_OPTIONS } from '@/config/workspace/viewerOptions'
 import { Logo } from '@/components/ui/Logo'
 import OptionItem from './OptionItem'
 
+/**
+ * Modal component for starting the viewer.
+ */
 export default function ViewerModal() {
   return (
     <div className="w-120 bg-[#1a1a1c] rounded-2xl border border-white/10 overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.8)]">
