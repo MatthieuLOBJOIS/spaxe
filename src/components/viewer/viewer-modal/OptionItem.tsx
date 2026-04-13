@@ -8,9 +8,10 @@ interface OptionItemProps {
 }
 
 export default function OptionItem({ option }: OptionItemProps) {
+  const Icon = option.icon
   return (
     <div className="flex items-center gap-2">
-      {option.icon}
+      <Icon size={18} />
       <Link href={option.href || '#'}>{option.label}</Link>
     </div>
   )
