@@ -25,7 +25,7 @@ export default function CameraSync({
   const cameraTarget = useCameraStore((s) => s.cameraTarget)
   const setCameraTarget = useCameraStore((s) => s.setCameraTarget)
 
-  // ── Position initiale ──────────────────────────────────
+  // Initial camera position
   useEffect(() => {
     if (hasAssembly) {
       camera.position.set(2, 1.5, 3)
@@ -35,9 +35,9 @@ export default function CameraSync({
     camera.lookAt(0, 0, 0)
   }, [hasAssembly, camera])
 
-  // ── Sync par frame ─────────────────────────────────────
+  // Per-frame sync
   useFrame(() => {
-    // NavCube drag → met à jour la caméra principale
+    // NavCube drag → update main camera
     if (navQuatRef?.current && navQuatRef.current.w !== 1) {
       const distance = camera.position.length()
       const newPos = new THREE.Vector3(0, 0, distance).applyQuaternion(
@@ -54,7 +54,7 @@ export default function CameraSync({
     if (cameraQuatRef?.current) cameraQuatRef.current.copy(camera.quaternion)
     setCameraQuaternion(camera.quaternion)
 
-    // Animation vers une cible caméra
+    // Animate toward camera target
     if (cameraTarget) {
       const currentDistance = camera.position.length()
       const normalizedTarget = cameraTarget
