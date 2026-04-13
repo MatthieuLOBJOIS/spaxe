@@ -1,5 +1,5 @@
+import { LucideIcon } from 'lucide-react'
 import Link from 'next/link'
-import { ViewerOption } from '@/config/workspace/viewerOptions'
 
 interface OptionItemProps {
   id: string
@@ -10,7 +10,14 @@ interface OptionItemProps {
   href?: string
 }
 
-export default function OptionItem({ id, icon: Icon, label, desc, available, href }: OptionItemProps) {
+export default function OptionItem({
+  id,
+  icon: Icon,
+  label,
+  desc,
+  available,
+  href,
+}: OptionItemProps) {
   const baseClass = `group flex items-center gap-4 p-4 rounded-xl transition-all duration-150 border w-full text-left
     ${
       available
@@ -44,7 +51,6 @@ export default function OptionItem({ id, icon: Icon, label, desc, available, hre
     </>
   )
 
-  // Lien interne si disponible et href défini
   if (available && href) {
     return (
       <Link key={id} href={href} className={`${baseClass} no-underline`}>
@@ -53,7 +59,6 @@ export default function OptionItem({ id, icon: Icon, label, desc, available, hre
     )
   }
 
-  // Bouton désactivé sinon
   return (
     <button key={id} disabled={!available} className={baseClass}>
       {content}
