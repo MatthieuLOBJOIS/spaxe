@@ -47,21 +47,12 @@ function TooltipContent({
       >
         <TooltipPrimitive.Popup
           data-slot="tooltip-content"
-          className={cn(className)}
-          style={{
-            background: '#1a1a1c',
-            color: '#ffffff',
-            border: '1px solid rgba(255,255,255,0.08)',
-            borderRadius: '8px',
-            padding: '8px 20px',
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontSize: '13px',
-            fontWeight: 500,
-            letterSpacing: '0.3px',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
-            whiteSpace: 'nowrap',
-            zIndex: 9999,
-          }}
+          className={cn(
+            className,
+            'bg-popover text-foreground border-border',
+            'font-sans text-sm font-medium tracking-tight',
+            'rounded-lg px-4 py-2 shadow-md'
+          )}
         >
           {children}
         </TooltipPrimitive.Popup>
