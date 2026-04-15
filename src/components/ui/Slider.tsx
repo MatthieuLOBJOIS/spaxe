@@ -1,16 +1,4 @@
-'use client'
-
-/**
- * Controlled range input with a label and optional unit suffix.
- *
- * @param label - Label displayed above the slider.
- * @param value - Current numeric value.
- * @param min - Minimum bound (default 0).
- * @param max - Maximum bound (default 100).
- * @param step - Step increment (default 1).
- * @param unit - Optional unit suffix displayed next to the value.
- * @param onChange - Callback fired with the parsed float value on input change.
- */
+// Controlled range input with a label and optional unit suffix.
 interface SliderProps {
   label: string
   value: number

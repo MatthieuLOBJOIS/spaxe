@@ -19,11 +19,7 @@ interface LogoProps {
   size?: LogoSize
 }
 
-/**
- * Renders the SP▲XE logotype at a fixed size variant.
- *
- * @param size - Visual size variant. Defaults to `'md'`.
- */
+// Renders the SP▲XE logotype at a fixed size variant.
 export function Logo({ size = 'md' }: LogoProps) {
   const s = sizes[size]
   return (

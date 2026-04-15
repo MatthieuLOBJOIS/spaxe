@@ -1,10 +1,4 @@
-'use client'
-
-import { useAssemblyStore } from '@/store/assemblyStore'
-
-/**
- * Displays the current part selection state, reading directly from assemblyStore.
- */
+// Displays the current part selection state, reading directly from assemblyStore.
 export function SelectedParts() {
   const selectedParts = useAssemblyStore((s) => s.selectedParts)
 

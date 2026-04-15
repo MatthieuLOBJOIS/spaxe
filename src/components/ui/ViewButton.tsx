@@ -1,12 +1,4 @@
-'use client'
-
-/**
- * Renders a button with a label.
- *
- * @param label - The text label for the button.
- * @param onClick - Callback function triggered when the button is clicked.
- * @param disabled - Whether the button is disabled.
- */
+// Renders a button with a label.
 interface ViewButtonProps {
   label: string
   onClick: () => void

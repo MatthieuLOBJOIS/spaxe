@@ -8,14 +8,7 @@ interface ExternalLinkProps {
   onClick?: () => void
 }
 
-/**
- * Renders a link that opens in a new tab.
- *
- * @param href - The URL to navigate to when the link is clicked.
- * @param children - The content of the link.
- * @param className - Additional CSS classes for styling.
- * @param onClick - Optional callback function triggered on click.
- */
+// Renders a link that opens in a new tab.
 export function ExternalLink({
   href,
   children,

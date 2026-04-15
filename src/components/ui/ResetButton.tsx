@@ -1,11 +1,4 @@
-'use client'
-
-/**
- * Renders a button to reset the selected part.
- *
- * @param onReset - Callback function triggered when the button is clicked.
- * @param disabled - Whether the button is disabled.
- */
+// Renders a button to reset the selected part.
 interface ResetButtonProps {
   onReset: () => void
   disabled?: boolean

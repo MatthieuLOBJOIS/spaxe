@@ -1,10 +1,6 @@
 'use client'
 
-/**
- * Renders a back button.
- *
- * @param handleBack - Callback function triggered when the button is clicked.
- */
+// Renders a back button.
 interface BackButtonProps {
   handleBack: () => void
 }

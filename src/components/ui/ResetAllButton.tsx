@@ -1,10 +1,4 @@
-'use client'
-
-/**
- * Renders a button to reset all parts.
- *
- * @param onReset - Callback function triggered when the button is clicked.
- */
+// Renders a button to reset all parts.
 interface ResetAllButtonProps {
   onReset: () => void
 }
