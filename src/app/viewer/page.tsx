@@ -1,10 +1,10 @@
-import StartModal from '@/components/workspace/StartModal'
+import ViewerStart from '@/components/viewer/viewer-start/ViewerStart'
 
 // Displays the viewer entry screen with options: demo, import, and AI 3D generate
 export default function ViewerPage() {
   return (
     <div className="page-fullscreen bg-background grid place-items-center">
-      <StartModal />
+      <ViewerStart />
     </div>
   )
 }

@@ -3,8 +3,8 @@
 import { useState, useRef } from 'react'
 
 import { Slider } from '@/components/ui/Slider'
-import PlayResetButton from '@/components/workspace/modals/Exploded/PlayResetButton'
-import AxisSelector from '@/components/workspace/modals/Exploded/AxisSelector'
+import PlayResetButton from '@/components/workspace/modals/exploded/PlayResetButton'
+import AxisSelector from '@/components/workspace/modals/exploded/AxisSelector'
 
 import { useExplodedStore } from '@/store/explodedStore'
 import { useExplodedAnimation } from '@/hooks/useExplodedAnimation'

@@ -2,16 +2,6 @@ import Link from 'next/link'
 import { ViewerOption } from '@/config/workspace/viewerOptions'
 import { cn } from '@/lib/utils'
 
-/**
- * Represents an option item in the viewer modal.
- *
- * @param id - Unique identifier for the option.
- * @param icon - Icon component to display alongside the label.
- * @param label - Label text for the option.
- * @param desc - Description text for the option.
- * @param available - Indicates if the option is available for use.
- * @param href - Optional URL to navigate to when the option is clicked.
- */
 export default function OptionItem({
   id,
   icon: Icon,
