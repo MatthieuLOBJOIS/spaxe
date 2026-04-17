@@ -7,14 +7,7 @@ interface ApplyButtonProps {
   label?: string
 }
 
-/**
- * Apply button — disabled when no parts are selected.
- * Reads selectedParts from assemblyStore internally.
- *
- * @param onApply - Callback fired on click (only when selection exists)
- * @param label   - Button label (default: "Apply")
- */
-
+// Apply button (enabled only when selection exists)
 export function ApplyButton({ onApply, label = 'Apply' }: ApplyButtonProps) {
   const selectedParts = useAssemblyStore((s) => s.selectedParts)
 

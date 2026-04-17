@@ -1,4 +1,3 @@
-// Controlled range input with a label and optional unit suffix.
 interface SliderProps {
   label: string
   value: number
@@ -9,6 +8,7 @@ interface SliderProps {
   onChange: (value: number) => void
 }
 
+// Controlled range input with a label and optional unit suffix. (use for exploded view and opacity)
 export function Slider({
   label,
   value,

@@ -1,10 +1,10 @@
 'use client'
 
-// Renders a back button.
 interface BackButtonProps {
   handleBack: () => void
 }
 
+// Back button (to the home)
 export function BackButton({ handleBack }: BackButtonProps) {
   return (
     <button

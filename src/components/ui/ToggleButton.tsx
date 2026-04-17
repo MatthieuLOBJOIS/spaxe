@@ -1,4 +1,5 @@
-// Renders a toggle button with two options.
+import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip'
+
 interface ToggleOption {
   label: string
   tooltip: string
@@ -11,6 +12,7 @@ interface ToggleButtonProps {
   disabled?: boolean
 }
 
+// Button with two options : View in perspective and view in orthographique
 export function ToggleButton({
   options,
   activeIndex,

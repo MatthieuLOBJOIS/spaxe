@@ -1,8 +1,8 @@
-// Renders a button to reset all parts.
 interface ResetAllButtonProps {
   onReset: () => void
 }
 
+// Button to reset all parts.
 export function ResetAllButton({ onReset }: ResetAllButtonProps) {
   return (
     <button

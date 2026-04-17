@@ -7,15 +7,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 
-/**
- * Renders a button with an icon and label.
- *
- * @param icon - The Lucide icon component to display.
- * @param label - The text label for the button.
- * @param onClick - Callback function triggered when the button is clicked.
- * @param active - Whether the button is in an active state.
- * @param disabled - Whether the button is disabled.
- */
+// Button open tool modal
 interface ToolButtonProps {
   icon: LucideIcon
   label: string

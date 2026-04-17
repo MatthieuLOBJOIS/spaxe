@@ -1,10 +1,10 @@
-// Renders a button with a label.
 interface ViewButtonProps {
   label: string
   onClick: () => void
   disabled?: boolean
 }
 
+// Button preset view scene selection
 export function ViewButton({
   label,
   onClick,

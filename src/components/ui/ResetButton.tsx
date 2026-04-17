@@ -1,13 +1,10 @@
-// Renders a button to reset the selected part.
 interface ResetButtonProps {
   onReset: () => void
   disabled?: boolean
 }
 
-export function ResetButton({
-  onReset,
-  disabled = false,
-}: ResetButtonProps) {
+// Button to reset the selected part.
+export function ResetButton({ onReset, disabled = false }: ResetButtonProps) {
   return (
     <button
       onClick={onReset}

@@ -8,7 +8,7 @@ interface ExternalLinkProps {
   onClick?: () => void
 }
 
-// Renders a link that opens in a new tab.
+// Link that opens in a new tab.
 export function ExternalLink({
   href,
   children,
