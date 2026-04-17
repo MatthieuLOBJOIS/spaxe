@@ -1,5 +1,3 @@
-import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip'
-
 interface ToggleOption {
   label: string
   tooltip: string
@@ -12,7 +10,6 @@ interface ToggleButtonProps {
   disabled?: boolean
 }
 
-// Button with two options : View in perspective and view in orthographique
 export function ToggleButton({
   options,
   activeIndex,
@@ -25,31 +22,24 @@ export function ToggleButton({
       ${disabled ? 'border-white/4' : 'border-white/8'}`}
     >
       {options.map((option, i) => (
-        <Tooltip key={option.label}>
-          <TooltipTrigger
-            disabled={disabled}
-            onClick={() => {
-              if (!disabled && activeIndex !== i) onChange(i as 0 | 1)
-            }}
-          >
-            <div
-              className={`px-2.5 py-1.25 text-[11px] font-semibold transition-colors duration-150
-              ${i === 0 ? 'border-r border-white/8' : ''}
-              ${
-                disabled
-                  ? 'text-white/15 cursor-not-allowed'
-                  : activeIndex === i
-                    ? 'bg-orange/15 text-orange'
-                    : 'bg-transparent text-white/35 cursor-pointer'
-              }`}
-            >
-              {option.label}
-            </div>
-          </TooltipTrigger>
-          <TooltipContent side="bottom">
-            {disabled ? `${option.tooltip} — coming soon` : option.tooltip}
-          </TooltipContent>
-        </Tooltip>
+        <button
+          key={option.label}
+          disabled={disabled}
+          onClick={() => {
+            if (!disabled && activeIndex !== i) onChange(i as 0 | 1)
+          }}
+          className={`px-2.5 py-1.25 text-[11px] font-semibold transition-colors duration-150
+          ${i === 0 ? 'border-r border-white/8' : ''}
+          ${
+            disabled
+              ? 'text-white/15 cursor-not-allowed'
+              : activeIndex === i
+                ? 'bg-orange/15 text-orange'
+                : 'bg-transparent text-white/35 cursor-pointer'
+          }`}
+        >
+          {option.label}
+        </button>
       ))}
     </div>
   )

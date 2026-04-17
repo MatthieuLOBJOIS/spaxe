@@ -20,8 +20,8 @@ Spaxe lets you import STL files, manually build exploded views, inspect connecte
 ## Stack
 
 - **Framework** — Next.js 16 · TypeScript
-- **UI** — Tailwind CSS · shadcn/ui
-- **3D** — Three.js · React Three Fiber · React Three Drei · three-stdlib · React Three Postprocessing
+- **UI** — Tailwind CSS
+- **3D** — Three.js · React Three Fiber · React Three Drei · three-stdlib
 - **State** — Zustand
 - **Hosting** — Vercel
 

@@ -1,13 +1,7 @@
 'use client'
 
 import type { LucideIcon } from 'lucide-react'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
 
-// Button open tool modal
 interface ToolButtonProps {
   icon: LucideIcon
   label: string
@@ -24,27 +18,20 @@ export function ToolButton({
   disabled = false,
 }: ToolButtonProps) {
   return (
-    <Tooltip>
-      <TooltipTrigger
-        onClick={disabled ? undefined : onClick}
-        disabled={disabled}
-      >
-        <div
-          className={`p-2.5 rounded-md flex items-center justify-center transition-all duration-150 border
-          ${
-            disabled
-              ? 'text-white/15 bg-transparent border-transparent cursor-not-allowed'
-              : active
-                ? 'text-orange bg-orange/12 border-orange/30 cursor-pointer'
-                : 'text-white/50 bg-transparent border-transparent hover:text-white hover:bg-white/6 cursor-pointer'
-          }`}
-        >
-          <Icon size={20} />
-        </div>
-      </TooltipTrigger>
-      <TooltipContent side="bottom">
-        {disabled ? `${label} — coming soon` : label}
-      </TooltipContent>
-    </Tooltip>
+    <button
+      onClick={disabled ? undefined : onClick}
+      disabled={disabled}
+      className={`p-2.5 rounded-md flex items-center justify-center transition-all duration-150 border
+      ${
+        disabled
+          ? 'text-white/15 bg-transparent border-transparent cursor-not-allowed'
+          : active
+            ? 'text-orange bg-orange/12 border-orange/30 cursor-pointer'
+            : 'text-white/50 bg-transparent border-transparent hover:text-white hover:bg-white/6 cursor-pointer'
+      }`}
+      aria-label={label}
+    >
+      <Icon size={20} />
+    </button>
   )
 }

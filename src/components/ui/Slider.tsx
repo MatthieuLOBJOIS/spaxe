@@ -8,7 +8,9 @@ interface SliderProps {
   onChange: (value: number) => void
 }
 
-// Controlled range input with a label and optional unit suffix. (use for exploded view and opacity)
+/**
+ * Controlled range input with a label and optional unit suffix.
+ */
 export function Slider({
   label,
   value,
@@ -24,11 +26,13 @@ export function Slider({
         <span className="text-white/30 text-[10px] font-mono tracking-[1px]">
           {label}
         </span>
+
         <span className="text-white/60 text-[11px] font-mono">
           {value}
           {unit}
         </span>
       </div>
+
       <input
         type="range"
         min={min}
@@ -36,7 +40,17 @@ export function Slider({
         step={step}
         value={value}
         onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full accent-orange cursor-pointer"
+        className="
+          w-full
+          cursor-pointer
+
+          accent-(--primary)
+
+          [&::-webkit-slider-thumb]:bg-(--primary)
+          [&::-webkit-slider-thumb]:rounded-full
+          [&::-webkit-slider-thumb]:w-3
+          [&::-webkit-slider-thumb]:h-3
+        "
       />
     </div>
   )

@@ -1,198 +1,102 @@
-/* ─────────────────────────────────────────────
-   IMPORTS
-────────────────────────────────────────────── */
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import 'shadcn/tailwind.css';
 
-@import '@fontsource/space-grotesk/700.css';
 @import '@fontsource/space-grotesk/400.css';
+@import '@fontsource/space-grotesk/700.css';
 @import '@fontsource/geist-mono/400.css';
 
 /* ─────────────────────────────────────────────
-   DARK MODE VARIANT
-────────────────────────────────────────────── */
-@custom-variant dark (&:is(.dark *)) {
-  /* Add your dark mode styles here if needed */
-}
-
-/* ─────────────────────────────────────────────
-   DESIGN TOKENS
+   DESIGN TOKENS (ENGINE CORE)
 ────────────────────────────────────────────── */
 :root {
-  /* Radius */
+  /* layout */
   --radius: 0.625rem;
 
-  /* Fonts */
+  /* fonts */
   --font-sans: 'Space Grotesk', sans-serif;
   --font-mono: 'Geist Mono', monospace;
 
-  /* Base */
-  --background: oklch(0.1 0 0);
-  --foreground: oklch(0.985 0 0);
+  /* core colors */
+  --bg: oklch(0.1 0 0);
+  --fg: oklch(0.985 0 0);
+
   --surface: oklch(0.18 0 0);
+  --card: oklch(0.13 0 0);
 
-  /* Cards */
-  --card: oklch(19.212% 0.00401 285.944);
-  --card-foreground: oklch(0.985 0 0);
-
-  --popover: oklch(0.13 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-
-  /* Brand */
-  --primary: oklch(67.584% 0.18861 42.024);
-  --primary-hover: oklch(75.356% 0.16361 50.386);
-  --primary-foreground: oklch(0.985 0 0);
+  /* brand */
+  --primary: oklch(0.65 0.18 40);
+  --primary-hover: oklch(0.72 0.18 45);
 
   /* UI */
-  --secondary: oklch(0.18 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-
-  --muted: oklch(0.18 0 0);
-  --muted-foreground: oklch(0.6 0 0);
-
-  --accent: oklch(0.18 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-
-  --destructive: oklch(0.577 0.245 27.325);
-
-  /* Borders */
+  --muted: oklch(0.6 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
   --ring: var(--primary);
 
-  /* Text */
-  --text-muted: oklch(1 0 0 / 40%);
-  --text-dim: oklch(1 0 0 / 22%);
+  /* states */
+  --danger: oklch(0.577 0.245 27.325);
 
-  /* Debug axes */
-  --color-axis-x: oklch(65.57% 0.17436 23.171);
-  --color-axis-y: oklch(74.778% 0.15679 143.214);
-  --color-axis-z: oklch(68.7% 0.12963 252.322);
+  /* 3D axis (Spaxe critical) */
+  --axis-x: oklch(65.57% 0.17436 23.171);
+  --axis-y: oklch(74.778% 0.15679 143.214);
+  --axis-z: oklch(68.7% 0.12963 252.322);
 }
 
 /* ─────────────────────────────────────────────
-   TAILWIND THEME MAPPING
-────────────────────────────────────────────── */
-@theme inline {
-  /* Base */
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-surface: var(--surface);
-
-  /* Fonts */
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
-
-  /* Cards */
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-
-  /* UI */
-  --color-primary: var(--primary);
-  --color-primary-hover: var(--primary-hover);
-  --color-primary-foreground: var(--primary-foreground);
-
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-
-  --color-destructive: var(--destructive);
-
-  /* Borders */
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  /* Text */
-  --color-text-muted: var(--text-muted);
-  --color-text-dim: var(--text-dim);
-
-  /* Radius */
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-
-  /* Custom */
-  --color-orange: var(--primary);
-  --color-orange-hover: var(--primary-hover);
-
-  /* Spacing */
-  --spacing-25: 6.25rem;
-  --spacing-30: 7.5rem;
-
-  /* Custom sizes */
-  --size-130: 32.5rem;
-}
-
-/* ─────────────────────────────────────────────
-   BASE STYLES
+   BASE
 ────────────────────────────────────────────── */
 @layer base {
   * {
-    @apply border-border outline-ring/50;
     box-sizing: border-box;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-sans);
     margin: 0;
     padding: 0;
+
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--fg);
+  }
+
+  input,
+  button {
+    font: inherit;
   }
 }
 
 /* ─────────────────────────────────────────────
-   UTILITIES
+   LOW LEVEL UTILITIES (NOT DESIGN SYSTEM)
 ────────────────────────────────────────────── */
-
-/* fullscreen layout */
-.page-fullscreen {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* remove number arrows */
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* radix tooltip fix */
-[data-radix-popper-content-wrapper] {
-  z-index: 9999 !important;
-}
-
-/* smooth scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-/* ─────────────────────────────────────────────
-   ANIMATIONS
-────────────────────────────────────────────── */
-
-@keyframes scroll-bounce {
-  0%,
-  100% {
-    transform: translateY(0);
+@layer utilities {
+  .fullscreen {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
   }
-  50% {
-    transform: translateY(6px);
-  }
-}
 
-.animate-scroll-bounce {
-  animation: scroll-bounce 1s ease-in-out infinite;
+  .axis-x {
+    color: var(--axis-x);
+  }
+  .axis-y {
+    color: var(--axis-y);
+  }
+  .axis-z {
+    color: var(--axis-z);
+  }
+
+  .text-muted {
+    color: var(--muted);
+  }
+
+  .bg-surface {
+    background: var(--surface);
+  }
+  .bg-card {
+    background: var(--card);
+  }
 }
