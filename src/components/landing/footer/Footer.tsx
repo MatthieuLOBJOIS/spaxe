@@ -11,6 +11,8 @@ import {
   FOOTER_STACK_LINKS,
 } from '@/config/landing/links'
 
+import { copyright, release } from '@/config/globals'
+
 const linkClass =
   'text-muted-foreground/80 text-sm no-underline hover:text-foreground transition-colors'
 
@@ -67,11 +69,11 @@ export default function Footer() {
       {/* ───── Bottom bar ───── */}
       <div className="flex flex-col md:flex-row items-center md:justify-between gap-2 pt-6 border-t border-border">
         <span className="text-muted-foreground/60 font-mono text-[11px] tracking-[1px]">
-          © 2026 SPAXE — ALL RIGHTS RESERVED
+          {copyright}
         </span>
 
         <span className="text-muted-foreground/60 font-mono text-[11px] tracking-[1px]">
-          V0.1 · BUILT WITH NEXT.JS + THREE.JS
+          {release} · BUILT WITH NEXT.JS + THREE.JS
         </span>
       </div>
     </footer>
