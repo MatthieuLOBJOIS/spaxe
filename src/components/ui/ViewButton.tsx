@@ -1,3 +1,7 @@
+'use client'
+
+import { cn } from '@/lib/utils'
+
 interface ViewButtonProps {
   label: string
   onClick: () => void
@@ -14,12 +18,12 @@ export function ViewButton({
     <button
       onClick={disabled ? undefined : onClick}
       disabled={disabled}
-      className={`px-2.5 py-1.25 rounded-md text-xs font-semibold transition-all duration-150
-      ${
+      className={cn(
+        'px-2.5 py-1.5 rounded-md text-xs font-semibold transition-all',
         disabled
-          ? 'text-white/15 cursor-not-allowed'
-          : 'text-white/50 cursor-pointer hover:text-white hover:bg-white/6'
-      }`}
+          ? 'text-muted cursor-not-allowed opacity-50'
+          : 'text-muted cursor-pointer hover:text-white hover:bg-surface'
+      )}
     >
       {label}
     </button>

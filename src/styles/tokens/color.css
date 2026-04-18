@@ -3,6 +3,7 @@
   --color-fg: oklch(0.985 0 0);
 
   --color-surface: oklch(0.18 0 0);
+  --color-surface-hover: oklch(26.663% 0.00297 16.782);
   --color-surface-elevated: oklch(0.22 0 0);
 
   --color-text: var(--color-fg);
@@ -16,6 +17,7 @@
   --color-ring: var(--color-primary);
 
   --color-slider: oklch(60.269% 0.19052 37.962);
+  --color-selection: oklch(0.75 0.15 200);
   --color-axis-x: oklch(65.57% 0.17436 23.171);
   --color-axis-y: oklch(74.778% 0.15679 143.214);
   --color-axis-z: oklch(68.7% 0.12963 252.322);

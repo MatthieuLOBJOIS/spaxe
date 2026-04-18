@@ -1,3 +1,7 @@
+'use client'
+
+import { cn } from '@/lib/utils'
+
 interface ToggleOption {
   label: string
   tooltip: string
@@ -10,6 +14,7 @@ interface ToggleButtonProps {
   disabled?: boolean
 }
 
+/** Two-option toggle button with active state highlight. */
 export function ToggleButton({
   options,
   activeIndex,
@@ -18,8 +23,10 @@ export function ToggleButton({
 }: ToggleButtonProps) {
   return (
     <div
-      className={`flex items-center rounded-md border overflow-hidden shrink-0
-      ${disabled ? 'border-white/4' : 'border-white/8'}`}
+      className={cn(
+        'flex items-center rounded-md border overflow-hidden shrink-0',
+        disabled ? 'border-border/40' : 'border-border'
+      )}
     >
       {options.map((option, i) => (
         <button
@@ -28,15 +35,15 @@ export function ToggleButton({
           onClick={() => {
             if (!disabled && activeIndex !== i) onChange(i as 0 | 1)
           }}
-          className={`px-2.5 py-1.25 text-[11px] font-semibold transition-colors duration-150
-          ${i === 0 ? 'border-r border-white/8' : ''}
-          ${
+          className={cn(
+            'px-2.5 py-1.5 text-xs font-semibold transition-colors',
+            i === 0 && 'border-r border-border',
             disabled
-              ? 'text-white/15 cursor-not-allowed'
+              ? 'text-muted cursor-not-allowed'
               : activeIndex === i
-                ? 'bg-orange/15 text-orange'
-                : 'bg-transparent text-white/35 cursor-pointer'
-          }`}
+                ? 'bg-primary/15 text-primary'
+                : 'bg-transparent text-muted cursor-pointer'
+          )}
         >
           {option.label}
         </button>

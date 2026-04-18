@@ -17,6 +17,7 @@ interface SliderProps {
   variant?: 'default' | 'x' | 'y' | 'z'
 }
 
+// Slider component with label, value display, and customizable styling variants.
 export function Slider({
   label,
   value,

@@ -1,5 +1,7 @@
-import { ReactNode } from 'react'
+'use client'
+
 import { cn } from '@/lib/utils'
+import { ReactNode } from 'react'
 
 interface ExternalLinkProps {
   href: string
@@ -8,7 +10,7 @@ interface ExternalLinkProps {
   onClick?: () => void
 }
 
-// Link that opens in a new tab.
+/** Anchor tag that always opens in a new tab with safe rel attributes. */
 export function ExternalLink({
   href,
   children,
