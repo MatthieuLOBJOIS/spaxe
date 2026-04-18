@@ -22,7 +22,7 @@ export function SelectedParts() {
         </span>
 
         <p
-          className={`text-[13px] font-semibold mt-0.5 truncate ${
+          className={`text-sm font-semibold mt-0.5 truncate ${
             count > 0 ? 'text-cyan-400' : 'text-white/20'
           }`}
         >
