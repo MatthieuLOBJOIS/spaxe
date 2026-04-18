@@ -13,8 +13,9 @@
   --color-success: var(--color-success);
   --color-warning: var(--color-warning);
 
-  /* Axis & Slider */
+  /* Colors Assembly Items */
   --color-slider: var(--color-slider);
+  --color-selection: var(--color-selection);
   --color-axis-x: var(--color-axis-x);
   --color-axis-y: var(--color-axis-y);
   --color-axis-z: var(--color-axis-z);
@@ -43,6 +44,7 @@
 
   /* Typography */
   --text-xs: var(--text-xs);
+  --text-2xs: var(--text-2xs);
   --text-sm: var(--text-sm);
   --text-base: var(--text-base);
   --text-lg: var(--text-lg);
