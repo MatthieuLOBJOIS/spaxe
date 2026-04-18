@@ -1,50 +1,9 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-@import '@fontsource/space-grotesk/400.css';
-@import '@fontsource/space-grotesk/700.css';
-@import '@fontsource/geist-mono/400.css';
+@import '../styles/tokens.css';
+@import '../styles/theme.css';
 
-/* ─────────────────────────────────────────────
-   DESIGN TOKENS (ENGINE CORE)
-────────────────────────────────────────────── */
-:root {
-  /* layout */
-  --radius: 0.625rem;
-
-  /* fonts */
-  --font-sans: 'Space Grotesk', sans-serif;
-  --font-mono: 'Geist Mono', monospace;
-
-  /* core colors */
-  --bg: oklch(0.1 0 0);
-  --fg: oklch(0.985 0 0);
-
-  --surface: oklch(0.18 0 0);
-  --card: oklch(0.13 0 0);
-
-  /* brand */
-  --primary: oklch(0.65 0.18 40);
-  --primary-hover: oklch(0.72 0.18 45);
-
-  /* UI */
-  --muted: oklch(0.6 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: var(--primary);
-
-  /* states */
-  --danger: oklch(0.577 0.245 27.325);
-
-  /* 3D axis (Spaxe critical) */
-  --axis-x: oklch(65.57% 0.17436 23.171);
-  --axis-y: oklch(74.778% 0.15679 143.214);
-  --axis-z: oklch(68.7% 0.12963 252.322);
-}
-
-/* ─────────────────────────────────────────────
-   BASE
-────────────────────────────────────────────── */
 @layer base {
   * {
     box-sizing: border-box;
@@ -56,47 +15,8 @@
 
   body {
     margin: 0;
-    padding: 0;
-
     font-family: var(--font-sans);
-    background: var(--bg);
-    color: var(--fg);
-  }
-
-  input,
-  button {
-    font: inherit;
-  }
-}
-
-/* ─────────────────────────────────────────────
-   LOW LEVEL UTILITIES (NOT DESIGN SYSTEM)
-────────────────────────────────────────────── */
-@layer utilities {
-  .fullscreen {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  .axis-x {
-    color: var(--axis-x);
-  }
-  .axis-y {
-    color: var(--axis-y);
-  }
-  .axis-z {
-    color: var(--axis-z);
-  }
-
-  .text-muted {
-    color: var(--muted);
-  }
-
-  .bg-surface {
-    background: var(--surface);
-  }
-  .bg-card {
-    background: var(--card);
+    background: var(--color-bg);
+    color: var(--color-text);
   }
 }

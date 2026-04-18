@@ -7,7 +7,7 @@ import { SelectedParts } from '@/components/ui/SelectedParts'
 import ColorPreview from '@/components/workspace/modals/color/ColorPreview'
 import EyeDropperButton from '@/components/workspace/modals/color/EyeDropperButton'
 import RandomColorButton from '@/components/workspace/modals/color/RandomColorButton'
-import { Slider } from '@/components/ui/Slider'
+import { Slider } from '@/components/ui/slider/Slider'
 import ColorPresets from '@/components/workspace/modals/color/ColorPresets'
 import { ApplyButton } from '@/components/ui/ApplyButton'
 

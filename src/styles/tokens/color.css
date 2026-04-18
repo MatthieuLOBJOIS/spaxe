@@ -1,0 +1,30 @@
+:root {
+  --color-bg: oklch(0.1 0 0);
+  --color-fg: oklch(0.985 0 0);
+
+  --color-surface: oklch(0.18 0 0);
+  --color-surface-elevated: oklch(0.22 0 0);
+
+  --color-text: var(--color-fg);
+  --color-text-muted: oklch(0.6 0 0);
+
+  --color-primary: oklch(0.65 0.18 40);
+  --color-secondary: oklch(0.25 0 0);
+
+  --color-border: oklch(1 0 0 / 12%);
+  --color-input: oklch(1 0 0 / 20%);
+  --color-ring: var(--color-primary);
+
+  --color-slider: oklch(60.269% 0.19052 37.962);
+  --color-axis-x: oklch(65.57% 0.17436 23.171);
+  --color-axis-y: oklch(74.778% 0.15679 143.214);
+  --color-axis-z: oklch(68.7% 0.12963 252.322);
+
+  --color-axis-x-soft: oklch(65.57% 0.17436 23.171 / 0.4);
+  --color-axis-y-soft: oklch(74.778% 0.15679 143.214 / 0.4);
+  --color-axis-z-soft: oklch(68.7% 0.12963 252.322 / 0.4);
+
+  --color-danger: oklch(0.577 0.245 27.325);
+  --color-success: oklch(0.7 0.2 140);
+  --color-warning: oklch(0.8 0.18 80);
+}

@@ -15,17 +15,20 @@ Next.js 16 App Router · TypeScript strict · React Three Fiber · React Three D
 - `'use client'` only when hooks/events/browser APIs are used
 - English only — comments, commits, JSDoc
 
-## Design tokens (never bypass these)
+# DESIGN RULES
 
-- Orange accent: `text-orange` / `bg-orange/8` / `border-orange/30`
-- Background: `bg-background`
-- Surface: `bg-card` or `bg-secondary`
-  -Axis X/Y/Z:
-- X → text-[var(--color-axis-x)]
-- Y → text-[var(--color-axis-y)]
-- Z → text-[var(--color-axis-z)]
-- Font UI: `font-sans` (Space Grotesk)
-- Font data: `font-mono` (Geist Mono)
+## NEVER
+
+- hardcoded hex/rgba/oklch in JSX
+- `text-[#F26522]` → use the token class
+- `bg-[var(--color-surface)]` → use the token class
+- `style={{ color: '...' }}` → use className
+- motion tokens (`--duration-*`, `--ease-*`) in className → CSS only
+
+## ALWAYS
+
+- `cn()` for conditional classNames, never template literals
+- opacity via modifier: `bg-primary/8`, not `rgba(...)`
 
 ## Architecture layers (never cross these)
 

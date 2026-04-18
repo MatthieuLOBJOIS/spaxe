@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 
-import { Slider } from '@/components/ui/Slider'
+import { Slider } from '@/components/ui/slider/Slider'
 import PlayResetButton from '@/components/workspace/modals/exploded/PlayResetButton'
 import AxisSelector from '@/components/workspace/modals/exploded/AxisSelector'
 
@@ -58,7 +58,7 @@ export default function ExplodedModal() {
 
   return (
     <div className="flex flex-col gap-4">
-      {/* ── Axe d'explosion ─────────────────────────── */}
+      {/* ── Axe scope for exploded ─────────────────────────── */}
       <AxisSelector
         value={axis}
         onChange={(a) => {
@@ -76,6 +76,7 @@ export default function ExplodedModal() {
         step={0.1}
         unit="%"
         onChange={handleSlider}
+        variant={axis === 'all' ? 'default' : axis}
       />
 
       {/* ── Play / Reset ─────────────────────────────── */}
