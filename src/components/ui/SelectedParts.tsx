@@ -17,13 +17,13 @@ export function SelectedParts() {
   return (
     <div className="px-3 py-2 bg-white/3 rounded-lg border border-white/6 flex items-center justify-between">
       <div>
-        <span className="text-white/30 text-[10px] font-mono tracking-[1px]">
+        <span className="text-white/30 text-2xs font-mono tracking-[1px]">
           SELECTED
         </span>
 
         <p
-          className={`text-sm font-semibold mt-0.5 truncate ${
-            count > 0 ? 'text-cyan-400' : 'text-white/20'
+          className={`text-xs font-semibold mt-0.5 truncate ${
+            count > 0 ? 'text-selection' : 'text-white/20'
           }`}
         >
           {label}
