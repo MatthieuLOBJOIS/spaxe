@@ -8,7 +8,7 @@ import Footer from '@/components/landing/footer/Footer'
 // Landing page — entry point of the application
 export default function HomePage() {
   return (
-    <div className="bg-background">
+    <div className="bg-bg">
       <Navbar />
       <Hero />
       <Features />

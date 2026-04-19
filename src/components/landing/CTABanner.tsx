@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
 
 import { DEMO_LINK } from '@/config/landing/links'
+import { CtaButton } from '../ui/CtaButton'
 
 export default function CTABanner() {
   return (
@@ -16,11 +16,10 @@ export default function CTABanner() {
           No account required. Load the demo and explore in seconds.
         </p>
       </div>
-
       <Link href={DEMO_LINK}>
-        <div className="flex items-center gap-2.5 px-9 py-4 bg-primary hover:bg-primary-hover rounded-lg text-white font-medium text-base cursor-pointer transition-colors duration-150 whitespace-nowrap">
-          Try Demo <ArrowRight size={18} />
-        </div>
+        <CtaButton arrow className="px-9 py-4 whitespace-nowrap">
+          Try Demo
+        </CtaButton>
       </Link>
     </section>
   )

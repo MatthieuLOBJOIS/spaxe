@@ -1,16 +1,16 @@
-import { FEATURES } from '@/config/landing/features'
 import FeatureCard from './FeatureCard'
+import { FEATURES } from '@/config/landing/features'
+import { SectionBadge } from '@/components/ui/SectionBadge'
 
 export default function Features() {
   return (
-    <section id="features" className="bg-surface px-6 md:px-[12%] py-30">
-      <div className="mb-16">
-        <div className="inline-flex px-3 py-1.25 bg-primary/10 border border-primary/25 rounded-full mb-5">
-          <span className="text-primary text-[11px] font-mono tracking-[1px]">
-            FEATURES
-          </span>
-        </div>
-        <h2 className="text-white font-bold text-4xl md:text-5xl tracking-tight m-0">
+    <section
+      id="features"
+      className="bg-surface-elevated px-6 md:px-[12%] py-16"
+    >
+      <div className="mb-6">
+        <SectionBadge label="FEATURES" className="mb-4" />
+        <h2 className="text-foreground font-bold text-4xl md:text-5xl tracking-tight m-0">
           Everything you need
           <br />
           to navigate complexity.

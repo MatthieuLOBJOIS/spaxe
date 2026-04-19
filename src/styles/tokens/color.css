@@ -18,13 +18,19 @@
 
   --color-slider: oklch(60.269% 0.19052 37.962);
   --color-selection: oklch(0.75 0.15 200);
+
   --color-axis-x: oklch(65.57% 0.17436 23.171);
   --color-axis-y: oklch(74.778% 0.15679 143.214);
   --color-axis-z: oklch(68.7% 0.12963 252.322);
-
   --color-axis-x-soft: oklch(65.57% 0.17436 23.171 / 0.4);
   --color-axis-y-soft: oklch(74.778% 0.15679 143.214 / 0.4);
   --color-axis-z-soft: oklch(68.7% 0.12963 252.322 / 0.4);
+
+  --color-part-selection: var(--color-selection);
+  --color-part-bright: oklch(0.8 0 0);
+  --color-part-mid: oklch(0.4 0 0);
+  --color-part-dim: oklch(0.3 0 0);
+  --color-part-faint: oklch(0.25 0 0);
 
   --color-danger: oklch(0.577 0.245 27.325);
   --color-success: oklch(0.7 0.2 140);

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { ExternalLink } from '@/components/ui/ExternalLink'
 
-type NavLinkProps = {
+interface NavLinkProps {
   href: string
   label: string
   onClick?: () => void
@@ -18,8 +18,7 @@ export default function NavLink({
 }: NavLinkProps) {
   const isExternal = href.startsWith('http')
 
-  const baseClass =
-    'text-sm text-muted-foreground hover:text-foreground transition-colors'
+  const baseClass = 'text-sm text-muted hover:text-fg transition-colors'
   const finalClass = className ?? baseClass
 
   if (isExternal) {

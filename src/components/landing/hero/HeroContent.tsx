@@ -1,13 +1,14 @@
-import HeroBadge from './HeroBadge'
 import HeroCTAs from './HeroCTAs'
+import { SectionBadge } from '@/components/ui/SectionBadge'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import { release } from '@/config/globals'
 
 export default function HeroContent() {
   const isMobile = useIsMobile()
 
   return (
     <div className="relative z-10 w-full px-6 md:ml-[12%] md:w-auto md:max-w-130 flex flex-col gap-7 items-center md:items-start text-center md:text-left">
-      <HeroBadge />
+      <SectionBadge label={`ASSEMBLY VIEWER · ${release}`} />
 
       <h1 className="text-white font-bold leading-none tracking-tight m-0 text-[clamp(2.5rem,8vw,4.25rem)]">
         Navigate

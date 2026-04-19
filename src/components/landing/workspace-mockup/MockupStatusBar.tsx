@@ -1,11 +1,15 @@
+import { MOCKUP_STATUS_ITEMS } from '@/config/landing/mockup'
+
 export default function MockupStatusBar() {
   return (
-    <div className="h-7 bg-card border-t border-white/6 flex items-center px-3.5 gap-4">
-      <span className="text-white/20 text-[9px] font-mono">assembly.spaxe</span>
-      <span className="text-white/20 text-[9px] font-mono">STL</span>
-      <span className="text-white/20 text-[9px] font-mono">6 parts loaded</span>
+    <div className="h-7 bg-surface-elevated border-t border-fg/6 flex items-center px-3.5 gap-4">
+      {MOCKUP_STATUS_ITEMS.map((item) => (
+        <span key={item} className="text-fg/50 text-2xs font-mono">
+          {item}
+        </span>
+      ))}
       <div className="flex-1" />
-      <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+      <div className="w-1.5 h-1.5 rounded-full bg-success" />
     </div>
   )
 }

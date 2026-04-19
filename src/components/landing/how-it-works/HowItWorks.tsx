@@ -1,17 +1,12 @@
-'use client'
-
 import StepCard from './StepCard'
+import { SectionBadge } from '@/components/ui/SectionBadge'
 import { STEPS } from '@/config/landing/steps'
 
 export default function HowItWorks() {
   return (
     <section id="how-it-works" className="bg-surface/60 px-6 md:px-[12%] py-30">
       <div className="mb-16">
-        <div className="inline-flex px-3 py-1.5 bg-primary/10 border border-primary/25 rounded-full mb-5">
-          <span className="text-primary text-[11px] font-mono tracking-[1px]">
-            HOW IT WORKS
-          </span>
-        </div>
+        <SectionBadge label="HOW IT WORKS" className="mb-5" />
 
         <h2 className="text-foreground font-bold text-4xl md:text-5xl tracking-tight m-0">
           From file to interactive

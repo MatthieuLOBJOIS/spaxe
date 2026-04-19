@@ -25,6 +25,13 @@
   --color-axis-y-soft: var(--color-axis-y-soft);
   --color-axis-z-soft: var(--color-axis-z-soft);
 
+  /* Colors Parts */
+  --color-part-selection: var(--color-part-selection);
+  --color-part-bright: var(--color-part-bright);
+  --color-part-mid: var(--color-part-mid);
+  --color-part-dim: var(--color-part-dim);
+  --color-part-faint: var(--color-part-faint);
+
   /* Spacing */
   --spacing-1: var(--space-1);
   --spacing-2: var(--space-2);
@@ -44,17 +51,22 @@
   --radius-full: var(--radius-full);
 
   /* Typography */
-  --text-xs: var(--text-xs);
+  --text-3xs: var(--text-3xs);
   --text-2xs: var(--text-2xs);
+  --text-xs: var(--text-xs);
   --text-sm: var(--text-sm);
   --text-base: var(--text-base);
   --text-lg: var(--text-lg);
   --text-xl: var(--text-xl);
 
+  --tracking-label: var(--tracking-label);
+  --tracking-wide: var(--tracking-wide);
+
   /* Shadows */
   --shadow-sm: var(--shadow-sm);
   --shadow-md: var(--shadow-md);
   --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
 
   /* Motion */
   --duration-fast: var(--duration-fast);

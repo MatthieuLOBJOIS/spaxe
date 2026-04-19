@@ -14,7 +14,9 @@ import {
 import { copyright, release } from '@/config/globals'
 
 const linkClass =
-  'text-muted-foreground/80 text-sm no-underline hover:text-foreground transition-colors'
+  'text-muted/80 text-sm no-underline hover:text-foreground transition-colors'
+
+const spanClass = 'text-muted/60 font-mono text-xs tracking-label'
 
 export default function Footer() {
   return (
@@ -26,7 +28,7 @@ export default function Footer() {
             <Logo size="md" />
           </Link>
 
-          <p className="text-muted-foreground/60 text-[13px] leading-relaxed m-0">
+          <p className="text-muted/60 text-sm leading-relaxed m-0">
             Interactive 3D navigation for complex assemblies. Built for makers
             and industrial teams.
           </p>
@@ -68,11 +70,9 @@ export default function Footer() {
 
       {/* ───── Bottom bar ───── */}
       <div className="flex flex-col md:flex-row items-center md:justify-between gap-2 pt-6 border-t border-border">
-        <span className="text-muted-foreground/60 font-mono text-[11px] tracking-[1px]">
-          {copyright}
-        </span>
+        <span className={spanClass}>{copyright}</span>
 
-        <span className="text-muted-foreground/60 font-mono text-[11px] tracking-[1px]">
+        <span className={spanClass}>
           {release} · BUILT WITH NEXT.JS + THREE.JS
         </span>
       </div>

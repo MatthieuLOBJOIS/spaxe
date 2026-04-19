@@ -1,8 +1,12 @@
 :root {
-  --text-xs: 0.75rem;
+  --text-3xs: 0.5rem;
   --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
   --text-lg: 1.125rem;
   --text-xl: 1.25rem;
+
+  --tracking-label: 1px;
+  --tracking-wide: 2px;
 }

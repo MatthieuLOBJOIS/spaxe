@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import { INTERNAL_LINKS, NAV_LINKS } from '@/config/landing/links'
+import { CtaButton } from '@/components/ui/CtaButton'
 import NavLink from './NavLink'
 
 export default function DesktopMenu() {
@@ -14,9 +15,9 @@ export default function DesktopMenu() {
 
       <div className="ml-auto hidden md:block">
         <Link href={INTERNAL_LINKS.viewer.href}>
-          <div className="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-hover">
+          <CtaButton className="px-5 py-2 text-sm">
             {INTERNAL_LINKS.viewer.label}
-          </div>
+          </CtaButton>
         </Link>
       </div>
     </>
