@@ -58,9 +58,13 @@
   --text-base: var(--text-base);
   --text-lg: var(--text-lg);
   --text-xl: var(--text-xl);
+  --text-2xl: var(--text-2xl);
 
   --tracking-label: var(--tracking-label);
   --tracking-wide: var(--tracking-wide);
+  --tracking-wider: var(--tracking-wider);
+  --tracking-widest: var(--tracking-widest);
+  --tracking-logo: var(--tracking-logo);
 
   /* Shadows */
   --shadow-sm: var(--shadow-sm);

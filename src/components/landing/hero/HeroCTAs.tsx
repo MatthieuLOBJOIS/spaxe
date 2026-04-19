@@ -3,10 +3,14 @@
 import Link from 'next/link'
 
 import { ExternalLink } from '@/components/ui/ExternalLink'
-import { EXTERNAL_LINKS, INTERNAL_LINKS } from '@/config/landing/links'
+import { EXTERNAL_LINKS, INTERNAL_LINKS } from '@/config/global'
 import { CtaButton } from '@/components/ui/CtaButton'
 
-export default function HeroCTAs({ isMobile }: { isMobile: boolean }) {
+interface HeroCtasProps {
+  isMobile: boolean
+}
+
+export default function HeroCTAs({ isMobile }: HeroCtasProps) {
   return (
     <div className="flex flex-col gap-3 items-center md:items-start">
       <div className="flex gap-3 flex-wrap justify-center md:justify-start">

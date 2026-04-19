@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { INTERNAL_LINKS } from '@/config/landing/links'
+import { INTERNAL_LINKS } from '@/config/global'
 import { VIEWER_OPTIONS } from '@/config/workspace/viewerOptions'
 import { Logo } from '@/components/ui/Logo'
 import OptionItem from './OptionItem'

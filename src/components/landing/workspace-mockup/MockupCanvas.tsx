@@ -25,7 +25,7 @@ export default function MockupCanvas() {
             y1={MOCKUP_CENTER.y}
             x2={x2}
             y2={y2}
-            stroke="var(--color-primary)"
+            stroke={STROKE_MAP.primary}
             strokeWidth="1"
             strokeDasharray="3,3"
             strokeOpacity="0.35"
@@ -76,7 +76,7 @@ export default function MockupCanvas() {
       </svg>
 
       {/* Selection badge */}
-      <div className="absolute bottom-4 left-3 px-2.5 py-1 bg-primary/8 border border-primary/30 rounded text-primary text-2xs font-mono tracking-[1px]">
+      <div className="absolute bottom-4 left-3 px-2.5 py-1 bg-primary/8 border border-primary/30 rounded text-primary text-2xs font-mono tracking-label">
         {MOCKUP_SELECTED_LABEL}
       </div>
 
@@ -89,7 +89,7 @@ export default function MockupCanvas() {
             width="12"
             height="12"
             fill="none"
-            stroke="var(--color-primary)"
+            stroke={STROKE_MAP.primary}
             strokeWidth="1"
             opacity="0.5"
           />
@@ -99,7 +99,7 @@ export default function MockupCanvas() {
             width="12"
             height="12"
             fill="none"
-            stroke="var(--color-part-faint)"
+            stroke={STROKE_MAP.faint}
             strokeWidth="1"
             opacity="1"
           />
@@ -115,7 +115,7 @@ export default function MockupCanvas() {
               y1={y1}
               x2={x2}
               y2={y2}
-              stroke="var(--color-part-mid)"
+              stroke={STROKE_MAP.mid}
               strokeWidth="1"
               opacity="0.5"
             />

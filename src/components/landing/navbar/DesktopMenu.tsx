@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { INTERNAL_LINKS, NAV_LINKS } from '@/config/landing/links'
+import { INTERNAL_LINKS, NAV_LINKS } from '@/config/global'
 import { CtaButton } from '@/components/ui/CtaButton'
 import NavLink from './NavLink'
 

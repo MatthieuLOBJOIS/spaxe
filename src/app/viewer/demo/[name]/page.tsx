@@ -1,11 +1,11 @@
 import ViewerScreen from '@/components/workspace/ViewerScreen'
 
-type Props = {
+type DemoPageProps = {
   params: Promise<{ name: string }>
 }
 
 // Displays the viewer workspace for a built-in demo assembly
-export default async function DemoPage({ params }: Props) {
+export default async function DemoPage({ params }: DemoPageProps) {
   const { name } = await params
 
   return (

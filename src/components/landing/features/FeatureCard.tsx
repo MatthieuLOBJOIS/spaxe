@@ -1,10 +1,6 @@
 import { cn } from '@/lib/utils'
-import type { LucideIcon } from 'lucide-react'
-
-interface FeatureCardProps {
-  icon: LucideIcon
-  label: string
-  desc: string
+import type { Feature } from '@/types/card'
+interface FeatureCardProps extends Feature {
   className?: string
 }
 

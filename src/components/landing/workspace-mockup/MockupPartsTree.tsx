@@ -30,7 +30,8 @@ export default function MockupPartsTree() {
           >
             <input
               type="checkbox"
-              defaultChecked
+              checked
+              onChange={() => {}}
               className="w-2.5 h-2.5 shrink-0 accent-part-bright"
             />
             <div

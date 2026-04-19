@@ -1,6 +1,6 @@
 import StepCard from './StepCard'
 import { SectionBadge } from '@/components/ui/SectionBadge'
-import { STEPS } from '@/config/landing/steps'
+import { STEPS } from '@/config/landing/card'
 
 export default function HowItWorks() {
   return (

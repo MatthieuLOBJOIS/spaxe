@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
-import type { Step } from '@/config/landing/steps'
+import type { Step } from '@/types/card'
 
-type StepCardProps = Step & {
+interface StepCardProps extends Step {
   className?: string
 }
 

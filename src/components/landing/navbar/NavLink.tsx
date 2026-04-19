@@ -2,10 +2,9 @@
 
 import Link from 'next/link'
 import { ExternalLink } from '@/components/ui/ExternalLink'
+import type { NavLink } from '@/types/global'
 
-interface NavLinkProps {
-  href: string
-  label: string
+interface NavLinkProps extends NavLink {
   onClick?: () => void
   className?: string
 }

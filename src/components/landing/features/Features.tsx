@@ -1,5 +1,5 @@
 import FeatureCard from './FeatureCard'
-import { FEATURES } from '@/config/landing/features'
+import { FEATURES } from '@/config/landing/card'
 import { SectionBadge } from '@/components/ui/SectionBadge'
 
 export default function Features() {

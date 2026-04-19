@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { INTERNAL_LINKS } from '@/config/landing/links'
+import { INTERNAL_LINKS } from '@/config/global'
 import { Logo } from '@/components/ui/Logo'
 import DesktopMenu from './DesktopMenu'
 import MobileNav from './MobileNav'

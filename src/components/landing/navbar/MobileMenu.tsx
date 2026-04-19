@@ -1,6 +1,6 @@
 'use client'
 
-import { NAV_LINKS } from '@/config/landing/links'
+import { NAV_LINKS } from '@/config/global'
 import NavLink from './NavLink'
 
 interface MobileMenuProps {

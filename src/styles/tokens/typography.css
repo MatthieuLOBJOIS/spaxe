@@ -6,7 +6,11 @@
   --text-base: 1rem;
   --text-lg: 1.125rem;
   --text-xl: 1.25rem;
+  --text-2xl: 1.375rem;
 
   --tracking-label: 1px;
   --tracking-wide: 2px;
+  --tracking-wider: 3px;
+  --tracking-widest: 4px;
+  --tracking-logo: 7px;
 }

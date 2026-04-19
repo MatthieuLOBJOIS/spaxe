@@ -4,7 +4,7 @@ import { RotateCcw, PaintBucket, Keyboard } from 'lucide-react'
 
 import { useRouter } from 'next/navigation'
 import { resetAllStores } from '@/lib/resetAllStores'
-import { INTERNAL_LINKS } from '@/config/landing/links'
+import { INTERNAL_LINKS } from '@/config/global'
 
 import { ToolButton } from '@/components/ui/ToolButton'
 import { ViewButton } from '@/components/ui/ViewButton'

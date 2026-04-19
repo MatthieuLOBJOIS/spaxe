@@ -9,9 +9,9 @@ import {
   EXTERNAL_LINKS,
   FOOTER_PRODUCT_LINKS,
   FOOTER_STACK_LINKS,
-} from '@/config/landing/links'
+} from '@/config/global'
 
-import { copyright, release } from '@/config/globals'
+import { copyright, release } from '@/config/global'
 
 const linkClass =
   'text-muted/80 text-sm no-underline hover:text-foreground transition-colors'
