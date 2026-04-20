@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils'
 import { useAssemblyStore } from '@/store/assemblyStore'
 
-// Displays the current parts selection state, reading directly from assemblyStore.
+/** Displays the current parts selection state, reading directly from assemblyStore. */
 export function SelectedParts() {
   const selectedParts = useAssemblyStore((s) => s.selectedParts)
 
@@ -18,7 +18,7 @@ export function SelectedParts() {
         : `${count} parts selected`
 
   return (
-    <div className="px-3 py-2 bg-surface rounded-lg border border-border flex items-center justify-between">
+    <div className="px-3 py-2 bg-surface rounded-lg border border-border flex items-center">
       <div>
         <span className="text-muted text-xs font-mono uppercase tracking-widest">
           SELECTED

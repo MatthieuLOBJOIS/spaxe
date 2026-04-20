@@ -8,7 +8,7 @@ interface ViewButtonProps {
   disabled?: boolean
 }
 
-// Button preset view scene selection
+/** Button preset view scene selection */
 export function ViewButton({
   label,
   onClick,
@@ -22,7 +22,7 @@ export function ViewButton({
         'px-2.5 py-1.5 rounded-md text-xs font-semibold transition-all',
         disabled
           ? 'text-muted cursor-not-allowed opacity-50'
-          : 'text-muted cursor-pointer hover:text-white hover:bg-surface'
+          : 'text-muted cursor-pointer hover:text-fg hover:bg-surface'
       )}
     >
       {label}

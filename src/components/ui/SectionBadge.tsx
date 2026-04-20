@@ -5,6 +5,7 @@ interface SectionBadgeProps {
   className?: string
 }
 
+/** Renders a badge with the given label, used to indicate the current section. */
 export function SectionBadge({ label, className }: SectionBadgeProps) {
   return (
     <div

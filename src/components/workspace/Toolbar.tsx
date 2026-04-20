@@ -194,7 +194,7 @@ export default function Toolbar({
       <Sep />
 
       {/* Back */}
-      <BackButton handleBack={handleBack} />
+      <BackButton onBack={handleBack} />
     </div>
   )
 }

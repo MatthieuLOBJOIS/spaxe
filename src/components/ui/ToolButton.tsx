@@ -30,7 +30,7 @@ export function ToolButton({
           ? 'text-muted bg-transparent border-transparent cursor-not-allowed opacity-50'
           : active
             ? 'text-primary bg-primary/12 border-primary/30 cursor-pointer'
-            : 'text-muted bg-transparent border-transparent hover:text-white hover:bg-surface-hover cursor-pointer'
+            : 'text-muted bg-transparent border-transparent hover:text-fg hover:bg-surface-hover cursor-pointer'
       )}
     >
       <Icon size={20} />

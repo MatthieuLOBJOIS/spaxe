@@ -8,24 +8,19 @@ interface ApplyButtonProps {
   label?: string
 }
 
-// Apply button (enabled only when selection exists)
+/** Apply button — enabled only when at least one part is selected. */
 export function ApplyButton({ onApply, label = 'Apply' }: ApplyButtonProps) {
-  const selectedParts = useAssemblyStore((s) => s.selectedParts)
-
-  const hasSelection = selectedParts.length > 0
+  const hasSelection = useAssemblyStore((s) => s.selectedParts.length > 0)
 
   return (
     <button
       disabled={!hasSelection}
       onClick={onApply}
       className={cn(
-        'w-full px-3 py-2.5 rounded-lg text-xs font-semibold border transition-colors duration-fast',
-        {
-          'bg-primary/8 border-primary/30 text-primary hover:bg-primary/15 cursor-pointer':
-            hasSelection,
-          'bg-white/3 border-white/6 text-white/20 cursor-not-allowed':
-            !hasSelection,
-        }
+        'w-full px-3 py-2.5 rounded-lg text-xs font-semibold border transition-colors',
+        hasSelection
+          ? 'bg-primary/8 border-primary/30 text-primary hover:bg-primary/15 cursor-pointer'
+          : 'bg-fg/3 border-fg/6 text-fg/20 cursor-not-allowed'
       )}
     >
       {label}

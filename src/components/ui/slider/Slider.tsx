@@ -1,23 +1,23 @@
 'use client'
 
-import { cn } from '@/lib/utils'
+import { type ReactNode } from 'react'
+
 import styles from './slider.module.css'
+import { cn } from '@/lib/utils'
 
 interface SliderProps {
-  /** Label displayed above the slider. */
   label: string
-  /** Current value. */
   value: number
   min?: number
   max?: number
   step?: number
   onChange: (value: number) => void
   unit?: string
-  renderValue?: (value: number) => React.ReactNode
+  renderValue?: (value: number) => ReactNode
   variant?: 'default' | 'x' | 'y' | 'z'
 }
 
-// Slider component with label, value display, and customizable styling variants.
+/** Slider with label, value display, and axis variant styling. */
 export function Slider({
   label,
   value,
@@ -46,10 +46,7 @@ export function Slider({
         className={cn('relative w-full h-6 flex items-center', styles.root)}
         data-variant={variant}
       >
-        {/* Track */}
         <div className="absolute inset-x-0 h-2 rounded-full bg-surface-elevated border border-border pointer-events-none" />
-
-        {/* Fill */}
         <div
           className={cn(
             'absolute left-0 h-2 rounded-full pointer-events-none',
@@ -57,8 +54,6 @@ export function Slider({
           )}
           style={{ width: `${percent}%` }}
         />
-
-        {/* Input */}
         <input
           type="range"
           min={min}

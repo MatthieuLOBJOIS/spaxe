@@ -22,7 +22,7 @@
   height: 16px;
   border-radius: var(--radius-full);
   background-color: var(--slider-color);
-  border: 2px solid black;
+  border: 2px solid var(--color-bg);
   cursor: grab;
   transition: transform var(--duration-fast) var(--ease-out);
 }
@@ -38,5 +38,5 @@
   height: 16px;
   border-radius: var(--radius-full);
   background-color: var(--slider-color);
-  border: 2px solid black;
+  border: 2px solid var(--color-bg);
 }
