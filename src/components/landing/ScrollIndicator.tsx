@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+
 import { cn } from '@/lib/utils'
 
 export default function ScrollIndicator() {
@@ -28,11 +29,11 @@ export default function ScrollIndicator() {
         height="20"
         viewBox="0 0 20 20"
         fill="none"
-        className="animate-bounce"
+        className="animate-bounce text-primary"
       >
         <path
           d="M10 4 L10 16 M4 10 L10 16 L16 10"
-          stroke="var(--color-primary)"
+          stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"

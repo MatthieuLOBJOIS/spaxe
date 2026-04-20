@@ -2,10 +2,10 @@
 
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
-import { CtaButton } from '@/components/ui/CtaButton'
+
 import MobileMenu from './MobileMenu'
 
-export default function MobileNav() {
+export default function MobileButton() {
   const [open, setOpen] = useState(false)
 
   return (
@@ -13,11 +13,9 @@ export default function MobileNav() {
       <button
         aria-label="Toggle menu"
         onClick={() => setOpen(!open)}
-        className="ml-auto md:hidden"
+        className="ml-auto md:hidden p-2 rounded-md text-muted hover:bg-surface-hover hover:text-fg transition-colors"
       >
-        <CtaButton variant="ghost">
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </CtaButton>
+        {open ? <X size={22} /> : <Menu size={22} />}
       </button>
 
       <MobileMenu open={open} onClose={() => setOpen(false)} />

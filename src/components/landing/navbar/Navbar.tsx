@@ -1,8 +1,9 @@
 import Link from 'next/link'
-import { INTERNAL_LINKS } from '@/config/global'
+
 import { Logo } from '@/components/ui/Logo'
 import DesktopMenu from './DesktopMenu'
-import MobileNav from './MobileNav'
+import MobileButton from './MobileButton'
+import { INTERNAL_LINKS } from '@/config/global'
 
 export default function Navbar() {
   return (
@@ -14,7 +15,7 @@ export default function Navbar() {
 
         <DesktopMenu />
 
-        <MobileNav />
+        <MobileButton />
       </div>
     </nav>
   )

@@ -1,29 +1,28 @@
-// components/ui/ExternalLink.tsx
+// components/ui/InternalLink.tsx
+import Link from 'next/link'
 import { type ReactNode } from 'react'
 
 import { cn } from '@/lib/utils'
 import { LINK_VARIANTS } from '@/config/global'
 import type { LinkVariants } from '@/types/global'
 
-interface ExternalLinkProps {
+interface InternalLinkProps {
   href: string
   children: ReactNode
   variant?: LinkVariants
   className?: string
 }
 
-/** External link that opens in a new tab with safe rel attributes. */
-export function ExternalLink({
+/** Internal navigation link styled as a button. */
+export function InternalLink({
   href,
   children,
   variant = 'primary',
   className,
-}: ExternalLinkProps) {
+}: InternalLinkProps) {
   return (
-    <a
+    <Link
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
       className={cn(
         'w-fit flex gap-2 rounded-lg font-medium transition-colors',
         LINK_VARIANTS[variant],
@@ -31,6 +30,6 @@ export function ExternalLink({
       )}
     >
       {children}
-    </a>
+    </Link>
   )
 }

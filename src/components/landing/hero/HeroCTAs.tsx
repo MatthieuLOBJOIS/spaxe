@@ -1,34 +1,40 @@
 'use client'
 
-import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
+import { InternalLink } from '@/components/ui/InternalLink'
 import { ExternalLink } from '@/components/ui/ExternalLink'
-import { EXTERNAL_LINKS, INTERNAL_LINKS } from '@/config/global'
-import { CtaButton } from '@/components/ui/CtaButton'
+import { EXTERNAL_LINKS, INTERNAL_LINKS, LINK_VARIANTS } from '@/config/global'
+import { useIsMobile } from '@/hooks/useIsMobile'
+import { cn } from '@/lib/utils'
 
-interface HeroCtasProps {
-  isMobile: boolean
-}
+export default function HeroCTAs() {
+  const isMobile = useIsMobile()
 
-export default function HeroCTAs({ isMobile }: HeroCtasProps) {
   return (
     <div className="flex flex-col gap-3 items-center md:items-start">
       <div className="flex gap-3 flex-wrap justify-center md:justify-start">
         {isMobile ? (
-          <CtaButton disabled>{INTERNAL_LINKS.viewer.label}</CtaButton>
+          <span className={cn(LINK_VARIANTS.primaryDisabled)}>
+            {INTERNAL_LINKS.viewer.label}
+          </span>
         ) : (
-          <Link href={INTERNAL_LINKS.viewer.href}>
-            <CtaButton arrow>{INTERNAL_LINKS.viewer.label}</CtaButton>
-          </Link>
+          <InternalLink
+            href={INTERNAL_LINKS.viewer.href}
+            variant="primary"
+            className="px-5 py-2 text-sm"
+          >
+            {INTERNAL_LINKS.viewer.label} <ArrowRight size={16} />
+          </InternalLink>
         )}
 
-        <ExternalLink href={EXTERNAL_LINKS.github.href}>
-          <CtaButton variant="outline">{EXTERNAL_LINKS.github.label}</CtaButton>
+        <ExternalLink href={EXTERNAL_LINKS.github.href} variant="outline">
+          {EXTERNAL_LINKS.github.label}
         </ExternalLink>
       </div>
 
       {isMobile && (
-        <span className="text-white/30 text-xs font-mono tracking-label">
+        <span className="text-fg/30 text-xs font-mono tracking-label">
           ⚠ DESKTOP ONLY — USE A COMPUTER TO ACCESS THE VIEWER
         </span>
       )}

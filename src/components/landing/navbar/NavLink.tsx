@@ -1,36 +1,35 @@
-'use client'
-
-import Link from 'next/link'
+import { InternalLink } from '@/components/ui/InternalLink'
 import { ExternalLink } from '@/components/ui/ExternalLink'
-import type { NavLink } from '@/types/global'
+import { INTERNAL_LINKS, EXTERNAL_LINKS } from '@/config/global'
 
-interface NavLinkProps extends NavLink {
-  onClick?: () => void
+interface NavLinkProps {
   className?: string
 }
 
-export default function NavLink({
-  href,
-  label,
-  onClick,
-  className,
-}: NavLinkProps) {
-  const isExternal = href.startsWith('http')
-
-  const baseClass = 'text-sm text-muted hover:text-fg transition-colors'
-  const finalClass = className ?? baseClass
-
-  if (isExternal) {
-    return (
-      <ExternalLink href={href} onClick={onClick} className={finalClass}>
-        {label}
-      </ExternalLink>
-    )
-  }
-
+export default function NavLinks({ className }: NavLinkProps) {
   return (
-    <Link href={href} onClick={onClick} className={finalClass}>
-      {label}
-    </Link>
+    <>
+      <InternalLink
+        href={INTERNAL_LINKS.features.href}
+        variant="link"
+        className={className}
+      >
+        {INTERNAL_LINKS.features.label}
+      </InternalLink>
+      <InternalLink
+        href={INTERNAL_LINKS.howItWorks.href}
+        variant="link"
+        className={className}
+      >
+        {INTERNAL_LINKS.howItWorks.label}
+      </InternalLink>
+      <ExternalLink
+        href={EXTERNAL_LINKS.github.href}
+        variant="link"
+        className={className}
+      >
+        {EXTERNAL_LINKS.github.label}
+      </ExternalLink>
+    </>
   )
 }

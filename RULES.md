@@ -1,4 +1,4 @@
-# CONVENTIONS.md — Global Rules
+# RULES.md — Global Rules
 
 ## Stack
 
@@ -14,6 +14,10 @@ Next.js 16 App Router · TypeScript strict · React Three Fiber · React Three D
 - No `useEffect` to set state — use architectural solutions
 - `'use client'` only when hooks/events/browser APIs are used
 - English only — comments, commits, JSDoc
+  - `components/ui/` — one-liner description only
+  - `hooks/`, `lib/` — full description + `@param` per argument
+  - `store/` — one-liner on actions/selectors that aren't self-explanatory
+  - everything else — no JSDoc required
 
 # DESIGN RULES
 
@@ -23,7 +27,8 @@ Next.js 16 App Router · TypeScript strict · React Three Fiber · React Three D
 - `text-[#F26522]` → use the token class
 - `bg-[var(--color-surface)]` → use the token class
 - `style={{ color: '...' }}` → use className
-- motion tokens (`--duration-*`, `--ease-*`) in className → CSS only
+- motion tokens mapped in `@theme` → use as utility class like any other token (`duration-slow`, `ease-out`)
+- custom animations (keyframes, complex sequences) → CSS only
 
 ## ALWAYS
 

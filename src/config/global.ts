@@ -1,8 +1,13 @@
-import type { NavLink, LogoSize, LogoSizeConfig } from '@/types/global'
+import type {
+  NavLink,
+  LogoSize,
+  LogoSizeConfig,
+  LinkVariants,
+} from '@/types/global'
 
 // Logo size configurations ───────────────────────────────────────────
 
-export const sizes: Record<LogoSize, LogoSizeConfig> = {
+export const LOGO_SIZES: Record<LogoSize, LogoSizeConfig> = {
   sm: { text: 'text-2xs', tracking: 'tracking-wider', triangle: 'text-2xs' },
   md: { text: 'text-lg', tracking: 'tracking-widest', triangle: 'text-base' },
   lg: { text: 'text-2xl', tracking: 'tracking-widest', triangle: 'text-xl' },
@@ -24,11 +29,7 @@ export const EXTERNAL_LINKS: Record<string, NavLink> = {
   r3f: { href: 'https://r3f.docs.pmnd.rs', label: 'React Three Fiber' },
   vercel: { href: 'https://vercel.com', label: 'Vercel' },
 }
-export const NAV_LINKS: NavLink[] = [
-  INTERNAL_LINKS.features,
-  INTERNAL_LINKS.howItWorks,
-  EXTERNAL_LINKS.github,
-]
+
 export const FOOTER_PRODUCT_LINKS: NavLink[] = [
   INTERNAL_LINKS.viewer,
   INTERNAL_LINKS.features,
@@ -44,8 +45,18 @@ export const DEMO_LINK = '/viewer/demo/robot-atos'
 
 // Release info ────────────────────────────────────────
 
-export const release = 'V0.1'
+export const RELEASE = 'V0.1'
 
 // Copyright notice ────────────────────────────────────────
 
-export const copyright = '© 2026 SPAXE — ALL RIGHTS RESERVED'
+export const COPYRIGHT = '© 2026 SPAXE — ALL RIGHTS RESERVED'
+
+export const LINK_VARIANTS: Record<LinkVariants, string> = {
+  primary:
+    'bg-primary hover:bg-primary/80 text-fg px-7 py-3.5 text-base items-center justify-center',
+  primaryDisabled:
+    'bg-fg/5 border border-fg/10 text-fg/30 px-7 py-3.5 text-base cursor-not-allowed rounded-lg',
+  outline:
+    'border border-fg/20 text-fg/70 hover:text-fg hover:border-fg/40 px-7 py-3.5 text-base',
+  link: 'text-muted/80 text-sm no-underline hover:text-fg transition-colors',
+}

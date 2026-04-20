@@ -1,7 +1,7 @@
-import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
+import { InternalLink } from '@/components/ui/InternalLink'
 import { DEMO_LINK } from '@/config/global'
-import { CtaButton } from '@/components/ui/CtaButton'
 
 export default function CTABanner() {
   return (
@@ -16,11 +16,13 @@ export default function CTABanner() {
           No account required. Load the demo and explore in seconds.
         </p>
       </div>
-      <Link href={DEMO_LINK}>
-        <CtaButton arrow className="px-9 py-4 whitespace-nowrap">
-          Try Demo
-        </CtaButton>
-      </Link>
+      <InternalLink
+        href={DEMO_LINK}
+        className="px-9 py-4 whitespace-nowrap"
+        variant="primary"
+      >
+        Try Demo <ArrowRight size={16} />
+      </InternalLink>
     </section>
   )
 }

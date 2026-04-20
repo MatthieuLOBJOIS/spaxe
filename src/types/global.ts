@@ -10,3 +10,5 @@ export interface NavLink {
   href: string
   label: string
 }
+
+export type LinkVariants = 'primary' | 'primaryDisabled' | 'outline' | 'link'
