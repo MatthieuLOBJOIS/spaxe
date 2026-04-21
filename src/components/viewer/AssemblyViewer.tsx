@@ -1,5 +1,5 @@
-import { Part } from '@/types/assembly'
 import PartMesh from '@/components/viewer/PartMesh'
+import type { Part } from '@/types/assembly'
 import { useAssemblyCentroid } from '@/hooks/useAssemblyCentroid'
 
 interface AssemblyViewerProps {
