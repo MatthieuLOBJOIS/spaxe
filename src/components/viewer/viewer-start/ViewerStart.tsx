@@ -1,15 +1,17 @@
-import Link from 'next/link'
-import { INTERNAL_LINKS } from '@/config/global'
-import { VIEWER_OPTIONS } from '@/config/workspace/viewerOptions'
+import { ArrowLeft } from 'lucide-react'
+
 import { Logo } from '@/components/ui/Logo'
+import { InternalLink } from '@/components/ui/InternalLink'
 import OptionItem from './OptionItem'
+import { INTERNAL_LINKS, RELEASE } from '@/config/global'
+import { VIEWER_OPTIONS } from '@/config/viewerOptions'
 
 export default function ViewerStart() {
   return (
-    <div className="w-120 bg-background rounded-2xl border border-border overflow-hidden shadow-md">
-      <div className="px-8 pt-8 pb-6 border-b border-white/6">
+    <div className="w-120 bg-surface rounded-2xl border border-border overflow-hidden shadow-md">
+      <div className="px-8 pt-8 pb-6 border-b border-border">
         <Logo size="lg" />
-        <p className="text-white/40 text-sm m-0">
+        <p className="text-muted text-sm m-0">
           Choose how you want to get started.
         </p>
       </div>
@@ -20,16 +22,17 @@ export default function ViewerStart() {
         ))}
       </div>
 
-      <div className="px-8 py-4 border-t border-white/6 flex items-center justify-between">
-        <span className="text-white/20 font-mono text-[10px] tracking-[1px]">
-          V0.1 · ASSEMBLY VIEWER
+      <div className="px-8 py-4 border-t border-border flex items-center justify-between">
+        <span className="text-fg/40 font-mono text-2xs tracking-label">
+          {RELEASE} · ASSEMBLY VIEWER
         </span>
-        <Link
+        <InternalLink
           href={INTERNAL_LINKS.home.href}
-          className="text-white/30 hover:text-white/60 text-xs font-mono tracking-[1px] no-underline transition-colors duration-150"
+          variant="link"
+          className="items-center gap-1"
         >
-          ← BACK
-        </Link>
+          <ArrowLeft size={16} /> BACK
+        </InternalLink>
       </div>
     </div>
   )

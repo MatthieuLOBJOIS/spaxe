@@ -53,10 +53,10 @@ export const COPYRIGHT = '© 2026 SPAXE — ALL RIGHTS RESERVED'
 
 export const LINK_VARIANTS: Record<LinkVariants, string> = {
   primary:
-    'bg-primary hover:bg-primary/80 text-fg px-7 py-3.5 text-base items-center justify-center',
+    'bg-primary hover:bg-primary/80 text-fg px-7 py-3.5 text-base items-center justify-center gap-2',
   primaryDisabled:
     'bg-fg/5 border border-fg/10 text-fg/30 px-7 py-3.5 text-base cursor-not-allowed rounded-lg',
   outline:
     'border border-fg/20 text-fg/70 hover:text-fg hover:border-fg/40 px-7 py-3.5 text-base',
-  link: 'text-muted/80 text-sm no-underline hover:text-fg transition-colors',
+  link: 'text-muted/80 text-sm hover:text-fg/80',
 }

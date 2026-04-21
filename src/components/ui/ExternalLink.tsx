@@ -25,7 +25,7 @@ export function ExternalLink({
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        'w-fit flex gap-2 rounded-lg font-medium transition-colors',
+        'w-fit flex gap-2 rounded-lg font-medium transition-colors duration-normal',
         LINK_VARIANTS[variant],
         className
       )}

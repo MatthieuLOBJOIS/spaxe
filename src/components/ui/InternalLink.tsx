@@ -24,7 +24,7 @@ export function InternalLink({
     <Link
       href={href}
       className={cn(
-        'w-fit flex gap-2 rounded-lg font-medium transition-colors',
+        'w-fit flex rounded-lg font-medium transition-colors duration-normal',
         LINK_VARIANTS[variant],
         className
       )}
