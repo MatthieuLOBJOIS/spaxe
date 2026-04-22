@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
-// Tetrahedron vertices
+// Tetrahedron vertices — Y-up, unit scale
 const VERTICES = [
   new THREE.Vector3(0, 1.2, 0), // top
   new THREE.Vector3(-1.04, -0.6, 0.6), // bottom-left front
@@ -12,7 +12,7 @@ const VERTICES = [
   new THREE.Vector3(0, -0.6, -1.2), // bottom back
 ]
 
-// Tetrahedron edges
+// Tetrahedron edges — pairs of vertex indices
 const EDGES: [number, number][] = [
   [0, 1],
   [0, 2],
@@ -22,7 +22,7 @@ const EDGES: [number, number][] = [
   [3, 1],
 ]
 
-// Line material
+// Line material rendering the edges of the ghost shape
 const LINE_MATERIAL = new THREE.LineBasicMaterial({ color: '#F26522' })
 
 export default function GhostShape() {

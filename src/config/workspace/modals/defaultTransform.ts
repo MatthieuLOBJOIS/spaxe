@@ -1,4 +1,4 @@
-import { ManualDelta } from '@/types/transform'
+import { ManualDelta } from '@/types/viewer'
 
 export const DEFAULT_DELTA: ManualDelta = {
   translation: [0, 0, 0],

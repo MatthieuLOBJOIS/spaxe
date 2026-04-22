@@ -4,7 +4,7 @@ import * as THREE from 'three'
 import { useAssemblyStore } from '@/store/assemblyStore'
 import { useTransformStore } from '@/store/transformStore'
 import { useCameraStore } from '@/store/cameraStore'
-import { ManualDelta } from '@/types/transform'
+import { Vec3, ManualDelta } from '@/types/viewer'
 
 type GizmoMode = 'translate' | 'rotate'
 
@@ -86,17 +86,13 @@ export function useGizmoControls({
     }
 
     const oldDelta = manualDeltas[pf!]?.[field] ?? [0, 0, 0]
-    const diff = newDelta.map((v, i) => v - oldDelta[i]) as [
-      number,
-      number,
-      number,
-    ]
+    const diff = newDelta.map((v, i) => v - oldDelta[i]) as Vec3
 
     const updates: Record<string, Partial<ManualDelta>> = {}
     selectedParts.forEach((id) => {
       const current = manualDeltas[id]?.[field] ?? [0, 0, 0]
       updates[id] = {
-        [field]: current.map((v, i) => v + diff[i]) as [number, number, number],
+        [field]: current.map((v, i) => v + diff[i]) as Vec3,
       }
     })
 

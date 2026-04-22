@@ -4,12 +4,12 @@ import type { TransformControls as TransformControlsImpl } from 'three-stdlib'
 import * as THREE from 'three'
 
 import { useGizmoControls } from '@/hooks/useGizmoControls'
-import { ManualDelta } from '@/types/transform'
+import type { Vec3 } from '@/types/viewer'
 
 interface GizmoTranslateProps {
   meshRef: RefObject<THREE.Mesh>
   partFile: string
-  basePosition: ManualDelta['translation']
+  basePosition: Vec3
   geometryOffset: THREE.Vector3
 }
 

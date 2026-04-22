@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useExplodedStore } from '@/store/explodedStore'
-import { Vec3 } from '@/types/exploded'
+import type { Vec3 } from '@/types/viewer'
 
 // Calcule le centre géométrique global de l'assemblage
 // à partir des centres individuels de chaque pièce.

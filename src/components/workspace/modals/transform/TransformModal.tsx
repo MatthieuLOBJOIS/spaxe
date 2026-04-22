@@ -2,7 +2,7 @@
 
 import { useAssemblyStore } from '@/store/assemblyStore'
 import { useTransformStore } from '@/store/transformStore'
-import { ManualDelta } from '@/types/transform'
+import { ManualDelta } from '@/types/viewer'
 import { DEFAULT_DELTA } from '@/config/workspace/modals/defaultTransform'
 
 import { SelectedParts } from '@/components/ui/SelectedParts'

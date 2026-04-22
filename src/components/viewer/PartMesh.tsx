@@ -22,7 +22,7 @@ import { getPartColor, hasTransforms } from '@/lib/assemblyLoader'
 import { DEFAULT_DELTA } from '@/config/workspace/modals/defaultTransform'
 
 import { Part } from '@/types/assembly'
-import { ManualDelta } from '@/types/transform'
+import { ManualDelta } from '@/types/viewer'
 
 interface PartMeshProps {
   part: Part

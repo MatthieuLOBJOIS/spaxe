@@ -1,4 +1,4 @@
-// Composant d'entrée XYZ réutilisable pour position et rotation
+import type { Vec3 } from '@/types/viewer'
 
 const AXES = [
   { label: 'X', color: 'text-[#E85C5C]' },
@@ -10,7 +10,7 @@ type XYZInputProps = {
   label: string
   labelActive?: boolean
   onLabelClick?: () => void
-  values: [number, number, number]
+  values: Vec3
   onChange: (axis: 0 | 1 | 2, value: number) => void
 }
 

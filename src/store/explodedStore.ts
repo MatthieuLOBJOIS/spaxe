@@ -1,6 +1,6 @@
 import { create } from 'zustand'
-import { type Axis } from '@/config/workspace/modals/defaultExploded'
-import { Vec3 } from '@/types/exploded'
+import type { Axis } from '@/config/workspace/modals/defaultExploded'
+import type { Vec3 } from '@/types/viewer'
 
 interface ExplodedStore {
   explosionFactor: number

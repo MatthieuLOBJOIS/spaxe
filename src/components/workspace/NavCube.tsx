@@ -5,6 +5,8 @@ import { Canvas, useFrame, useThree, ThreeEvent } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 
+import type { Vec3 } from '@/types/viewer'
+
 // ============================================================
 // CONFIG
 // ============================================================
@@ -12,8 +14,8 @@ import * as THREE from 'three'
 const S = 0.75
 
 const FACES: {
-  pos: [number, number, number]
-  rot: [number, number, number]
+  pos: Vec3
+  rot: Vec3
 }[] = [
   { pos: [0, 0, S], rot: [0, 0, 0] },
   { pos: [0, 0, -S], rot: [0, Math.PI, 0] },
@@ -24,8 +26,8 @@ const FACES: {
 ]
 
 const EDGES: {
-  start: [number, number, number]
-  end: [number, number, number]
+  start: Vec3
+  end: Vec3
 }[] = [
   [
     [-S, -S, S],
@@ -76,34 +78,34 @@ const EDGES: {
     [-S, S, -S],
   ],
 ].map(([a, b]) => ({
-  start: a as [number, number, number],
-  end: b as [number, number, number],
+  start: a as Vec3,
+  end: b as Vec3,
 }))
 
 const AXES = [
   {
     id: 'x',
     color: '#ef4444',
-    cylPos: [0.5, 0, 0] as [number, number, number],
-    cylRot: [0, 0, -Math.PI / 2] as [number, number, number],
-    conePos: [1.05, 0, 0] as [number, number, number],
-    coneRot: [0, 0, -Math.PI / 2] as [number, number, number],
+    cylPos: [0.5, 0, 0] as Vec3,
+    cylRot: [0, 0, -Math.PI / 2] as Vec3,
+    conePos: [1.05, 0, 0] as Vec3,
+    coneRot: [0, 0, -Math.PI / 2] as Vec3,
   },
   {
     id: 'y',
     color: '#22c55e',
-    cylPos: [0, 0.5, 0] as [number, number, number],
-    cylRot: [0, 0, 0] as [number, number, number],
-    conePos: [0, 1.05, 0] as [number, number, number],
-    coneRot: [0, 0, 0] as [number, number, number],
+    cylPos: [0, 0.5, 0] as Vec3,
+    cylRot: [0, 0, 0] as Vec3,
+    conePos: [0, 1.05, 0] as Vec3,
+    coneRot: [0, 0, 0] as Vec3,
   },
   {
     id: 'z',
     color: '#3b82f6',
-    cylPos: [0, 0, 0.5] as [number, number, number],
-    cylRot: [Math.PI / 2, 0, 0] as [number, number, number],
-    conePos: [0, 0, 1.05] as [number, number, number],
-    coneRot: [Math.PI / 2, 0, 0] as [number, number, number],
+    cylPos: [0, 0, 0.5] as Vec3,
+    cylRot: [Math.PI / 2, 0, 0] as Vec3,
+    conePos: [0, 0, 1.05] as Vec3,
+    coneRot: [Math.PI / 2, 0, 0] as Vec3,
   },
 ]
 
@@ -122,8 +124,8 @@ function Face({
   active,
   onActivate,
 }: {
-  pos: [number, number, number]
-  rot: [number, number, number]
+  pos: Vec3
+  rot: Vec3
 } & ActiveProps) {
   const [hovered, setHovered] = useState(false)
 

@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useExplodedStore } from '@/store/explodedStore'
-import { Vec3 } from '@/types/exploded'
+import type { Vec3 } from '@/types/viewer'
 
 // Calcule le vecteur de déplacement d'une pièce pendant l'explosion.
 // La direction est déterminée par le vecteur centroïde global → centroïde pièce,

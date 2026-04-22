@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-import { ManualDelta } from '@/types/transform'
+import { ManualDelta } from '@/types/viewer'
 
 type TransformMode = 'translate' | 'rotate'
 

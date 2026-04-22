@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { useTransformStore } from '@/store/transformStore'
 import { DEFAULT_DELTA } from '@/config/workspace/modals/defaultTransform'
-import { ManualDelta } from '@/types/transform'
+import { ManualDelta } from '@/types/viewer'
 
 export function usePartTransform(
   partFile: string,
